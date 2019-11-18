@@ -19,4 +19,4 @@ const cardData=[{
     ability:"temp",
     abilityNumber:0,
      }
-]
+];
