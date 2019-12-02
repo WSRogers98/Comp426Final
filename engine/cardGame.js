@@ -13,6 +13,7 @@ export function shuffle(arr){
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
 }
+//deck = starting deck player= boolean value on if it is the player
 export function startingHand(deck, player){
     for(let i=0;i>7;i++){
         if (player===true){
