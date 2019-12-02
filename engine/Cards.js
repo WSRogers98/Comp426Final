@@ -7,7 +7,8 @@
     defense: the health points of the card before the card is destroyed
     cost: how much mana the card costs
     abilityName: the name of the ability of the card
-    ability: the special ability a card has if it has one
+    ability: the generic typing of an ability
+    abilityDescription: the special ability a card has if it has one
     abilityNumber: the ID of the given ability
         ability number may be useless if everyone has a unique ability and there aren't many repeats
     type: the type of the card, creature or spell.
@@ -39,6 +40,7 @@ const cardData=[{
     defense:15,
     cost:10,
     abilityName:"First Year Hope",
+    abilityDescription:"",
     ability:"Heal All allies including yourself",
     abilityNumber:0,
     type:"legendary",
@@ -53,8 +55,9 @@ const cardData=[{
         defense:0,
         cost:0,
         ability:"",
+        abilityDescription:"",
         abilityName:"Reflect",
-        abilityNumber:0,
+        abilityNumber:1,
         type:"temp",
         author:"Molly",
     },
@@ -67,6 +70,7 @@ const cardData=[{
         defense:0,
         cost:0,
         ability:"temp",
+        abilityDescription:"",
         abilityName:"temp",
         abilityNumber:0,
         type:"temp",
@@ -82,6 +86,7 @@ const cardData=[{
         cost:0,
         ability:"temp",
         abilityName:"temp",
+        abilityDescription:"",
         abilityNumber:0,
         type:"temp",
         author:"Molly",
@@ -96,6 +101,7 @@ const cardData=[{
         cost:0,
         ability:"temp",
         abilityName:"temp",
+        abilityDescription:"",
         abilityNumber:0,
         type:"temp",
         author:"Molly",
@@ -110,6 +116,7 @@ const cardData=[{
         cost:0,
         ability:"temp",
         abilityName:"temp",
+        abilityDescription:"",
         abilityNumber:0,
         type:"temp",
         author:"Molly",
@@ -124,6 +131,7 @@ const cardData=[{
         cost:0,
         ability:"temp",
         abilityName:"temp",
+        abilityDescription:"",
         abilityNumber:0,
         type:"temp",
         author:"Molly",
@@ -138,6 +146,7 @@ const cardData=[{
         cost:0,
         ability:"temp",
         abilityName:"temp",
+        abilityDescription:"",
         abilityNumber:0,
         type:"temp",
         author:"Molly",
@@ -152,6 +161,7 @@ const cardData=[{
         cost:0,
         ability:"temp",
         abilityName:"temp",
+        abilityDescription:"",
         abilityNumber:0,
         type:"temp",
         author:"Billy",
