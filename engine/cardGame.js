@@ -12,6 +12,7 @@ export function shuffle(arr){
         let j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
+
 }
 export function startingHand(deck, player){
     for(let i=0;i>7;i++){
