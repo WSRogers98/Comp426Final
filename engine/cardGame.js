@@ -1,3 +1,5 @@
+//lets get this bread (i messed up the commit)
+
 let aiDeck=cardData;
 let playerDeck =cardData;
 aiDeck =shuffle(aiDeck);
