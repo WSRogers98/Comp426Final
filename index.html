@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" dir="ltr">
+    <title>UNC CS: Battle Royale</title>
+    <link rel='stylesheet' href='style.css' type='text/css'>
 </head>
 <body>
-    <h1>Hello, World</h1>
+    
+        <div class='hero'>
+            <div class='hero-content'>
+
+                <!--The regular content-->
+                <img src='' alt='logo'><br>
+                <button>How to Play</button>
+                <button onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div id="loginForm" class="modal">
+                <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+                <!-- Modal Content -->
+                <form class="modal-content animate" action="loginaction.js">
+                    <div class="imgcontainer">
+                        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+                    </div>
+
+                    <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+
+                        <button type="submit">Login</button>
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                    </div>
+
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
+                        <span class="psw">Forgot <a href="#">password?</a></span>
+                    </div>
+                </form>
+            </div>
+
 </body>
 </html>
