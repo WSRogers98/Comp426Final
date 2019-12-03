@@ -12,6 +12,7 @@ export function shuffle(arr){
         let j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
+
 }
 //deck = starting deck player= boolean value on if it is the player
 export function startingHand(deck, player){

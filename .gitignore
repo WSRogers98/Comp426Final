@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+node_modules
+=======
+node_modules/
+.idea/*
+.env
+>>>>>>> 2814f1cc57c3b95c569d01305939b04cd98210a8
