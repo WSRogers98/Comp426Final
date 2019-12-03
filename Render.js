@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'node_modules\axios\dist\axios.js';
 
 const root = new axios.create({
     baseURL: "http://localhost:3000"
