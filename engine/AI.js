@@ -27,6 +27,7 @@ and if decision tree conditions are met it will follow those conditions and rewe
  */
 
 //determine moves based off stance
+//for alan
 export function defensive() {
 if (Aihealth <=50){
     //max cards in hand is 7
