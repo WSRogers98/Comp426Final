@@ -6,17 +6,16 @@ const root = new axios.create({
   
 export const handleLogin = async function(e) {
     e.preventDefault(); 
-
-//    const result = await root.post(`/account/login/`, {
-//      'name': user, 
-//      'pass': pass,
-//    })
-
-//    console.log(result); 
+    console.log('login submit is working'); 
 }
 
 $(async function() {
 
-    $(document).on('click', '#loginSubmit', console.log('login submit')); 
+    await root.post(`/account/create/`, {
+        "name": "admin",
+        "pass": "password",
+    });
+    
+    $(document).on('click', '#loginSubmit', handleLogin); 
 
-})
+});
