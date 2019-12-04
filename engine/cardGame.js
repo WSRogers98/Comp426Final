@@ -14,7 +14,7 @@ let playerturn=false;
 let aiMana=0;
 let playerMana=0;
 let aiwon=false;
-let playerwon=false
+let playerwon=false;
 
 //call start method to start a new game
 export function start(){
