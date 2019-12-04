@@ -1,6 +1,6 @@
 // temp ai implementation
 
-let aiStance=""
+let aiStance = ""
 /*
 read board to determine stance
 if (firstTurn ==true){
@@ -29,21 +29,37 @@ and if decision tree conditions are met it will follow those conditions and rewe
 //determine moves based off stance
 //for alan
 export function defensive() {
-if (Aihealth <=50){
-    //max cards in hand is 7
-    for(let i =0; i<7; i++){
-        if( aiCardHand[i].ability=="heal"){
-            play(cardData[i]);
-            //change priorities or refactor stance
-            break;
+    if (Aihealth <= 50) {
+        //max cards in hand is 7
+        for (let i = 0; i < 7; i++) {
+            if (aiCardHand[i].ability == "Heal") {
+                play(cardData[i]);
+                //change priorities or refactor stance
+                break;
+            }
         }
     }
 }
-}
-export function aggressive(){
+export function aggressive() {
+    if (Aihealth >= 75) {
+        for (let i = 0; i < 7; i++) {
+            if (aiCardHand[i].ability == "Attack" || aiCardHand[i].ability == "Status") {
+                play(cardData[i]);
+                break;
+            }
+        }
+    }
 
 }
 export function neutral() {
+    if (Aihealth > 50 && Aihealth < 75) {
+        for (let i = 0; i < 7; i++) {
+            if (aiCardHand[i].ability == "Attack" || aiCardHand[i].ability == "Status" || aiCardHand[i].ability == "Heal") {
+                play(cardData[i]);
+                break;
+            }
+        }
+    }
 
 }
 export function setup() {
