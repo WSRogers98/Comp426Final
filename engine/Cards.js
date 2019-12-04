@@ -8,7 +8,7 @@
     cost: how much mana the card costs
     abilityName: the name of the ability of the card
     ability: the generic typing of an ability
-    abilityDescription: the special ability a card has if it has one
+    abilityDescription: the special ability a card has if it has one to be put on a card.
     abilityNumber: the ID of the given ability
         ability number may be useless if everyone has a unique ability and there aren't many repeats
     type: the type of the card, creature or spell.
