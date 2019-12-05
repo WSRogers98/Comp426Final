@@ -18,12 +18,14 @@ let playerwon=false;
 
 //call start method to start a new game
 export function start(){
+    aiwon=false;
+    playerwon=false;
     aiDeck =shuffle(aiDeck);
     playerDeck=shuffle(playerDeck);
     startingHand(true);
     startingHand(false);
     playerMana=100;
-    aiMana=100
+    aiMana=100;
     if(Math.random() < 0.5){
     first='player';
     playerturn=true;
