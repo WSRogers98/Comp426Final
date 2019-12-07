@@ -6,7 +6,15 @@
     <link rel='stylesheet' href='style.css' type='text/css'>
 </head>
 <body>
-    
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.5.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.5.1/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
         <div class='hero'>
             <div class='hero-content'>
 
@@ -14,6 +22,7 @@
                 <img src='' alt='logo'><br>
                 <button>How to Play</button>
                 <button onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+                <button onclick="document.getElementById('SignupForm').style.display='block'">SignUp</button>
 
             </div>
         </div>
@@ -30,12 +39,12 @@
 
                 <div class="container">
                     <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" id="username" required>
+                    <input type="text" placeholder="Enter Username" name="uname" id='username' required>
 
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+                    <input type="password" placeholder="Enter Password" name="psw" id='password' required>
 
-                    <button type="submit" id="loginSubmit">Login</button>
+                    <button type="submit" id='loginSubmit'>Login</button>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
@@ -47,8 +56,37 @@
                 </div>
             </form>
         </div>
+<!-- The Modal -->
+<div id="SignupForm" class="modal">
+    <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
 
-    <script src='Render.js' type='ecma/javascript'></script>
+    <!-- Modal Content -->
+    <form class="modal-content animate">
+        <!-- <div class="imgcontainer">
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div> -->
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" id='username' required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id='password' required>
+
+            <button type="submit" id='signUpSubmit'>SignUp</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+</div>
+
+    <script src='Render.js'></script>
 
 </body>
 </html>

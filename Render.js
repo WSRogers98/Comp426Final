@@ -1,4 +1,4 @@
-import axios from 'node_modules\axios\dist\axios.js';
+import axios from 'axios';
 
 const root = new axios.create({
     baseURL: "http://localhost:3000"
@@ -6,16 +6,17 @@ const root = new axios.create({
   
 export const handleLogin = async function(e) {
     e.preventDefault(); 
-    console.log('login submit is working'); 
+
+//    const result = await root.post(`/account/login/`, {
+//      'name': user, 
+//      'pass': pass,
+//    })
+
+//    console.log(result); 
 }
 
 $(async function() {
 
-    await root.post(`/account/create/`, {
-        "name": "admin",
-        "pass": "password",
-    });
-    
-    $(document).on('click', '#loginSubmit', handleLogin); 
+    $(document).on('click', '#loginSubmit', console.log('login submit')); 
 
-});
+})
