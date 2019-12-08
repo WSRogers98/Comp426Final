@@ -1,5 +1,4 @@
 // temp ai implementation
-
 let aiStance = ""
 /*
 read board to determine stance
