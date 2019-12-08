@@ -1,5 +1,6 @@
 // temp ai implementation
-
+import '/engine/cardGame.js'
+import '/engine/Cards.js'
 let aiStance = ""
 /*
 read board to determine stance

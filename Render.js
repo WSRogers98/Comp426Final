@@ -1,22 +1,15 @@
-import axios from 'axios';
+import '/engine/AI.js'
+import '/engine/cardGame.js'
+import '/engine/Cards.js'
 
-const root = new axios.create({
-    baseURL: "http://localhost:3000"
-});
-  
-export const handleLogin = async function(e) {
-    e.preventDefault(); 
-
-//    const result = await root.post(`/account/login/`, {
-//      'name': user, 
-//      'pass': pass,
-//    })
-
-//    console.log(result); 
+export function landingPage() {
+    const $root = $('#root');
+  //  $root.html('');
+    let page=``
+    page+=`<button type="button">Play Game</button>`
+    $root.append(page);
 }
 
-$(async function() {
-
-    $(document).on('click', '#loginSubmit', console.log('login submit')); 
-
-})
+$(function(){
+    landingPage();
+});
