@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "final-f637a"
+    "default": "final-f637a",
+    "test": "final-f637a"
   }
 }
