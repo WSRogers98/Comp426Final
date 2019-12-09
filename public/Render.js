@@ -1,4 +1,6 @@
 
+import {cardGame} from "./engine/cardGame.js";
+
 export function landingPage() {
     const $root = $('#root');
     //  $root.html('');
@@ -11,7 +13,7 @@ export function landingPage() {
 //Start of game
 export function game() {
     const $root = $('#root');
-    start();
+    game.start();
     let wpicture = `<div id="all">`
     const loadboard = function () {
         wpicture += `<div id="aiHealth">${cardGame.aiMana}</div>`;
@@ -125,6 +127,7 @@ export function cardPlay(){
 
 
 $(function () {
+    let game = new cardGame();
     landingPage();
     $(document).on('click', '#play', function () { game(); })
     //Templates for on clicks of cards and various items, need changes later ~~~~~Don't change the one above

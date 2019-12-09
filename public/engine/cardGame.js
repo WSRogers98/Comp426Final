@@ -1,48 +1,49 @@
 //lets get this bread (i messed up the commit)
-import { cardData } from "./Cards";
+import { cardData } from "./Cards.js";
 export class cardGame {
     constructor() {
         //global initial declarations
-        let cardback = '';
-        let aiDeck = [...cardData];
-        let playerDeck = [...cardData];
-        console.log(playerDeck)
-        let aihand = [];
-        let playerhand = [];
-        let playerboard = [];
-        let aiboard = [];
-        let turn = 0;
-        let first = '';
-        let playerturn = false;
-        let aiMana = 0;
-        let playerMana = 0;
-        let aiwon = false;
-        let playerwon = false;
+        this.cardback = '';
+        this.aiDeck = [...cardData];
+        this.playerDeck = [...cardData];
+        //loading test
+        console.log(this.playerDeck)
+        this.aihand = [];
+        this.playerhand = [];
+        this.playerboard = [];
+        this.aiboard = [];
+        this.turn = 0;
+        this.first = '';
+        this.playerturn = false;
+        this.aiMana = 0;
+        this.playerMana = 0;
+        this.aiwon = false;
+        this.playerwon = false;
     }
     //call start method to start a new game
     start() {
-        aiwon = false;
-        playerwon = false;
-        aiDeck = shuffle(aiDeck);
-        playerDeck = shuffle(playerDeck);
-        startingHand(true);
-        startingHand(false);
-        playerMana = 100;
-        aiMana = 100;
+        this.aiwon = false;
+        this.playerwon = false;
+        this.aiDeck = this.shuffle(this.aiDeck);
+        this.playerDeck = this.shuffle(this.playerDeck);
+        this.startingHand(true);
+        this.startingHand(false);
+        this.playerMana = 100;
+        this.aiMana = 100;
         if (Math.random() < 0.5) {
-            first = 'player';
-            playerturn = true;
+            this.first = 'player';
+            this.playerturn = true;
         } else {
-            first = 'ai';
-            playerturn = false;
+            this.first = 'ai';
+            this.playerturn = false;
         }
     }
     endTurn() {
-        turn++;
-        if (playerturn === true) {
-            playerturn = false
+        this.turn+=1;
+        if (this.playerturn === true) {
+            this.playerturn = false
         } else {
-            playerturn = true;
+            this.playerturn = true;
         }
 
     }
@@ -57,13 +58,13 @@ export class cardGame {
     startingHand(player) {
         for (let i = 0; i > 7; i++) {
             if (player === true) {
-                draw(true)
+                this.draw(true)
                 // playerhand[i]=playerDeck[i];
                 //  deck.shift();
                 //  playerDeck.shift();
 
             } else {
-                draw(false)
+                this.draw(false)
                 // aihand[i]=aiDeck[i];
                 //  deck.shift();
                 //  aiDeck.shift();
@@ -72,62 +73,62 @@ export class cardGame {
     }
     draw(player) {
         if (player === true) {
-            playerhand.push(playerDeck[0]);
+            this.playerhand.push(this.playerDeck[0]);
             //  deck.shift();
-            playerDeck.shift();
+            this.playerDeck.shift();
 
         } else {
-            aihand.push(aiDeck[0]);
+            this.aihand.push(this.aiDeck[0]);
             // deck.shift();
-            aiDeck.shift();
+            this.aiDeck.shift();
         }
     }
     //card index should be the position of the card within the hand
     playCard(cardIndex, player) {
         if (player === true) {
-            playerMana = playerMana - playerhand[cardIndex].cost;
-            playerboard.push(playerhand[cardIndex]);
-            playerhand.splice(cardIndex, 1)
+            this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
+            this.playerboard.push(this.playerhand[cardIndex]);
+            this.playerhand.splice(cardIndex, 1)
         } else {
-            aiMana = aiMana - aihand[cardIndex].cost;
-            aiboard.push(aihand[cardIndex]);
-            aihand.splice(cardIndex, 1)
+            this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
+            this.aiboard.push(this.aihand[cardIndex]);
+            this.aihand.splice(cardIndex, 1)
         }
 
     }
     //playersCard: is the card being destroyed belonging to the player
     destroyed(cardIndex, playersCard) {
         if (playersCard === true) {
-            playerboard.splice(cardIndex, 1);
+            this.playerboard.splice(cardIndex, 1);
         } else {
-            aiboard.splice(cardIndex, 1);
+            this.aiboard.splice(cardIndex, 1);
         }
     }
     // isPlayer: is the player being attacked or the AI true for player false fo ai
     attackPlayer(cardIndex, isPlayer) {
         if (isPlayer === true) {
-            playerMana = playerMana - aiboard[cardIndex].attack;
-            if (playerMana <= 0) {
-                aiwon = true
+            this.playerMana = this.playerMana - this.aiboard[cardIndex].attack;
+            if (this.playerMana <= 0) {
+                this.aiwon = true
             }
         } else {
-            aiMana = aiMana - playerboard[cardIndex].attack;
-            if (aiMana <= 0) {
-                playerwon = true;
+            this.aiMana = this.aiMana - this.playerboard[cardIndex].attack;
+            if (this.aiMana <= 0) {
+                this.playerwon = true;
             }
         }
     }
     // isPlayer: is the player being attacked or the AI true for player false fo ai
     attackCard(attackerIndex, defenderIndex, isPlayer) {
         if (isPlayer === true) {
-            playerboard[defenderIndex].defense = playerboard[defenderIndex].defense - aiboard[attackerIndex].attack;
-            if (playerboard[defenderIndex].defense <= 0) {
-                destroyed(defenderIndex, true);
+            this.playerboard[defenderIndex].defense = this.playerboard[defenderIndex].defense - this.aiboard[attackerIndex].attack;
+            if (this.playerboard[defenderIndex].defense <= 0) {
+                this.destroyed(defenderIndex, true);
             }
         } else {
-            aiboard[defenderIndex].defense = aiboard[defenderIndex].defense - playerboard[attackerIndex].attack;
-            if (aiboard[defenderIndex].defense <= 0) {
-                destroyed(defenderIndex, false);
+            this.aiboard[defenderIndex].defense = this.aiboard[defenderIndex].defense - this.playerboard[attackerIndex].attack;
+            if (this.aiboard[defenderIndex].defense <= 0) {
+                this.destroyed(defenderIndex, false);
             }
         }
     }
