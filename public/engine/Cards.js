@@ -33,9 +33,9 @@
     },
  */
 //Add in a configuration with the deck that You can have at least 3 TA type cards in your deck (maximum of 3)
-//This will allow us to fluff up the deck numberes without being a little extreme on anything else
+//This will allow us to fluff up the deck numbers without being a little extreme on anything else
 
-const cardData=[{
+export const cardData=[{
     id:0,
     name:"Kris Jordan",
     cardimg: "link here",

@@ -1,10 +1,11 @@
 //lets get this bread (i messed up the commit)
-
+import {cardData} from "./Cards";
 
 //global initial declarations
 let cardback='';
 let aiDeck= [...cardData];
 let playerDeck = [...cardData];
+console.log(playerDeck)
 let aihand=[];
 let playerhand=[];
 let playerboard=[];
