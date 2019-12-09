@@ -1,38 +1,6 @@
-/*
-    id: the id of the card
-    name: the name of the card
-    cardimg: the display image for the card
-    visualeffect: the visual affect that is made when the card is played
-    attack: how much damage the card does
-    defense: the health points of the card before the card is destroyed
-    cost: how much mana the card costs
-    abilityName: the name of the ability of the card
-    ability: the generic typing of an ability
-    abilityDescription: the special ability a card has if it has one to be put on a card.
-    abilityNumber: the ID of the given ability
-        ability number may be useless if everyone has a unique ability and there aren't many repeats
-    type: the type of the card, creature or spell.
-    author: who created the card
 
- {
-        id:0,
-        name:"temp",
-        cardimg: "link here",
-        visualeffect:"link here",
-        attack:0,
-        defense:0,
-        cost:0,
-        ability:"temp",
-        abilityName:"temp",
-        abilityNumber:0,
-        type:"temp",
-        author:"temp",
-    },
- */
 //Add in a configuration with the deck that You can have at least 3 TA type cards in your deck (maximum of 3)
-//This will allow us to fluff up the deck numberes without being a little extreme on anything else
-import '/engine/AI.js'
-import '/engine/cardGame.js'
+//This will allow us to fluff up the deck numbers without being a little extreme on anything else
 /*
     id: the id of the card
     name: the name of the card

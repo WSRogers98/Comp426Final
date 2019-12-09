@@ -1,10 +1,9 @@
 //lets get this bread (i messed up the commit)
-import '/engine/AI.js'
-import '/engine/Cards.js'
+
 
 //global initial declarations
 let aiDeck= [...cardData];
-let playerDeck =[...cardData];
+let playerDeck = [...cardData];
 let aihand=[];
 let playerhand=[];
 let playerboard=[];
