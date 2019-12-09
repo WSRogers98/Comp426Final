@@ -4,12 +4,13 @@
     <meta charset="UTF-8" dir="ltr">
     <title>UNC CS: Battle Royale</title>
     <link rel='stylesheet' href='style.css' type='text/css'>
+    <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
 </head>
 <body>
 
     <div class='hero'>
         <div class='hero-content'>
-
+          
             <!--The regular content-->
             <img src='' alt='logo'><br>
             <button>How to Play</button>
@@ -27,10 +28,10 @@
         <form class="modal-content animate">
           <div class="container">
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id='email' required>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id='password' required>
+                <input type="password" placeholder="Enter Password" name="psw" id="password" required>
 
                 <button type="submit" id='loginSubmit'>Login</button>
                 <label>
@@ -50,16 +51,13 @@
 
         <!-- Modal Content -->
         <form class="modal-content animate">
-            <!-- <div class="imgcontainer">
-                <img src="img_avatar2.png" alt="Avatar" class="avatar">
-            </div> -->
 
             <div class="container">
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id='emailSignUp' required>
+                <input type="text" placeholder="Enter Email" name="email" id="emailSignUp" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id='passwordSignUp' required>
+                <input type="password" placeholder="Enter Password" name="psw" id="passwordSignUp" required>
 
                 <button type="submit" id='signUpSubmit'>SignUp</button>
                 <label>
