@@ -1,7 +1,5 @@
 import {cardGame} from "./engine/cardGame"
 
-
-
 export function landingPage() {
     const $root = $('#root');
     //  $root.html('');
@@ -157,7 +155,7 @@ export function win(){
     x+=`<button type="button" id="playAgain">Play Again?</div>`;
     x+=`<button type="button" id="landAgain">Back to Home Page</div>`;
 }
-
+}
 $(function () {
     landingPage();
     $(document).on('click', '#play', function () {
