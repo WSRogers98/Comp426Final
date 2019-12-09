@@ -2,6 +2,12 @@ body, html {
     height: 100%;
 }
 
+.hero-homepage {
+  background-image: url("images/CompStone_Board.jpg"); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+}
+
 /* The hero image */
 .hero {
   /* Set a specific height */
