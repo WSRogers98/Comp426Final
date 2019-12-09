@@ -2,8 +2,10 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8" dir="ltr">
+    <meta name="google-signin-client_id" content="752092036191-ner285f0qft443503tn15u5lk3i579l8.apps.googleusercontent.com">
     <title>UNC CS: Battle Royale</title>
     <link rel='stylesheet' href='style.css' type='text/css'>
+    <link rel="stylesheet" href="https://use.typekit.net/qrc6jlv.css">
     <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
 </head>
 <body class="hero-homepage">
@@ -12,13 +14,11 @@
 
     <div class='hero'>
         <div class='hero-content'>
-          
             <!--The regular content-->
             <img src='' alt='logo'><br>
             <button>How to Play</button>
+            <button>Card Wiki</button>
             <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
-            <button onclick="document.getElementById('SignupForm').style.display='block'">SignUp</button>
-
         </div>
     </div>
         
@@ -28,50 +28,25 @@
 
         <!-- Modal Content -->
         <form class="modal-content animate">
-          <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+            <div class="container">
+                <label for="email"><b>Email</b></label><br>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required><br><br>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+                <label for="psw"><b>Password</b></label><br>
+                <input type="password" placeholder="Enter Password" name="psw" id="password" required><br><br>
 
-                <button type="submit" id="loginSubmit">Login</button>
-                <label>
+                <button type="submit" id="loginSubmit">Login</button><br><br>
+                <!-- <label id="rememberMe">
                     <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
+                </label><br><br> -->
 
                 <div id="loginWithGoogle"></div>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-        </form>
-    </div>
-    <!-- The Modal -->
-    <div id="SignupForm" class="modal">
-        <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
-
-        <!-- Modal Content -->
-        <form class="modal-content animate">
-
-            <div class="container">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id="emailSignUp" required>
-
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id="passwordSignUp" required>
-
-                <button type="submit" id='signUpSubmit'>SignUp</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-            </div>
-
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+                <span class="psw"><a href="createAccount.html"><button id="createAccount">Create Account</button></a></span>
+                <span class="psw"><a href="forgotPassword.html">Forgot password?</a></span>
             </div>
         </form>
     </div>

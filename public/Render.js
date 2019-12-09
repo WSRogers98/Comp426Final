@@ -92,6 +92,5 @@ function onSuccess(googleUser) {
 
 $(function() {
     $(document).on('click', '#loginSubmit', toggleSignIn()); 
-    $(document).on('click', '#signUpSubmit', handleSignUp()); 
     $(document).on('click', '#loginWithGoogle', toggleSignInWithGoogle()); 
 })
