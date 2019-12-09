@@ -826,6 +826,21 @@ const cardData=[{
         abilityNumber:0,
         type:"win",
         author:"Alan",
+    },
+    //null card for not having a card
+    {
+        id:50,
+        name:"null",
+        cardimg: "link here",
+        visualeffect:"link here",
+        attack:0,
+        defense:0,
+        cost:0,
+        ability:"null",
+        abilityName:"null",
+        abilityNumber:0,
+        type:"null",
+        author:"Alan",
     }
 
 ];
