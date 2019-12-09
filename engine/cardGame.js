@@ -2,6 +2,7 @@
 
 
 //global initial declarations
+let cardback='';
 let aiDeck= [...cardData];
 let playerDeck = [...cardData];
 let aihand=[];
