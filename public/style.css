@@ -57,10 +57,10 @@ button {
     padding-top: 10px; 
   }
 
-  #rememberMe {
-    color: grey; 
-    font-size: 16px; 
-  }
+#my-signin2 {
+  width: 25%; 
+  margin: auto; 
+}
   
   /* The Close Button */
   .close {
