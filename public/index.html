@@ -2,6 +2,7 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8" dir="ltr">
+    <meta name="google-signin-client_id" content="752092036191-ner285f0qft443503tn15u5lk3i579l8.apps.googleusercontent.com">
     <title>UNC CS: Battle Royale</title>
     <link rel='stylesheet' href='style.css' type='text/css'>
     <link rel="stylesheet" href="https://use.typekit.net/qrc6jlv.css">
@@ -38,6 +39,8 @@
 
                 <button type="submit" id="loginSubmit">Login</button>
                 <button type="submit" id="createAccount">Create Account</button><br><br>
+
+                <div id="my-signin2"></div>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
@@ -65,6 +68,7 @@
     <script src="/__/firebase/init.js"></script>
 
     <script src='Render.js'></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 </body>
 </html>

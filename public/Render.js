@@ -47,7 +47,7 @@ function handleSignUp() {
 function toggleSignInWithGoogle() {
     // if person isn't already logged in 
     if (!auth.currentUser) {
-        let provider = new firebase.auth.GoogleAuthProvider; 
+        let provider = new firebase.auth.GoogleAuthProvider(); 
         // signs user in 
         auth.signInWithPopup(provider).then(function(result) {
             // This gives you a Google Access Token. You can use it to access the Google API. 
@@ -57,11 +57,19 @@ function toggleSignInWithGoogle() {
             // handles errors 
             let errorCode = error.code; 
             let errorMessage = error.message; 
+            // The provider account's email address 
             let email = error.email; 
+            // the pending google credential 
             let credential = error.credential; 
             if (errorCode === 'auth/account-exists-with-different-credential') {
                 alert('You have already signed up with a different auth provider for that email.'); 
                 // hande linking user accounts signed up with multiple auth providers here 
+                // User's email already exists.
+                // Asks the user their password.
+                var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
+                auth.signInWithEmailAndPassword(email, password).then(function(user) {
+                    user.linkWithCredential(credential);
+                });
             } else {
                 console.log(error); 
             }
@@ -71,24 +79,29 @@ function toggleSignInWithGoogle() {
     }
 }
 
+// TODO still needs to be implemented 
+function promptUserForPassword() {
+
+}
+
 // renders login with google button *******************************************************************************************
-function onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-  }
-  function onFailure(error) {
-    console.log(error);
-  }
-  function renderButton() {
-    gapi.signin2.render('loginWithGoogle', {
-      'scope': 'profile email',
-      'width': 240,
-      'height': 50,
-      'longtitle': true,
-      'theme': 'dark',
-      'onsuccess': onSuccess,
-      'onfailure': onFailure
-    });
-  }
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
   // ******************************************************************************************************************************8
 
 
