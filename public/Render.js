@@ -26,10 +26,10 @@ function toggleSignIn() {
 
 // handles sign up button press 
 function handleSignUp() {
-    let email = document.getElementById('emailSignUp').value; 
-    let password = document.getElementById('passwordSignUp').value; 
+    let email = document.getElementById('email').value; 
+    let password = document.getElementById('password').value; 
     // creates user with email and password gathered above 
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
         // handles error here 
         let errorCode = error.code; 
         let errorMessage = error.message; 
@@ -40,6 +40,7 @@ function handleSignUp() {
         }
         console.log(error); 
     })
+    toggleSignIn(); 
 }
 
 // handles logging in with google 
@@ -62,7 +63,7 @@ function toggleSignInWithGoogle() {
                 alert('You have already signed up with a different auth provider for that email.'); 
                 // hande linking user accounts signed up with multiple auth providers here 
             } else {
-                console.error(error); 
+                console.log(error); 
             }
         });
     } else {
@@ -90,7 +91,8 @@ function onSuccess(googleUser) {
   }
   // ******************************************************************************************************************************8
 
+
 $(function() {
-    $(document).on('click', '#loginSubmit', toggleSignIn()); 
-    $(document).on('click', '#loginWithGoogle', toggleSignInWithGoogle()); 
+    $(document).on('click', '#loginSubmit', toggleSignIn); 
+    $(document).on('click', '#createAccount', handleSignUp);  
 })
