@@ -26,8 +26,9 @@ export class cardGame {
         this.playerwon = false;
         this.aiDeck = this.shuffle(this.aiDeck);
         this.playerDeck = this.shuffle(this.playerDeck);
-        this.startingHand(true);
-        this.startingHand(false);
+        this.playerhand= this.startingHand(true);
+        this.aihand=this.startingHand(false);
+        console.log(this.playerhand)
         this.playerMana = 100;
         this.aiMana = 100;
         if (Math.random() < 0.5) {
@@ -52,36 +53,35 @@ export class cardGame {
             let j = Math.floor(Math.random() * (i + 1));
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
-
+    return arr;
     }
     //deck = starting deck player= boolean value on if it is the player
     startingHand(player) {
-        for (let i = 0; i > 7; i++) {
+        let arr=[]
+        for (let i = 0; i < 5; i++) {
             if (player === true) {
-                this.draw(true)
-                // playerhand[i]=playerDeck[i];
-                //  deck.shift();
-                //  playerDeck.shift();
+                this.draw(true, arr)
 
             } else {
-                this.draw(false)
-                // aihand[i]=aiDeck[i];
-                //  deck.shift();
-                //  aiDeck.shift();
+                this.draw(false, arr)
+
             }
         }
+        return arr;
     }
-    draw(player) {
+    draw(player, arr) {
         if (player === true) {
-            this.playerhand.push(this.playerDeck[0]);
+            arr.push(this.playerDeck[0]);
             //  deck.shift();
             this.playerDeck.shift();
 
         } else {
-            this.aihand.push(this.aiDeck[0]);
+            arr.push(this.aiDeck[0]);
             // deck.shift();
             this.aiDeck.shift();
         }
+
+        return arr;
     }
     //card index should be the position of the card within the hand
     playCard(cardIndex, player) {
