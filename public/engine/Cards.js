@@ -27,6 +27,7 @@
         cost:0,
         ability:"temp",
         abilityName:"temp",
+          abilityDescription:"temp"
         abilityNumber:0,
         type:"temp",
         author:"temp",
