@@ -104,8 +104,21 @@ function promptUserForPassword() {
     }
   // ******************************************************************************************************************************8
 
+function handleResetEmail() {
+    let emailAddress = document.getElementById('resetEmail').value;
+
+    auth.sendPasswordResetEmail(emailAddress).then(function() {
+        // Email sent.
+        window.location.href="index.html"; 
+    }).catch(function(error) {
+        // handle errors here
+        alert(error.message); 
+    });
+}
 
 $(function() {
     $(document).on('click', '#loginSubmit', toggleSignIn); 
     $(document).on('click', '#createAccount', handleSignUp);  
+    $(document).on('click', '#my-login2', toggleSignInWithGoogle); 
+    $(document).on('click', '#sendResetEmail', handleResetEmail); 
 })
