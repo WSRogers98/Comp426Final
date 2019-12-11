@@ -41,8 +41,7 @@ function handleSignUp() {
             alert(errorMessage); 
         }
         console.log(error); 
-    })
-    toggleSignIn(); 
+    });
 }
 
 // handles logging in with google 
@@ -99,7 +98,18 @@ function toggleSignInWithGoogle() {
         'onfailure': onFailure
       });
     }
-  // ******************************************************************************************************************************8
+  // ******************************************************************************************************************************
+
+// Initiate Firebase Auth.
+function initFirebaseAuth() {
+  // Listen to auth state changes.
+  auth.onAuthStateChanged(firebase.auth().onAuthStateChanged(user => {
+    if(user) {
+      window.location = 'localhost:5000/game.html'; //After successful login, user will be redirected to game.html
+      // TODO STILL NEED TO GET THIS TO WORK 
+    }
+  }));
+}
 
 function handleResetEmail() {
     let emailAddress = document.getElementById('resetEmail').value;
@@ -312,6 +322,8 @@ $(function () {
     landingPage();
     loadModal();
     loadGamePage(); 
+    initFirebaseAuth(); 
+
     $(document).on('click', '#play', function () {
 
         startgame();
@@ -319,11 +331,11 @@ $(function () {
     })
     $(document).on('click', '#wiki', function () {wikipage();})
 
-  
     $(document).on('click', '#loginSubmit', toggleSignIn); 
     $(document).on('click', '#createAccount', handleSignUp);  
-    $(document).on('click', '#my-login2', toggleSignInWithGoogle); 
+    $(document).on('click', '#my-signin2', toggleSignInWithGoogle); 
     $(document).on('submit', '#resetPassword', handleResetEmail); 
+
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); })
     $(document).on('click', '#playerhand-1', function () { cardPlay(1, true); })
