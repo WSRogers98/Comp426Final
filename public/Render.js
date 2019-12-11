@@ -144,8 +144,8 @@ export function landingPage() {
           <div class='hero-content'>
               <!--The regular content-->
               <img src='' alt='logo'><br>
-              <a href="HowToPlay.html"><button>How to Play</button></a>
-              <a href="Wiki.html"><button>Card Wiki</button></a>
+              <button id="howTo">How to Play</button></a>
+              <button id="wiki">Card Wiki</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
