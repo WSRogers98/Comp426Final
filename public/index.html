@@ -51,7 +51,7 @@
           }
           function toggleSignInWithGoogle() {
               // if person isn't already logged in 
-              if (!auth.currentUser) {
+              if (auth.currentUser) {
                   let provider = new firebase.auth.GoogleAuthProvider(); 
                   // signs user in 
                   auth.signInWithPopup(provider).then(function(result) {
