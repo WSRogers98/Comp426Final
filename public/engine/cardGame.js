@@ -85,6 +85,7 @@ export class cardGame {
     }
     //card index should be the position of the card within the hand
     playCard(cardIndex, player) {
+        console.log('hellyes');
         if (player === true) {
             this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
             this.playerboard.push(this.playerhand[cardIndex]);

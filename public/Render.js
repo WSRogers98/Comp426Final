@@ -2,7 +2,7 @@ import { cardGame } from "./engine/cardGame.js";
 import { cardData } from "./engine/Cards.js";
 // assigns the authorization app to an easily typed variable bc im lazy
 let auth = firebase.auth();
-
+let cardgame;
 // handles login button press 
 function toggleSignIn() {
     // if user is logged in already, logs them out 
@@ -155,7 +155,7 @@ export function landingPage() {
 
 //Start of game
 export function startgame() {
-    let cardgame= new cardGame();
+     cardgame= new cardGame();
     cardgame.start();
 
     const $root = $('#root');
@@ -190,7 +190,7 @@ export function startgame() {
         for (let i = 0; i < cardgame.playerhand.length; i++) {
            // if (cardgame.playerhand[i].id !== 50) {
                // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-                wpicture +=`<div id="playerhand-${i}">${cardgame.playerhand[i].name}</div>`
+                wpicture +=`<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
 
            // }
         }
@@ -261,8 +261,8 @@ function wikipage() {
 }
 
 function cardPlay(x, y) {
-    playCard(x, y);
-    if (cardgame.playerMana != 0) {
+    cardgame.playCard(x, y);
+    if (cardgame.playerMana != 0 && cardgame.aiMana !=0) {
         update();
     } else {
 
@@ -278,6 +278,7 @@ function lose() {
 }
 
 function win() {
+    const $root= $('#root');
     let x = ``;
     x += `<div id="loseScreen"> You GRADUATED!!!! CONGRATS!!!?<div>`;
     x += `<button type="button" id="playAgain">Play Again?</div>`;
@@ -349,7 +350,6 @@ function howToPage(){
 }
 
 $(function () {
-
     landingPage();
     loadModal();
     loadGamePage(); 
@@ -369,9 +369,10 @@ $(function () {
     $(document).on('submit', '#resetPassword', handleResetEmail); 
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
+    // whatever was above this appears to be gone lol
     $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); })
     $(document).on('click', '#playerhand-1', function () { cardPlay(1, true); })
-    $(document).on('click', '#playerhand-2', function () { cardPlay(2, true); })
+   $(document).on('click', '#playerhand-2', function () { cardPlay(2, true); })
     $(document).on('click', '#playerhand-3', function () { cardPlay(3, true); })
     $(document).on('click', '#playerhand-4', function () { cardPlay(4, true); })
     $(document).on('click', '#playerhand-5', function () { cardPlay(5, true); })
