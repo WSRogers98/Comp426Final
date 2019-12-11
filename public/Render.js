@@ -128,9 +128,9 @@ page+=`
     <div class='hero-content'>
         <!--The regular content-->
         <img src='' alt='logo'><br>
-        <button>How to Play</button>
+        <button id="howTo">How to Play</button>
         <button id="play" type="button">Play Game</button>
-        <button>Card Wiki</button>
+        <button id="wiki">Card Wiki</button>
         <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
     </div>
 </div>
@@ -152,15 +152,11 @@ export function startgame() {
         wpicture += `<div id="aiHealth">Enemy Health: ${cardgame.aiMana}</div>`;
         wpicture += `<br>`;
         //Cardbacks for the AI
-        wpicture += `<div id="aiHand">'
-    ${cardgame.cardback}
-    ${cardgame.cardback}
-    ${cardgame.cardback}
-    ${cardgame.cardback}
-    ${cardgame.cardback}
-    ${cardgame.cardback}
-    ${cardgame.cardback}
-    wpicture+=</div>`;
+        wpicture += `<div id="aiHand">`
+        for (let i = 0; i < cardgame.aihand.length; i++) {
+            wpicture +=   `${cardgame.cardback}`
+        }
+    wpicture+=`</div>`;
         wpicture += `<br>`;
         //I may need to write a check, because if we're replacing the cards
         //Used with blank cards then we will need a for loop to fix shit up.
@@ -177,11 +173,12 @@ export function startgame() {
         //playerhand-0,playerhand-1, and so forth till 6 (7 total)
         wpicture += `<div id="playerHand">`
         ////////////////////////////////////////BIG NEED TO FIX  Draw isn't working???
-        for (let i = 0; i < 5; i++) {
-            if (cardgame.playerhand[i].id === 50) {
-                wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
+        for (let i = 0; i < cardgame.playerhand.length; i++) {
+           // if (cardgame.playerhand[i].id !== 50) {
+               // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
+                wpicture +=`<div id="playerhand-${i}">${cardgame.playerhand[i].name}</div>`
 
-            }
+           // }
         }
         wpicture += `</div>`;
         wpicture += `<div id="playerDeck">Cards Left in your deck: ${cardgame.playerDeck.length}</div>`
@@ -234,6 +231,7 @@ function update() {
 function wikipage() {
     const $root = $('#root');
     let x = ``
+    $root.html(' ');
     //Need to work with how we access card database.
     for (let i = 0; i < 50; i++) {
         x += `<div id="card-${cardData[i].id}">` +
@@ -302,6 +300,39 @@ function loadModal(){
     `
     $loginForm.append(form);
 }
+
+function howToPage(){
+    const $root = $('#root');
+    let text = ``
+    $root.html(' ');
+    text+=`
+    <hr>
+    <h4 class="head">Basics</h4>
+    <p>UNC Compstone is a card game between two players. 
+        The goal of the game is to play cards from your hand onto the board and then 
+        use the cards on the board to damage the enemy's grade and eventually bring 
+        them down to 0.</p>
+
+    <hr>
+    <h4 class="head">Start of the game</h4>
+    <p>Each player starts with 7 cards in their hand and 0 on their board. The player 
+        that goes first is decided randomly.</p>
+
+    <hr>
+    <h4 class="head">Turn progression</h4>
+    <p>On a player's turn, they can play cards from their hand onto their board. 
+        Each board can only have 7 cards on it at a time. 
+        Playing a card from the hand costs health and 
+        when a card is played it can't be used to attack until the 
+        turn after it is played. Many cards have abilities that are activated upon 
+        playing the card from the hand.</p>
+
+    <hr>
+    <h4 class="head">End of Game</h4>
+    <p>The game ends when one of the players goes down to 0 health.</p>
+    `
+    $root.append(text);
+}
 $(function () {
 
     landingPage();
@@ -312,6 +343,7 @@ $(function () {
 
     })
     $(document).on('click', '#wiki', function () {wikipage();})
+    $(document).on('click', '#howTo', howToPage)
 
   
     $(document).on('click', '#loginSubmit', toggleSignIn); 
