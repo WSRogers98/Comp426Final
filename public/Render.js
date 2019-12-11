@@ -3,19 +3,20 @@ import { cardData } from "./engine/Cards.js";
 // assigns the authorization app to an easily typed variable bc im lazy
 let auth = firebase.auth();
 let cardgame;
-let playeratt=[];
-playeratt[0]=false;
-playeratt[1]=false;
-playeratt[2]=false;
-playeratt[3]=false;
-playeratt[4]=false;
-
-let playerattacked=[]
-playerattacked[0]=false;
-playerattacked[1]=false;
-playerattacked[2]=false;
-playerattacked[3]=false;
-playerattacked[4]=false;
+//Is it ready to attack?
+let playeratt = [];
+playeratt[0] = false;
+playeratt[1] = false;
+playeratt[2] = false;
+playeratt[3] = false;
+playeratt[4] = false;
+//has it already attacked?
+let playerattacked = []
+playerattacked[0] = false;
+playerattacked[1] = false;
+playerattacked[2] = false;
+playerattacked[3] = false;
+playerattacked[4] = false;
 
 // handles login button press
 function toggleSignIn() {
@@ -165,6 +166,7 @@ export function landingPage() {
           </div>
       </div>
     `
+    $root.empty();
     $root.append(page);
 }
 
@@ -183,7 +185,10 @@ export function startgame() {
         //Cardbacks for the AI
         wpicture += `<div id="aiHand">`
         for (let i = 0; i < cardgame.aihand.length; i++) {
-            wpicture += `${cardgame.cardback}`
+            // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+            wpicture += `<div id="aihand-${i}>${cardgame.aihand[i].name}</div>`
+
+
         }
         wpicture += `</div>`;
         wpicture += `<br>`;
@@ -193,8 +198,9 @@ export function startgame() {
         //** fix fix fix fix fix  */
         wpicture += `<div id="aiDeck"> Card Left in Enemy Deck: ${cardgame.aiDeck.length}</div>`;
         wpicture += `<br>`;
-        wpicture += `<div id="aiBoard">${cardgame.aiboard}</div>`;
-        wpicture += `<br>`;
+        for (let i = 0; i < cardgame.aiboard.length; i++) {
+            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
+        } wpicture += `<br>`;
 
         wpicture += `<div id="playerBoard">${cardgame.playerboard}</div>`;
         wpicture += `<br>`;
@@ -229,7 +235,10 @@ function update() {
         //Cardbacks for the AI
         wpicture += `<div id="aiHand">`
         for (let i = 0; i < cardgame.aihand.length; i++) {
-            wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+            // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+            wpicture += `<div id="aihand-${i}>${cardgame.aihand[i].name}</div>`
+
+
         }
         wpicture += `</div>`;
         wpicture += `<br>`;
@@ -239,19 +248,21 @@ function update() {
         //** fix fix fix fix fix  */
         wpicture += `<div id="aiDeck"> Card Left in Enemy Deck: ${cardgame.aiDeck.length}</div>`;
         wpicture += `<br>`;
-        for (let i = 0; i < cardgame.aihand.length; i++) {
-            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i]}</div>`;
+        wpicture += `<div id="aiboard">`
+        for (let i = 0; i < cardgame.aiboard.length; i++) {
+            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
+            console.log('Ai board at ' + i + ': ' + cardgame.aiboard[i].name);
         }
+        wpicture += `</div>`
         wpicture += `<br>`;
-        wpicture += `<div id="playerboard"`;
+        wpicture += `<div id="playerboard">`;
         for (let i = 0; i < cardgame.playerboard.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
             wpicture += `<div id="playerboard-${i}"><p>${cardgame.playerboard[i].name}</p></div>`;
-            console.log(cardgame.playerboard[i]);
             // }
         }
-        wpicture+=`</div>`;
+        wpicture += `</div>`;
         wpicture += `<br>`;
         //Pulls in our hand and gives each card a id of
         //playerhand-0,playerhand-1, and so forth till 6 (7 total)
@@ -298,16 +309,12 @@ function wikipage() {
 
 function cardPlay(x, y) {
     cardgame.playCard(x, y);
-    console.log('exit')
-    console.log(cardgame.playerboard)
 }
 
 //JINKIES FUCKING SCOOBEROOO
-function cardAttack(x){
+function cardAttack(x) {
     //If it exists?
-    if(cardgame.playerboard[x].attack!=0){
-        cardgame.playerboard[x].attack;
-    }
+
 }
 
 function lose() {
@@ -322,8 +329,9 @@ function win() {
     const $root = $('#root');
     let x = ``;
     x += `<div id="loseScreen"> You GRADUATED!!!! CONGRATS!!!?<div>`;
-    x += `<button type="button" id="playAgain">Play Again?</div>`;
+    x += `<button type="button" id="play">Play Again?</div>`;
     x += `<button type="button" id="landAgain">Back to Home Page</div>`;
+    $root.empty();
     $root.append(x);
 }
 
@@ -397,10 +405,14 @@ $(function () {
     initFirebaseAuth();
 
     $(document).on('click', '#play', function () {
-
         startgame();
+        update();
 
     })
+    $(document).on('click', '#landAgain', function () {
+        landingPage();
+    });
+
     $(document).on('click', '#wiki', function () { wikipage(); })
     $(document).on('click', '#howTo', howToPage)
 
@@ -411,69 +423,134 @@ $(function () {
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
-    $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); update(); })
-    $(document).on('click', '#playerhand-1', function () { cardPlay(1, true); update(); })
-    $(document).on('click', '#playerhand-2', function () { cardPlay(2, true); update(); })
-    $(document).on('click', '#playerhand-3', function () { cardPlay(3, true); update(); })
-    $(document).on('click', '#playerhand-4', function () { cardPlay(4, true); update(); })
+    $(document).on('click', '#playerhand-0', function () {
+        cardPlay(0, true); update(); win();
+    })
+    $(document).on('click', '#playerhand-1', function () {
+        cardPlay(1, true); update();
+    })
+    $(document).on('click', '#playerhand-2', function () {
+        cardPlay(2, true); update();
+    })
+    $(document).on('click', '#playerhand-3', function () {
+        cardPlay(3, true); update();
+    })
+    $(document).on('click', '#playerhand-4', function () {
+        cardPlay(4, true); update();
+    })
 
     $(document).on('click', '#playerboard-0', function () {
-        if(playerattacked[0]===false){
-            playeratt[0]=true;
-            for(let i = 1 ; i<5; i++){
-                playeratt[i]=false;
+        console.log('is this shit clicking?0')
+        if (playerattacked[0] === false) {
+            for (let i = 0; i < 5; i++) {
+                playeratt[i] = false;
             }
+            playeratt[0] = true;
+            console.log('This is Playeratt[0] and playerattacked[0]: ' + playeratt[0] + ' ' + playerattacked[0])
         }
+
     })
 
     $(document).on('click', '#playerboard-1', function () {
-        if(playerattacked[1]===false){
-            for(let i = 0 ; i<5; i++){
-                playeratt[i]=false;
+        console.log('is this shit clicking?1')
+
+        if (playerattacked[1] === false) {
+            for (let i = 0; i < 5; i++) {
+                playeratt[i] = false;
             }
-            playeratt[1]=true;
+            playeratt[1] = true;
         }
     })
 
     $(document).on('click', '#playerboard-2', function () {
-        if(playerattacked[2]===false){
-            for(let i = 0 ; i<5; i++){
-                playeratt[i]=false;
+        console.log('is this shit clicking?2')
+
+        if (playerattacked[2] === false) {
+            for (let i = 0; i < 5; i++) {
+                playeratt[i] = false;
             }
-            playeratt[2]=true;
+            playeratt[2] = true;
         }
     })
 
     $(document).on('click', '#playerboard-3', function () {
-        if(playerattacked[3]===false){
-            for(let i = 0 ; i<5; i++){
-                playeratt[i]=false;
+        console.log('is this shit clicking?3')
+
+        if (playerattacked[3] === false) {
+            for (let i = 0; i < 5; i++) {
+                playeratt[i] = false;
             }
-            playeratt[3]=true;
-        }})
+            playeratt[3] = true;
+        }
+    })
 
     $(document).on('click', '#playerboard-4', function () {
-        if(playerattacked[4]===false){
-            for(let i = 0 ; i<5; i++){
-                playeratt[i]=false;
+        console.log('is this shit clicking?4')
+
+        if (playerattacked[4] === false) {
+            for (let i = 0; i < 5; i++) {
+                playeratt[i] = false;
             }
-            playeratt[4]=true;
+            playeratt[4] = true;
         }
     })
 
     $(document).on('click', '#aiboard-0', function () {
-        for(let i = 0; i<5; i++){
-            if(playerattacked[i]===false&&playeratt[i]===true){
-                cardAttack(i,0);
+        for (let i = 0; i < 5; i++) {
+            if (playerattacked[i] === false && playeratt[i] === true) {
+                cardAttack(i, 0);
+                playerattacked[i] = true;
             }
         }
+        update();
+    });
+    $(document).on('click', '#aiboard-1', function () {
+        for (let i = 0; i < 5; i++) {
+            if (playerattacked[i] === false && playeratt[i] === true) {
+                cardAttack(i, 1);
+                playerattacked[i] = true;
+            }
+        }
+        update();
+    });
+    $(document).on('click', '#aiboard-2', function () {
+        for (let i = 0; i < 5; i++) {
+            if (playerattacked[i] === false && playeratt[i] === true) {
+                cardAttack(i, 2);
+                playerattacked[i] = true;
+            }
+        }
+        update();
+    });
+    $(document).on('click', '#aiboard-3', function () {
+        for (let i = 0; i < 5; i++) {
+            if (playerattacked[i] === false && playeratt[i] === true) {
+                cardAttack(i, 3);
+                playerattacked[i] = true;
+            }
+        }
+        update();
+    });
+    $(document).on('click', '#aiboard-4', function () {
+        for (let i = 0; i < 5; i++) {
+            if (playerattacked[i] === false && playeratt[i] === true) {
+                cardAttack(i, 4);
+                playerattacked[i] = true;
+            }
+        }
+        update();
+    });
 
-    })
-    $(document).on('click', '#aiboard-1', function () { cardAttack()})
-    $(document).on('click', '#aiboard-2', function () { cardAttack()})
-    $(document).on('click', '#aiboard-3', function () { cardAttack()})
-    $(document).on('click', '#aiboard-4', function () { cardAttack()})
-
+    $(document).on('click', '#aiHealth', function () {
+        for (let i = 0; i < 5; i++) {
+            if (playerattacked[i] === false && playeratt[i] === true) {
+                cardgame.attackPlayer(i, false);
+                playerattacked[i] = true;
+            }
+        }
+        update();
+        console.log(cardgame.aiMana)
+    });
 
 
     $(document).on('click', '#playAgain', function () {
@@ -482,11 +559,12 @@ $(function () {
 
     $(document).on('click', '#endTurn', function () {
         cardgame.endTurn();
-        for(let i = 0; i <5; i++){
-            playerattacked[i]=false;
+        for (let i = 0; i < 5; i++) {
+            playerattacked[i] = false;
         }
         //insert ai function call
         cardgame.AI();
+        update();
 
     })
     $(document).on('click', '#landAgain', function () {
