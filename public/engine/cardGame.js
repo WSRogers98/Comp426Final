@@ -19,6 +19,13 @@ export class cardGame {
         this.playerMana = 0;
         this.aiwon = false;
         this.playerwon = false;
+
+        //stuff for the AI
+        this.aiStance='';
+        this.maxaiPlay=0;
+        this.aiPlayedCards=0;
+        this.maxManaUse=0;
+        this.aimanaUsed=0;
     }
     //call start method to start a new game
     start() {
@@ -37,6 +44,9 @@ export class cardGame {
         } else {
             this.first = 'ai';
             this.playerturn = false;
+        }
+        if(this.first==='ai'){
+            this.AI();
         }
     }
     endTurn() {
@@ -90,12 +100,28 @@ export class cardGame {
             console.log('ran1')
             this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
             this.playerboard.push(this.playerhand[cardIndex]);
-            this.playerhand.splice(cardIndex, 1)
+            this.playerhand.splice(cardIndex, 1);
+            if(this.playerboard[this.playerboard.length-1].type==='heal'){
+               // temp heal benefit
+                this.playerMana+=10;
+            }
+            if(this.playerboard[this.playerboard.length-1].type==='hurt'){
+                // temp hurt benefit
+                this.aiMana-=10;
+            }
             console.log('ran2')
         } else {
             this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
             this.aiboard.push(this.aihand[cardIndex]);
             this.aihand.splice(cardIndex, 1)
+            if(this.aiboard[this.aiboard.length-1].type==='heal'){
+                // temp heal benefit
+                this.aiMana+=10;
+            }
+            if(this.aiboard[this.aiboard.length-1].type==='hurt'){
+                // temp hurt benefit
+                this.playerMana-=10;
+            }
         }
 console.log(this.playerboard)
     }
@@ -134,5 +160,112 @@ console.log(this.playerboard)
                 this.destroyed(defenderIndex, false);
             }
         }
+    }
+    /*
+
+    THE AI GOES HERE!! WOOOOO!!!! YAY FOR TECHNOLOGY!!
+             this AI is about to be Smol Brain
+
+overarching plan: weight types of moves differently based of the stance that determines what the AI should do.
+this will allow the ai to make its own decisions and be as human like as possible
+^ the above statement assumes that no one will master the game and that a "meta" or dominant strategy will not form
+The ai stance will dictate the ai to be reactionary based off the player and less proactive
+points assigned to move * decimal value of weight= should the ai make the move
+if there is a tie, which is statistically improbable, the ai with randomly select one of the tied options
+if there is a move that can win the game it will always take the highest priority regardless of stance
+before the ai goes into priority mode, the amount of mana it is allowed to spend will be determined by its stance
+and if decision tree conditions are met it will follow those conditions and reweight priority after accordingly
+ */
+/*
+    variables to use:
+    this.aiStance=
+    this.maxaiPlay=
+    this.aiPlayedCards=
+    this.maxManaUse=
+    this.aimanaUsed=
+*/
+    AI(){
+        this.aimanaUsed=0;
+        this.aiPlayedCards=0;
+        // determine AI Stance
+        if ( (this.first ==='ai' && this.turn===0) || (this.first==='ai'&&this.turn===1) ){
+            this.aiStance='setup'
+            this.maxaiPlay=2;
+            this.maxManaUse=20;
+        }
+        else if(this.playerboard.length >3){
+            // AI tries to kill your monsters
+            this.aiStance= 'clearBoard';
+
+        }
+        else if(this.aiMana <=50 || this.aiboard.length <=0){
+            this.aiStance='defensive';
+        } else if(this.playerboard.length<=1 || this.playerMana<=50){
+        this.aiStance='aggressive';
+        }else{
+            this.aiStance='neutral';
+        }
+        // determine AI Moves
+    if(this.aiStance==='setup'){
+
+    for(let i=0; i<this.aihand.length;i++){
+        if(this.aiPlayedCards===this.maxaiPlay ||this.aimanaUsed===this.maxManaUse){
+            break;
+        }
+        if( (this.aihand[i].type ==='legendary creature' &&this.aihand[i].cost+this.aimanaUsed<=this.maxManaUse) || (this.aihand[i].type==='creature'&&this.aihand[i].cost+this.aimanaUsed<=this.maxManaUse)){
+            this.aiPlayedCards++;
+            this.aimanaUsed+= this.aihand[i].cost;
+            this.playCard(i, false);
+        }
+    }
+    if(this.aiPlayedCards===0){
+        let healplayed=false;
+        let hurtplayed=false;
+        for(let i=0; i<this.aihand.length;i++){
+            if(this.aiPlayedCards===this.maxaiPlay ||this.aimanaUsed===this.maxManaUse){
+                break;
+            }
+            if(healplayed===false &&this.aihand[i].type ==='heal'){
+                healplayed=true;
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+            if(hurtplayed===false &&this.aihand[i].type ==='hurt'){
+                hurtplayed=true;
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+        }
+        for(let i=0; i<this.aihand.length;i++){
+            if(this.aiPlayedCards===this.maxaiPlay ||this.aimanaUsed===this.maxManaUse){
+                break;
+            }
+            if( (healplayed===true&&hurtplayed===false) &&this.aihand[i].type ==='heal'){
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+            if( (hurtplayed===true &&healplayed===false) &&this.aihand[i].type ==='hurt'){
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+        }
+        this.endTurn()
+    }
+    }else if(this.aiStance==='clearBoard'){
+
+    }else if(this.aiStance==='defensive'){
+
+    }else if(this.aiStance==='aggressive'){
+
+    } else if(this.aiStance==='neutral'){
+
+    }else{
+
+    }
+
     }
 }

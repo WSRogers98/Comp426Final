@@ -5,11 +5,25 @@ import { cardData } from "./engine/Cards.js";
 let auth = firebase.auth();
 let cardgame;
 
-// handles login button press 
+let playeratt=[];
+playeratt[0]=false;
+playeratt[1]=false;
+playeratt[2]=false;
+playeratt[3]=false;
+playeratt[4]=false;
+
+let playerattacked=[]
+playerattacked[0]=false;
+playerattacked[1]=false;
+playerattacked[2]=false;
+playerattacked[3]=false;
+playerattacked[4]=false;
+
+// handles login button press
 function toggleSignIn() {
-    // if user is logged in already, logs them out 
+    // if user is logged in already, logs them out
     if (auth.currentUser) {
-        auth.signOut(); 
+        auth.signOut();
     } else {
         // gets email and password from submitted form 
         let email = document.getElementById('email').value; 
@@ -21,16 +35,16 @@ function toggleSignIn() {
             let errorCode = error.code; 
             let errorMessage = error.message; 
             if (errorCode === 'auth/wrong-password') {
-                alert('Wrong password.'); 
+                alert('Wrong password.');
             } else {
-                alert(errorMessage); 
+                alert(errorMessage);
             }
-            console.log(error); 
+            console.log(error);
         })
     }
 }
 
-// handles sign up button press 
+// handles sign up button press
 function handleSignUp() {
     let email = document.getElementById('email').value; 
     let password = document.getElementById('password').value; 
@@ -42,39 +56,39 @@ function handleSignUp() {
         let errorCode = error.code; 
         let errorMessage = error.message; 
         if (errorCode === 'auth/weak-password') {
-            alert('The password is too weak.'); 
+            alert('The password is too weak.');
         } else {
-            alert(errorMessage); 
+            alert(errorMessage);
         }
-        console.log(error); 
+        console.log(error);
     });
 }
 
 // Initiate Firebase Auth.
 function initFirebaseAuth() {
-  // Listen to auth state changes.
-  auth.onAuthStateChanged(firebase.auth().onAuthStateChanged(user => {
-    if(user) {
-      window.location = 'localhost:5000/game.html'; //After successful login, user will be redirected to game.html
-      // TODO STILL NEED TO GET THIS TO WORK 
-    }
-  }));
+    // Listen to auth state changes.
+    auth.onAuthStateChanged(firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            window.location = 'localhost:5000/game.html'; //After successful login, user will be redirected to game.html
+            // TODO STILL NEED TO GET THIS TO WORK
+        }
+    }));
 }
 
 function handleResetEmail() {
     let emailAddress = document.getElementById('resetEmail').value;
 
-    auth.sendPasswordResetEmail(emailAddress).then(function() {
-        // email sent 
-    }).catch(function(error) {
+    auth.sendPasswordResetEmail(emailAddress).then(function () {
+        // email sent
+    }).catch(function (error) {
         // handle errors here
-        alert(error.message); 
+        alert(error.message);
     });
 }
 
 function loadGamePage() {
-    const $root = $('#gameRoot'); 
-    let page = ``; 
+    const $root = $('#gameRoot');
+    let page = ``;
     page += `
         <div class="hero">
             <div class="hero-content">
@@ -82,14 +96,14 @@ function loadGamePage() {
             </div>
         </div>
     `;
-    $root.append(page); 
+    $root.append(page);
 }
 
 export function landingPage() {
     const $root = $('#root');
     $root.html('');
     let page = ``
-    page+=`
+    page += `
       <div class='hero'>
           <div class='hero-content'>
               <!--The regular content-->
@@ -105,7 +119,7 @@ export function landingPage() {
 
 //Start of game
 export function startgame() {
-     cardgame= new cardGame();
+    cardgame = new cardGame();
     cardgame.start();
 
     const $root = $('#root');
@@ -118,9 +132,9 @@ export function startgame() {
         //Cardbacks for the AI
         wpicture += `<div id="aiHand">`
         for (let i = 0; i < cardgame.aihand.length; i++) {
-            wpicture +=   `${cardgame.cardback}`
+            wpicture += `${cardgame.cardback}`
         }
-    wpicture+=`</div>`;
+        wpicture += `</div>`;
         wpicture += `<br>`;
         //I may need to write a check, because if we're replacing the cards
         //Used with blank cards then we will need a for loop to fix shit up.
@@ -138,12 +152,13 @@ export function startgame() {
         wpicture += `<div id="playerHand">`
         ////////////////////////////////////////BIG NEED TO FIX  Draw isn't working???
         for (let i = 0; i < cardgame.playerhand.length; i++) {
-           // if (cardgame.playerhand[i].id !== 50) {
-               // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-                wpicture +=`<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
+            // if (cardgame.playerhand[i].id !== 50) {
+            // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
+            wpicture += `<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
 
-           // }
+            // }
         }
+        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
         wpicture += `</div>`;
         wpicture += `<div id="playerDeck">Cards Left in your deck: ${cardgame.playerDeck.length}</div>`
         wpicture += `<br>`;
@@ -155,38 +170,58 @@ export function startgame() {
 
 function update() {
     const $root = $('#root');
-   // startgame();
+    // startgame();
     let wpicture = `<div id="all">`
     const loadboard = function () {
-        wpicture += `<div id="aiHealth">${cardgame.aiMana}</div>`;
-
+        wpicture += `<div id="aiHealth">Enemy Health: ${cardgame.aiMana}</div>`;
         wpicture += `<br>`;
-
-        wpicture += `</div>`
-
-        //Maybe write the "blank card check code" depending on implementation
+        //Cardbacks for the AI
+        wpicture += `<div id="aiHand">`
+        for (let i = 0; i < cardgame.aihand.length; i++) {
+            wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+        }
+        wpicture += `</div>`;
         wpicture += `<br>`;
+        //I may need to write a check, because if we're replacing the cards
+        //Used with blank cards then we will need a for loop to fix shit up.
+
+        //** fix fix fix fix fix  */
         wpicture += `<div id="aiDeck"> Card Left in Enemy Deck: ${cardgame.aiDeck.length}</div>`;
         wpicture += `<br>`;
-        wpicture += `<div id="aiBoard">`
-        for (let i = 0; i < 5; i++) {
-            if (cardgame.aiboard[i].id != 50) {
-                wpicture += `${cardgame.aiboard[i].cardimg}`
-            }
+        for (let i = 0; i < cardgame.aihand.length; i++) {
+            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i]}</div>`;
         }
-        wpicture += `</div>`
         wpicture += `<br>`;
+        wpicture += `<div id="playerboard"`;
+        for (let i = 0; i < cardgame.playerboard.length; i++) {
+            // if (cardgame.playerhand[i].id !== 50) {
+            // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
+            wpicture += `<div id="playerboard-${i}"><p>${cardgame.playerboard[i].name}</p></div>`;
+            console.log(cardgame.playerboard[i]);
+            // }
+        }
+        wpicture+=`</div>`;
+        wpicture += `<br>`;
+        //Pulls in our hand and gives each card a id of
+        //playerhand-0,playerhand-1, and so forth till 6 (7 total)
+        wpicture += `<div id="playerHand">`
+        ////////////////////////////////////////BIG NEED TO FIX  Draw isn't working???
+        for (let i = 0; i < cardgame.playerhand.length; i++) {
+            // if (cardgame.playerhand[i].id !== 50) {
+            // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
+            wpicture += `<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
 
-        wpicture += `<div id="playerBoard">${cardgame.playerboard}</div>`;
-        wpicture += `<br>`;
-        wpicture += `<div id="playerDeck">Card left in Your Deck: ${cardgame.playerDeck.length}</div>`;
-        wpicture += `<br>`;
+            // }
+        }
+        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
 
-        wpicture += `<button type="button" id="endTurn">End Turn</div>`
-
+        wpicture += `</div>`;
+        wpicture += `<div id="playerDeck">Cards Left in your deck: ${cardgame.playerDeck.length}</div>`
         wpicture += `<br>`;
-        wpicture += `<div id="playerHealth">${cardgame.playerMana}</div>`;
+        wpicture += `<div id="playerHealth">Your Health: ${cardgame.playerMana}</div>`;
     }
+    loadboard();
+    $root.empty();
     $root.append(wpicture);
 
 }
@@ -217,6 +252,14 @@ function cardPlay(x, y) {
     console.log(cardgame.playerboard)
 }
 
+//JINKIES FUCKING SCOOBEROOO
+function cardAttack(x){
+    //If it exists?
+    if(cardgame.playerboard[x].attack!=0){
+        cardgame.playerboard[x].attack;
+    }
+}
+
 function lose() {
     let x = ``;
     x += `<div id="loseScreen"> You lose.  Take another year at UNC.<div>`;
@@ -226,7 +269,7 @@ function lose() {
 }
 
 function win() {
-    const $root= $('#root');
+    const $root = $('#root');
     let x = ``;
     x += `<div id="loseScreen"> You GRADUATED!!!! CONGRATS!!!?<div>`;
     x += `<button type="button" id="playAgain">Play Again?</div>`;
@@ -234,10 +277,10 @@ function win() {
     $root.append(x);
 }
 
-function loadModal(){
+function loadModal() {
     const $loginForm = $('#loginForm');
-    let form=``;
-    form+=`
+    let form = ``;
+    form += `
     <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
 
     <!-- Modal Content -->
@@ -264,11 +307,11 @@ function loadModal(){
     $loginForm.append(form);
 }
 
-function howToPage(){
+function howToPage() {
     const $root = $('#root');
     let text = ``
     $root.html(' ');
-    text+=`
+    text += `
     <hr>
     <h4 class="head">Basics</h4>
     <p>UNC Compstone is a card game between two players. 
@@ -301,7 +344,7 @@ function howToPage(){
 $(function () {
     landingPage();
     loadModal();
-    loadGamePage(); 
+    loadGamePage();
     initFirebaseAuth();
 
     $(document).on('click', '#play', function () {
@@ -309,26 +352,87 @@ $(function () {
         startgame();
 
     })
-    $(document).on('click', '#wiki', function () {wikipage();})
+    $(document).on('click', '#wiki', function () { wikipage(); })
     $(document).on('click', '#howTo', howToPage)
-    $(document).on('click', '#loginSubmit', toggleSignIn); 
-    $(document).on('click', '#createAccount', handleSignUp);  
-    $(document).on('submit', '#resetPassword', handleResetEmail); 
+    $(document).on('click', '#loginSubmit', toggleSignIn);
+    $(document).on('click', '#createAccount', handleSignUp);
+    $(document).on('submit', '#resetPassword', handleResetEmail);
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
-    $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); })
-    $(document).on('click', '#playerhand-1', function () { cardPlay(1, true); })
-    $(document).on('click', '#playerhand-2', function () { cardPlay(2, true); })
-    $(document).on('click', '#playerhand-3', function () { cardPlay(3, true); })
-    $(document).on('click', '#playerhand-4', function () { cardPlay(4, true); })
-    $(document).on('click', '#playerhand-5', function () { cardPlay(5, true); })
-    $(document).on('click', '#playerhand-6', function () { cardPlay(6, true); })
+    $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); update(); })
+    $(document).on('click', '#playerhand-1', function () { cardPlay(1, true); update(); })
+    $(document).on('click', '#playerhand-2', function () { cardPlay(2, true); update(); })
+    $(document).on('click', '#playerhand-3', function () { cardPlay(3, true); update(); })
+    $(document).on('click', '#playerhand-4', function () { cardPlay(4, true); update(); })
+
+    $(document).on('click', '#playerboard-0', function () {
+        if(playerattacked[0]===false){
+            playeratt[0]=true;
+            for(let i = 1 ; i<5; i++){
+                playeratt[i]=false;
+            }
+        }
+    })
+
+    $(document).on('click', '#playerboard-1', function () {
+        if(playerattacked[1]===false){
+            for(let i = 0 ; i<5; i++){
+                playeratt[i]=false;
+            }
+            playeratt[1]=true;
+        }
+    })
+
+    $(document).on('click', '#playerboard-2', function () {
+        if(playerattacked[2]===false){
+            for(let i = 0 ; i<5; i++){
+                playeratt[i]=false;
+            }
+            playeratt[2]=true;
+        }
+    })
+
+    $(document).on('click', '#playerboard-3', function () {
+        if(playerattacked[3]===false){
+            for(let i = 0 ; i<5; i++){
+                playeratt[i]=false;
+            }
+            playeratt[3]=true;
+        }})
+
+    $(document).on('click', '#playerboard-4', function () {
+        if(playerattacked[4]===false){
+            for(let i = 0 ; i<5; i++){
+                playeratt[i]=false;
+            }
+            playeratt[4]=true;
+        }
+    })
+
+    $(document).on('click', '#aiboard-0', function () {
+        for(let i = 0; i<5; i++){
+            if(playerattacked[i]===false&&playeratt[i]===true){
+                cardAttack(i,0);
+            }
+        }
+
+    })
+    $(document).on('click', '#aiboard-1', function () { cardAttack()})
+    $(document).on('click', '#aiboard-2', function () { cardAttack()})
+    $(document).on('click', '#aiboard-3', function () { cardAttack()})
+    $(document).on('click', '#aiboard-4', function () { cardAttack()})
     $(document).on('click', '#playAgain', function () {
         startgame();
     })
     $(document).on('click', '#endTurn', function () {
         cardgame.endTurn();
+        for(let i = 0; i <5; i++){
+            playerattacked[i]=false;
+        }
+        //insert ai function call
+        cardgame.AI();
+
     })
     $(document).on('click', '#landAgain', function () {
         landingPage();
