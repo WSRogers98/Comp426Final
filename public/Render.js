@@ -3,6 +3,20 @@ import { cardData } from "./engine/Cards.js";
 // assigns the authorization app to an easily typed variable bc im lazy
 let auth = firebase.auth();
 let cardgame;
+let playeratt=[];
+playeratt[0]=false;
+playeratt[1]=false;
+playeratt[2]=false;
+playeratt[3]=false;
+playeratt[4]=false;
+
+let playerattacked=[]
+playerattacked[0]=false;
+playerattacked[1]=false;
+playerattacked[2]=false;
+playerattacked[3]=false;
+playerattacked[4]=false;
+
 // handles login button press 
 function toggleSignIn() {
     // if user is logged in already, logs them out 
