@@ -42,7 +42,6 @@ function handleSignUp() {
         }
         console.log(error); 
     })
-    toggleSignIn(); 
 }
 
 // handles logging in with google 
