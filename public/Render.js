@@ -109,7 +109,7 @@ function handleResetEmail() {
 
     auth.sendPasswordResetEmail(emailAddress).then(function() {
         // Email sent.
-        window.location.href="index.html"; 
+        window.location.href="C:\Users\13144\Documents\GitHub\Comp426Final\public\index.html"; 
     }).catch(function(error) {
         // handle errors here
         alert(error.message); 
