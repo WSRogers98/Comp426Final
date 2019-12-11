@@ -137,15 +137,15 @@ function loadGamePage() {
 
 export function landingPage() {
     const $root = $('#root');
-    //  $root.html('');
+    $root.html('');
     let page = ``
     page+=`
       <div class='hero'>
           <div class='hero-content'>
               <!--The regular content-->
               <img src='' alt='logo'><br>
-              <a href="HowToPlay.html"><button>How to Play</button></a>
-              <a href="Wiki.html"><button>Card Wiki</button></a>
+              <button id="howTo">How to Play</button>
+              <button id="wiki">Card Wiki</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
@@ -257,6 +257,7 @@ function wikipage() {
             `<p id="type">Type: ${cardData[i].type}</p>` +
             `</div><br>`;
     }
+    x+=`<button id="wiki-back-to-home">Go Back</button>`
     $root.append(x);
 }
 
@@ -342,6 +343,7 @@ function howToPage(){
     <hr>
     <h4 class="head">End of Game</h4>
     <p>The game ends when one of the players goes down to 0 health.</p>
+    <br><button id="how-to-back-to-home">Go Back</button>
     `
     $root.append(text);
 }
@@ -385,4 +387,10 @@ $(function () {
     $(document).on('click', '#landAgain', function () {
         landingPage();
     })
+    $(document).on('click', '#wiki-back-to-home', function() {
+        landingPage(); 
+    });
+    $(document).on('click', '#how-to-back-to-home', function() {
+        landingPage(); 
+    }); 
 })
