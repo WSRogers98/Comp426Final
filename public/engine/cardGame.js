@@ -21,11 +21,11 @@ export class cardGame {
         this.playerwon = false;
 
         //stuff for the AI
-        this.aiStance=''
-        this.maxaiPlay=''
-        this.aiPlayedCards=''
-        this.maxManaUse=''
-        this.aimanaUsed=''
+        this.aiStance='';
+        this.maxaiPlay=0;
+        this.aiPlayedCards=0;
+        this.maxManaUse=0;
+        this.aimanaUsed=0;
     }
     //call start method to start a new game
     start() {
@@ -166,13 +166,18 @@ and if decision tree conditions are met it will follow those conditions and rewe
     this.aimanaUsed=
 */
     AI(){
+        this.aimanaUsed=0;
+        this.aiPlayedCards=0;
         // determine AI Stance
         if ( (this.first ==='ai' && this.turn===0) || (this.first==='ai'&&this.turn===1) ){
             this.aiStance='setup'
+            this.maxaiPlay=2;
+            this.maxManaUse=20;
         }
         else if(this.playerboard.length >3){
             // AI tries to kill your monsters
             this.aiStance= 'clearBoard';
+
         }
         else if(this.aiMana <=50 || this.aiboard.length <=0){
             this.aiStance='defensive';
@@ -183,7 +188,16 @@ and if decision tree conditions are met it will follow those conditions and rewe
         }
         // determine AI Moves
     if(this.aiStance==='setup'){
-
+    for(let i=0; i<this.aihand.length;i++){
+        if(this.aiPlayedCards===this.maxaiPlay ||this.aimanaUsed===this.maxManaUse){
+            break;
+        }
+        if( (this.aihand[i].type ==='legendary creature' &&this.aihand[i].cost+this.aimanaUsed<=this.maxManaUse) || (this.aihand[i].type==='creature'&&this.aihand[i].cost+this.aimanaUsed<=this.maxManaUse)){
+            this.aiPlayedCards++;
+            this.aimanaUsed+= this.aihand[i].cost;
+            this.playCard(i, false);
+        }
+    }
     }else if(this.aiStance==='clearBoard'){
 
     }else if(this.aiStance==='defensive'){
