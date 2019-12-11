@@ -243,10 +243,14 @@ function wikipage() {
     let x = ``
     $root.html(' ');
     //Need to work with how we access card database.
+    x += `<div><input type="text" id="search"/>`
+    x += `<button type="button" id="searchButton">Search</button></div>`;
+    x += `<div id="searchDiv" style="display:none"><a href="" id="searchLink">Go to Card</a></div>`
+    // does not autocomplete yet
     for (let i = 0; i < 50; i++) {
+        // <div id="card-${cardData[i].id}">` +
         x += `<div id="card-${cardData[i].id}">` +
-
-            `<h3 id="title">${cardData[i].name}</h3>` +
+            `<h3 id="${cardData[i].id}">${cardData[i].name}</h3>` +
             `<p id="img"><img src="/graphics/cards/${cardData[i].name}.img"></p>` +
             `<p id="ability">${cardData[i].abilityName}: ${cardData[i].abilityDescription}</p>` +
             `<p id="attdef">Attack: ${cardData[i].attack} Defense: ${cardData[i].defense}</p>` +
@@ -256,6 +260,32 @@ function wikipage() {
     }
     x+=`<button id="wiki-back-to-home">Go Back</button>`
     $root.append(x);
+    let results = ["Kris Jordan", "Departmental King, KMP", "The Eternal One: David Plaisted",
+        "COMP110 TA", "Office Hours", "Curve", "Stack Overflow", "Exam", "Snoeyink the Origami Lord",
+        "Anish, the Prankster", "Comp Sci Overcrowding!", "Sitterson Pizza Event", "Legendary TA Rosh",
+        "Robotics Lord Ron Alterovitz", "Legendary Professor Bishop: Destroyer of Worlds", "WeedOut Classes",
+        "BS to BA", "Caffeine Addiction", "Mips Rush", "Sitterson: Departmental Home", "Procrastinate",
+        "Coding Passion", "Djisktras Algorithm", "Legendary Professor: Montek", "Legendary Professor: McMillan the Villain",
+        "Echoes of the Past: Pozefsky", "Classmates in Genome 100", "Internship", "BA to BS", "Computer Science Friends",
+        "Computer Science Enemies", "Good Study Group", "Bad Study Group", "Code Leech", "Honour Court",
+        "Switch to Comp Minor", "Hackathon", "Tech Job Fair", "Fred Brooks", "Pearl Hacks",
+        "Obscure Youtube Coding Tutorial Channel", "Comp 426 Selfie", "Crying in the Sitterson Bathroom",
+        "Kurama", "Rate my Professor", "Skipping Class", "Bug", "The Meme Shit Post Groupme", "CPU Hat",
+        "Graduation"];
+    $("#search").autocomplete({
+        source: results
+    });
+}
+function search() {
+    let name = document.getElementById("search").value;
+    let x = "#";
+    for (let i = 0; i < 50; i++) {
+        if (name === cardData[i].name) {
+            x += cardData[i].id;
+        }
+    }
+    $("#searchLink").attr("href", x);
+    document.getElementById("searchDiv").style.display = "block";
 }
 
 function cardPlay(x, y) {
@@ -498,6 +528,10 @@ $(function () {
     $(document).on('click', '#aiboard-3', function () { cardAttack()})
     $(document).on('click', '#aiboard-4', function () { cardAttack()})
 
+
+    $(document).on('click', '#searchButton', function () { search() });
+
+
     $(document).on('click', '#aiHealth', function () {
         for (let i = 0; i < 5; i++) {
             if (playerattacked[i] === false && playeratt[i] === true) {
@@ -508,6 +542,7 @@ $(function () {
         update();
         console.log(cardgame.aiMana)
     });
+
 
     $(document).on('click', '#playAgain', function () {
         startgame();
