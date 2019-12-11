@@ -1,3 +1,67 @@
+
+[debug] [2019-12-10T20:32:05.176Z] ----------------------------------------------------------------------
+[debug] [2019-12-10T20:32:05.180Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\13144\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2019-12-10T20:32:05.180Z] CLI Version:   7.9.0
+[debug] [2019-12-10T20:32:05.180Z] Platform:      win32
+[debug] [2019-12-10T20:32:05.181Z] Node Version:  v12.13.1
+[debug] [2019-12-10T20:32:05.182Z] Time:          Tue Dec 10 2019 15:32:05 GMT-0500 (Eastern Standard Time)
+[debug] [2019-12-10T20:32:05.183Z] ----------------------------------------------------------------------
+[debug] [2019-12-10T20:32:05.183Z] 
+[debug] [2019-12-10T20:32:05.198Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-10T20:32:05.199Z] > authorizing via signed-in user
+[debug] [2019-12-10T20:32:05.199Z] [iam] checking project final-f637a for permissions ["firebase.projects.get"]
+[debug] [2019-12-10T20:32:05.203Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/final-f637a:testIamPermissions  
+
+[debug] [2019-12-10T20:32:07.979Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-10T20:32:07.987Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a  
+ 
+[debug] [2019-12-10T20:32:10.534Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-10T20:32:10.537Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a/webApps/-/config  
+ 
+[debug] [2019-12-10T20:32:11.456Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[debug] [2019-12-10T21:04:45.586Z] ----------------------------------------------------------------------
+[debug] [2019-12-10T21:04:45.591Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\13144\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-12-10T21:04:45.591Z] CLI Version:   7.9.0
+[debug] [2019-12-10T21:04:45.591Z] Platform:      win32
+[debug] [2019-12-10T21:04:45.591Z] Node Version:  v12.13.1
+[debug] [2019-12-10T21:04:45.593Z] Time:          Tue Dec 10 2019 16:04:45 GMT-0500 (Eastern Standard Time)
+[debug] [2019-12-10T21:04:45.593Z] ----------------------------------------------------------------------
+[debug] [2019-12-10T21:04:45.593Z] 
+[debug] [2019-12-10T21:04:45.660Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-10T21:04:45.661Z] > authorizing via signed-in user
+[debug] [2019-12-10T21:04:45.661Z] [iam] checking project final-f637a for permissions ["firebase.projects.get"]
+[debug] [2019-12-10T21:04:45.664Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-12-10T21:04:45.665Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-12-10T21:04:45.890Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-10T21:04:45.920Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/final-f637a:testIamPermissions  
+
+[debug] [2019-12-10T21:04:46.163Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-10T21:04:46.166Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a  
+ 
+[debug] [2019-12-10T21:04:46.372Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\13144\Documents\GitHub\Comp426Final'...
+[info] 
+[debug] [2019-12-10T21:04:46.385Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a/webApps/-/config  
+ 
+[debug] [2019-12-10T21:04:46.886Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "12"
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\13144\Documents\GitHub\Comp426Final\functions" for Cloud Functions...
+[debug] [2019-12-10T21:04:48.008Z] [worker-~diagnostic~-ac93c3ef-b14c-4395-b5e8-02818127d94b]: Assigning socketPath: \\?\pipe\C:\Users\13144\Documents\GitHub\Comp426Final\functions\9096
+[debug] [2019-12-10T21:04:48.010Z] [worker-~diagnostic~-ac93c3ef-b14c-4395-b5e8-02818127d94b]: BUSY
+[debug] [2019-12-10T21:04:48.513Z] [runtime-status] [9096] Functions runtime initialized. {"cwd":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions","node_version":"12.13.1"}
+[debug] [2019-12-10T21:04:48.514Z] [runtime-status] [9096] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2019-12-10T21:04:48.532Z] [runtime-status] [9096] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-12-10T21:04:48.551Z] [runtime-status] [9096] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-10T21:04:48.553Z] [runtime-status] [9096] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-10T21:04:49.500Z] [worker-~diagnostic~-ac93c3ef-b14c-4395-b5e8-02818127d94b]: exited
+[debug] [2019-12-10T21:04:49.501Z] [worker-~diagnostic~-ac93c3ef-b14c-4395-b5e8-02818127d94b]: FINISHED
 [debug] [2019-12-09T23:54:50.650Z] ----------------------------------------------------------------------
 [debug] [2019-12-09T23:54:50.655Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\walanpat\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
 [debug] [2019-12-09T23:54:50.656Z] CLI Version:   7.9.0
@@ -62,3 +126,4 @@ Dev App Server is now running.
 [info] +  All emulators started, it is now safe to connect.
 [debug] [2019-12-09T23:55:02.663Z] [worker-~diagnostic~-5aa103e7-3a7f-4d15-bbb0-774d534ff3eb]: exited
 [debug] [2019-12-09T23:55:02.663Z] [worker-~diagnostic~-5aa103e7-3a7f-4d15-bbb0-774d534ff3eb]: FINISHED
+r
