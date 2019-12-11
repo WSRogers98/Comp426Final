@@ -1,8 +1,10 @@
 import { cardGame } from "./engine/cardGame.js";
 import { cardData } from "./engine/Cards.js";
+
 // assigns the authorization app to an easily typed variable bc im lazy
 let auth = firebase.auth();
 let cardgame;
+
 // handles login button press 
 function toggleSignIn() {
     // if user is logged in already, logs them out 
@@ -80,26 +82,6 @@ function toggleSignInWithGoogle() {
     }
 }
 
-// renders login with google button *******************************************************************************************
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  // ******************************************************************************************************************************
-
 // Initiate Firebase Auth.
 function initFirebaseAuth() {
   // Listen to auth state changes.
@@ -137,16 +119,15 @@ function loadGamePage() {
 
 export function landingPage() {
     const $root = $('#root');
-    //  $root.html('');
+    $root.html('');
     let page = ``
     page+=`
       <div class='hero'>
           <div class='hero-content'>
               <!--The regular content-->
               <img src='' alt='logo'><br>
-              <button id="howTo">How to Play</button></a>
+              <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
-              <button id="play" type="button">Temp Play</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
@@ -258,6 +239,7 @@ function wikipage() {
             `<p id="type">Type: ${cardData[i].type}</p>` +
             `</div><br>`;
     }
+    x+=`<button id="wiki-back-to-home">Go Back</button>`
     $root.append(x);
 }
 
@@ -292,7 +274,8 @@ function loadModal(){
 
     <!-- Modal Content -->
     <form class="modal-content animate">
-        <div class="container">
+
+        <div class="container" id="loginFormContent">
             <label for="email"><b>Email</b></label><br>
             <input type="text" placeholder="Enter Email" name="email" id="email" required><br><br>
 
@@ -301,7 +284,6 @@ function loadModal(){
 
             <button type="submit" id="loginSubmit">Login</button>
             <button type="submit" id="createAccount">Create Account</button><br><br>
-
             <div id="my-signin2"></div><br>
         </div>
 
@@ -309,8 +291,8 @@ function loadModal(){
             <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
             <span class="psw"><a href="forgotPassword.html">Forgot password?</a></span>
         </div>
-    </form>
-    `
+
+    </form>`;
     $loginForm.append(form);
 }
 
@@ -343,6 +325,7 @@ function howToPage(){
     <hr>
     <h4 class="head">End of Game</h4>
     <p>The game ends when one of the players goes down to 0 health.</p>
+    <br><button id="how-to-back-to-home">Go Back</button>
     `
     $root.append(text);
 }
@@ -351,7 +334,7 @@ $(function () {
     landingPage();
     loadModal();
     loadGamePage(); 
-    initFirebaseAuth(); 
+    initFirebaseAuth();
 
     $(document).on('click', '#play', function () {
 
@@ -360,30 +343,33 @@ $(function () {
     })
     $(document).on('click', '#wiki', function () {wikipage();})
     $(document).on('click', '#howTo', howToPage)
-
     $(document).on('click', '#loginSubmit', toggleSignIn); 
     $(document).on('click', '#createAccount', handleSignUp);  
-    $(document).on('click', '#my-signin2', toggleSignInWithGoogle); 
     $(document).on('submit', '#resetPassword', handleResetEmail); 
+    $(document).on('click', '#my-signin2', toggleSignInWithGoogle); 
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
     $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); })
     $(document).on('click', '#playerhand-1', function () { cardPlay(1, true); })
-   $(document).on('click', '#playerhand-2', function () { cardPlay(2, true); })
+    $(document).on('click', '#playerhand-2', function () { cardPlay(2, true); })
     $(document).on('click', '#playerhand-3', function () { cardPlay(3, true); })
     $(document).on('click', '#playerhand-4', function () { cardPlay(4, true); })
     $(document).on('click', '#playerhand-5', function () { cardPlay(5, true); })
     $(document).on('click', '#playerhand-6', function () { cardPlay(6, true); })
-
     $(document).on('click', '#playAgain', function () {
         startgame();
     })
-
     $(document).on('click', '#endTurn', function () {
         cardgame.endTurn();
     })
     $(document).on('click', '#landAgain', function () {
         landingPage();
     })
+    $(document).on('click', '#wiki-back-to-home', function() {
+        landingPage(); 
+    });
+    $(document).on('click', '#how-to-back-to-home', function() {
+        landingPage(); 
+    }); 
 })
