@@ -7,7 +7,7 @@ export class cardGame {
         this.aiDeck = [...cardData];
         this.playerDeck = [...cardData];
         //loading test
-        console.log(this.playerDeck)
+
         this.aihand = [];
         this.playerhand = [];
         this.playerboard = [];
@@ -35,16 +35,19 @@ export class cardGame {
         this.playerDeck = this.shuffle(this.playerDeck);
         this.playerhand= this.startingHand(true);
         this.aihand=this.startingHand(false);
-        console.log(this.playerhand)
+
         this.playerMana = 100;
         this.aiMana = 100;
-        if (Math.round(Math.random()===0)) {
+        let temp=(Math.round(Math.random()));
+        console.log('temp: '+temp);
+        if(temp===0){
             this.first = 'player';
             this.playerturn = true;
         } else {
             this.first = 'ai';
             this.playerturn = false;
         }
+        console.log('first: '+this.first);
         if(this.first==='ai'){
             this.AI();
         }
@@ -101,9 +104,9 @@ export class cardGame {
     }
     //card index should be the position of the card within the hand
     playCard(cardIndex, player) {
-        console.log('hellyes');
+
         if (player === true) {
-            console.log('ran1')
+
             this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
             this.playerboard.push(this.playerhand[cardIndex]);
             this.playerhand.splice(cardIndex, 1);
@@ -117,7 +120,7 @@ export class cardGame {
                 this.aiMana-=10;
                 this.destroyed(this.playerboard.length-1,true)
             }
-            console.log('ran2')
+
         } else {
             this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
             this.aiboard.push(this.aihand[cardIndex]);
@@ -133,7 +136,7 @@ export class cardGame {
                 this.destroyed(this.aiboard.length-1,false)
             }
         }
-console.log(this.playerboard)
+
     }
     //playersCard: is the card being destroyed belonging to the player
     destroyed(cardIndex, playersCard) {
@@ -224,6 +227,7 @@ and if decision tree conditions are met it will follow those conditions and rewe
             this.maxaiPlay=1;
             this.maxManaUse=10;
         }
+        console.log('aistance: ' + this.aiStance);
         // determine AI Moves
     if(this.aiStance==='setup'){
 

@@ -112,6 +112,7 @@ export function landingPage() {
               <img src='' alt='logo'><br>
               <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
+               <button id="play">play temp</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
@@ -201,7 +202,7 @@ function update() {
         wpicture += `<div id="aiboard">`
         for (let i = 0; i < cardgame.aiboard.length; i++) {
             wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
-            console.log('Ai board at ' + i + ': ' + cardgame.aiboard[i].name);
+
         }
         wpicture += `</div>`
         wpicture += `<br>`;
@@ -420,19 +421,19 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-0', function () {
-        console.log('is this shit clicking?0')
+
         if (playerattacked[0] === false) {
             for (let i = 0; i < 5; i++) {
                 playeratt[i] = false;
             }
             playeratt[0] = true;
-            console.log('This is Playeratt[0] and playerattacked[0]: ' + playeratt[0] + ' ' + playerattacked[0])
+
         }
 
     })
 
     $(document).on('click', '#playerboard-1', function () {
-        console.log('is this shit clicking?1')
+
 
         if (playerattacked[1] === false) {
             for (let i = 0; i < 5; i++) {
@@ -443,7 +444,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-2', function () {
-        console.log('is this shit clicking?2')
+
 
         if (playerattacked[2] === false) {
             for (let i = 0; i < 5; i++) {
@@ -454,7 +455,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-3', function () {
-        console.log('is this shit clicking?3')
+
 
         if (playerattacked[3] === false) {
             for (let i = 0; i < 5; i++) {
@@ -465,7 +466,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-4', function () {
-        console.log('is this shit clicking?4')
+
 
         if (playerattacked[4] === false) {
             for (let i = 0; i < 5; i++) {
@@ -522,11 +523,11 @@ $(function () {
     });
 
 
-    })
-    $(document).on('click', '#aiboard-1', function () { cardAttack()})
-    $(document).on('click', '#aiboard-2', function () { cardAttack()})
-    $(document).on('click', '#aiboard-3', function () { cardAttack()})
-    $(document).on('click', '#aiboard-4', function () { cardAttack()})
+    });
+    //$(document).on('click', '#aiboard-1', function () { cardAttack()});
+    //$(document).on('click', '#aiboard-2', function () { cardAttack()});
+    //$(document).on('click', '#aiboard-3', function () { cardAttack()});
+    //$(document).on('click', '#aiboard-4', function () { cardAttack()});
 
 
     $(document).on('click', '#searchButton', function () { search() });
@@ -540,7 +541,7 @@ $(function () {
             }
         }
         update();
-        console.log(cardgame.aiMana)
+
     });
 
 
@@ -556,14 +557,14 @@ $(function () {
         cardgame.AI();
         update();
 
-    })
+    });
     $(document).on('click', '#landAgain', function () {
         landingPage();
-    })
+    });
     $(document).on('click', '#wiki-back-to-home', function() {
         landingPage(); 
     });
     $(document).on('click', '#how-to-back-to-home', function() {
         landingPage(); 
     }); 
-})
+

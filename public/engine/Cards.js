@@ -797,6 +797,7 @@ export const cardData= [{
         author:"Alan",
     },
     //null card for not having a card
+ /*
     {
         id:50,
         name:"null",
@@ -811,5 +812,5 @@ export const cardData= [{
         type:"null",
         author:"Alan",
     }
-
+*/
 ];
