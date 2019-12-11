@@ -146,6 +146,7 @@ export function landingPage() {
               <img src='' alt='logo'><br>
               <button id="howTo">How to Play</button></a>
               <button id="wiki">Card Wiki</button>
+              <button id="play" type="button">Temp Play</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
@@ -205,7 +206,7 @@ export function startgame() {
 
 function update() {
     const $root = $('#root');
-    start();
+   // startgame();
     let wpicture = `<div id="all">`
     const loadboard = function () {
         wpicture += `<div id="aiHealth">${cardgame.aiMana}</div>`;
@@ -262,11 +263,8 @@ function wikipage() {
 
 function cardPlay(x, y) {
     cardgame.playCard(x, y);
-    if (cardgame.playerMana != 0 && cardgame.aiMana !=0) {
-        update();
-    } else {
-
-    }
+    console.log('exit')
+    console.log(cardgame.playerboard)
 }
 
 function lose() {
