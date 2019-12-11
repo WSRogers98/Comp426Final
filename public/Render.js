@@ -79,11 +79,6 @@ function toggleSignInWithGoogle() {
     }
 }
 
-// TODO still needs to be implemented 
-function promptUserForPassword() {
-
-}
-
 // renders login with google button *******************************************************************************************
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -108,8 +103,7 @@ function handleResetEmail() {
     let emailAddress = document.getElementById('resetEmail').value;
 
     auth.sendPasswordResetEmail(emailAddress).then(function() {
-        // Email sent.
-        window.location.href="C:\Users\13144\Documents\GitHub\Comp426Final\public\index.html"; 
+        // email sent 
     }).catch(function(error) {
         // handle errors here
         alert(error.message); 
@@ -120,5 +114,5 @@ $(function() {
     $(document).on('click', '#loginSubmit', toggleSignIn); 
     $(document).on('click', '#createAccount', handleSignUp);  
     $(document).on('click', '#my-login2', toggleSignInWithGoogle); 
-    $(document).on('click', '#sendResetEmail', handleResetEmail); 
+    $(document).on('submit', '#resetPassword', handleResetEmail); 
 })
