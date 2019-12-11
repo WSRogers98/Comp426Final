@@ -66,3 +66,44 @@ Dev App Server is now running.
 [info] ✔  All emulators started, it is now safe to connect.
 [debug] [2019-12-11T05:23:16.863Z] [worker-~diagnostic~-3450ad28-ff9d-4dd3-801b-af27e3259eda]: exited
 [debug] [2019-12-11T05:23:16.863Z] [worker-~diagnostic~-3450ad28-ff9d-4dd3-801b-af27e3259eda]: FINISHED
+[debug] [2019-12-11T17:01:51.534Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T17:01:51.538Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\13144\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-12-11T17:01:51.539Z] CLI Version:   7.9.0
+[debug] [2019-12-11T17:01:51.539Z] Platform:      win32
+[debug] [2019-12-11T17:01:51.539Z] Node Version:  v12.13.1
+[debug] [2019-12-11T17:01:51.541Z] Time:          Wed Dec 11 2019 12:01:51 GMT-0500 (Eastern Standard Time)
+[debug] [2019-12-11T17:01:51.541Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T17:01:51.541Z] 
+[debug] [2019-12-11T17:01:51.610Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-11T17:01:51.611Z] > authorizing via signed-in user
+[debug] [2019-12-11T17:01:51.611Z] [iam] checking project final-f637a for permissions ["firebase.projects.get"]
+[debug] [2019-12-11T17:01:51.614Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-12-11T17:01:51.614Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-12-11T17:01:51.759Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-11T17:01:51.789Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/final-f637a:testIamPermissions  
+
+[debug] [2019-12-11T17:01:51.888Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-11T17:01:51.891Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a  
+ 
+[debug] [2019-12-11T17:01:52.198Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\13144\Documents\GitHub\Comp426Final'...
+[info] 
+[debug] [2019-12-11T17:01:52.209Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a/webApps/-/config  
+ 
+[debug] [2019-12-11T17:01:52.822Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "12"
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\13144\Documents\GitHub\Comp426Final\functions" for Cloud Functions...
+[debug] [2019-12-11T17:01:53.808Z] [worker-~diagnostic~-2cd05260-7a0d-48ab-94ec-402b691b6e9a]: Assigning socketPath: \\?\pipe\C:\Users\13144\Documents\GitHub\Comp426Final\functions\14804
+[debug] [2019-12-11T17:01:53.809Z] [worker-~diagnostic~-2cd05260-7a0d-48ab-94ec-402b691b6e9a]: BUSY
+[debug] [2019-12-11T17:01:54.406Z] [runtime-status] [14804] Functions runtime initialized. {"cwd":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions","node_version":"12.13.1"}
+[debug] [2019-12-11T17:01:54.406Z] [runtime-status] [14804] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2019-12-11T17:01:54.426Z] [runtime-status] [14804] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-12-11T17:01:54.443Z] [runtime-status] [14804] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-11T17:01:54.445Z] [runtime-status] [14804] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-11T17:01:55.368Z] [worker-~diagnostic~-2cd05260-7a0d-48ab-94ec-402b691b6e9a]: exited
+[debug] [2019-12-11T17:01:55.368Z] [worker-~diagnostic~-2cd05260-7a0d-48ab-94ec-402b691b6e9a]: FINISHED
