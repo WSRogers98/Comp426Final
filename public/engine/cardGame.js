@@ -104,7 +104,10 @@ export class cardGame {
             this.aiboard.push(this.aihand[cardIndex]);
             this.aihand.splice(cardIndex, 1)
         }
+console.log('board')
 console.log(this.playerboard)
+console.log('hand')
+console.log(this.playerhand)
     }
     //playersCard: is the card being destroyed belonging to the player
     destroyed(cardIndex, playersCard) {
