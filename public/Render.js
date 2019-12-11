@@ -112,13 +112,6 @@ function handleResetEmail() {
     });
 }
 
-
-
-
-
-
-
-
 export function landingPage() {
     const $root = $('#root');
     //  $root.html('');
@@ -128,7 +121,6 @@ export function landingPage() {
 
     $root.append(page);
 }
-
 
 //Start of game
 export function startgame() {
@@ -274,11 +266,11 @@ $(function () {
     })
     $(document).on('click', '#wiki', function () {wikipage();})
 
-  
     $(document).on('click', '#loginSubmit', toggleSignIn); 
     $(document).on('click', '#createAccount', handleSignUp);  
     $(document).on('click', '#my-login2', toggleSignInWithGoogle); 
     $(document).on('submit', '#resetPassword', handleResetEmail); 
+    
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); })
     $(document).on('click', '#playerhand-1', function () { cardPlay(1, true); })
