@@ -107,3 +107,29 @@ Dev App Server is now running.
 [debug] [2019-12-11T17:01:54.445Z] [runtime-status] [14804] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
 [debug] [2019-12-11T17:01:55.368Z] [worker-~diagnostic~-2cd05260-7a0d-48ab-94ec-402b691b6e9a]: exited
 [debug] [2019-12-11T17:01:55.368Z] [worker-~diagnostic~-2cd05260-7a0d-48ab-94ec-402b691b6e9a]: FINISHED
+[debug] [2019-12-11T18:52:31.227Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T18:52:31.230Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\13144\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2019-12-11T18:52:31.230Z] CLI Version:   7.9.0
+[debug] [2019-12-11T18:52:31.230Z] Platform:      win32
+[debug] [2019-12-11T18:52:31.230Z] Node Version:  v12.13.1
+[debug] [2019-12-11T18:52:31.231Z] Time:          Wed Dec 11 2019 13:52:31 GMT-0500 (Eastern Standard Time)
+[debug] [2019-12-11T18:52:31.231Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T18:52:31.232Z] 
+[debug] [2019-12-11T18:52:31.240Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-11T18:52:31.240Z] > authorizing via signed-in user
+[debug] [2019-12-11T18:52:31.241Z] [iam] checking project final-f637a for permissions ["firebase.projects.get"]
+[debug] [2019-12-11T18:52:31.242Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-12-11T18:52:31.243Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-12-11T18:52:31.411Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-11T18:52:31.441Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/final-f637a:testIamPermissions  
+
+[debug] [2019-12-11T18:52:34.154Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-11T18:52:34.158Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a  
+ 
+[debug] [2019-12-11T18:52:34.445Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-11T18:52:34.448Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a/webApps/-/config  
+ 
+[debug] [2019-12-11T18:52:35.036Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000

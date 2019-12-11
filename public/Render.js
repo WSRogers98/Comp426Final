@@ -14,7 +14,9 @@ function toggleSignIn() {
         // gets email and password from submitted form 
         let email = document.getElementById('email').value; 
         let password = document.getElementById('password').value; 
-        auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+        auth.signInWithEmailAndPassword(email, password).then(function() {
+            window.location.href="game.html"; 
+        }).catch(function(error) {
             // handles sign in errors here 
             let errorCode = error.code; 
             let errorMessage = error.message; 
@@ -33,7 +35,9 @@ function handleSignUp() {
     let email = document.getElementById('email').value; 
     let password = document.getElementById('password').value; 
     // creates user with email and password gathered above 
-    auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+    auth.createUserWithEmailAndPassword(email, password).then(function() {
+        window.location.href="game.html"; 
+    }).catch(function(error) {
         // handles error here 
         let errorCode = error.code; 
         let errorMessage = error.message; 
@@ -44,42 +48,6 @@ function handleSignUp() {
         }
         console.log(error); 
     });
-}
-
-// handles logging in with google 
-function toggleSignInWithGoogle() {
-    // if person isn't already logged in 
-    if (!auth.currentUser) {
-        let provider = new firebase.auth.GoogleAuthProvider(); 
-        // signs user in 
-        auth.signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API. 
-            let token = result.credential.accessToken; 
-            let user = result.user; 
-        }).catch(function(error) {
-            // handles errors 
-            let errorCode = error.code; 
-            let errorMessage = error.message; 
-            // The provider account's email address 
-            let email = error.email; 
-            // the pending google credential 
-            let credential = error.credential; 
-            if (errorCode === 'auth/account-exists-with-different-credential') {
-                alert('You have already signed up with a different auth provider for that email.'); 
-                // hande linking user accounts signed up with multiple auth providers here 
-                // User's email already exists.
-                // Asks the user their password.
-                var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
-                auth.signInWithEmailAndPassword(email, password).then(function(user) {
-                    user.linkWithCredential(credential);
-                });
-            } else {
-                console.log(error); 
-            }
-        });
-    } else {
-        auth.signOut(); 
-    }
 }
 
 // Initiate Firebase Auth.
@@ -282,8 +250,8 @@ function loadModal(){
             <label for="psw"><b>Password</b></label><br>
             <input type="password" placeholder="Enter Password" name="psw" id="password" required><br><br>
 
-            <button type="submit" id="loginSubmit">Login</button>
-            <button type="submit" id="createAccount">Create Account</button><br><br>
+            <button type="button" id="loginSubmit">Login</button>
+            <button type="button" id="createAccount">Create Account</button><br><br>
             <div id="my-signin2"></div><br>
         </div>
 
@@ -346,7 +314,6 @@ $(function () {
     $(document).on('click', '#loginSubmit', toggleSignIn); 
     $(document).on('click', '#createAccount', handleSignUp);  
     $(document).on('submit', '#resetPassword', handleResetEmail); 
-    $(document).on('click', '#my-signin2', toggleSignInWithGoogle); 
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
