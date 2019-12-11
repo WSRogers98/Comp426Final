@@ -87,15 +87,17 @@ export class cardGame {
     playCard(cardIndex, player) {
         console.log('hellyes');
         if (player === true) {
+            console.log('ran1')
             this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
             this.playerboard.push(this.playerhand[cardIndex]);
             this.playerhand.splice(cardIndex, 1)
+            console.log('ran2')
         } else {
             this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
             this.aiboard.push(this.aihand[cardIndex]);
             this.aihand.splice(cardIndex, 1)
         }
-
+console.log(this.playerboard)
     }
     //playersCard: is the card being destroyed belonging to the player
     destroyed(cardIndex, playersCard) {

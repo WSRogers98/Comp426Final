@@ -205,7 +205,7 @@ export function startgame() {
 
 function update() {
     const $root = $('#root');
-    start();
+   // startgame();
     let wpicture = `<div id="all">`
     const loadboard = function () {
         wpicture += `<div id="aiHealth">${cardgame.aiMana}</div>`;
@@ -262,11 +262,8 @@ function wikipage() {
 
 function cardPlay(x, y) {
     cardgame.playCard(x, y);
-    if (cardgame.playerMana != 0 && cardgame.aiMana !=0) {
-        update();
-    } else {
-
-    }
+    console.log('exit')
+    console.log(cardgame.playerboard)
 }
 
 function lose() {
