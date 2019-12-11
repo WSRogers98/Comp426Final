@@ -258,6 +258,18 @@ function wikipage() {
     $root.append(x);
 }
 
+function search() {
+    let name = document.getElementById("search").value;
+    let x = "#";
+    for (let i = 0; i < 50; i++) {
+        if (name === cardData[i].name) {
+            x += cardData[i].id;
+        }
+    }
+    $("#searchLink").attr("href", x);
+    document.getElementById("searchDiv").style.display = "block";
+}
+
 function cardPlay(x, y) {
     cardgame.playCard(x, y);
 }
@@ -491,12 +503,12 @@ $(function () {
         update();
     });
 
+    // $(document).on('click', '#aiboard-1', function () { cardAttack()})
+    // $(document).on('click', '#aiboard-2', function () { cardAttack()})
+    // $(document).on('click', '#aiboard-3', function () { cardAttack()})
+    // $(document).on('click', '#aiboard-4', function () { cardAttack()})
 
-    })
-    $(document).on('click', '#aiboard-1', function () { cardAttack()})
-    $(document).on('click', '#aiboard-2', function () { cardAttack()})
-    $(document).on('click', '#aiboard-3', function () { cardAttack()})
-    $(document).on('click', '#aiboard-4', function () { cardAttack()})
+    $(document).on('click', '#searchButton', function () { search() });
 
     $(document).on('click', '#aiHealth', function () {
         for (let i = 0; i < 5; i++) {
