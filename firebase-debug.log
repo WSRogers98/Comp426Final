@@ -1,24 +1,24 @@
-[debug] [2019-12-11T18:41:55.587Z] ----------------------------------------------------------------------
-[debug] [2019-12-11T18:41:55.589Z] Command:       /usr/local/bin/node /Users/williamsrogers/WebstormProjects/426Final/node_modules/.bin/firebase emulators:start
-[debug] [2019-12-11T18:41:55.589Z] CLI Version:   7.9.0
-[debug] [2019-12-11T18:41:55.589Z] Platform:      darwin
-[debug] [2019-12-11T18:41:55.589Z] Node Version:  v10.16.3
-[debug] [2019-12-11T18:41:55.590Z] Time:          Wed Dec 11 2019 13:41:55 GMT-0500 (Eastern Standard Time)
-[debug] [2019-12-11T18:41:55.590Z] ----------------------------------------------------------------------
-[debug] [2019-12-11T18:41:55.590Z] 
-[debug] [2019-12-11T18:41:55.600Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-12-11T18:41:55.601Z] > authorizing via signed-in user
+[debug] [2019-12-11T22:59:44.384Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T22:59:44.386Z] Command:       /usr/local/bin/node /Users/williamsrogers/WebstormProjects/426Final/node_modules/.bin/firebase emulators:start
+[debug] [2019-12-11T22:59:44.386Z] CLI Version:   7.9.0
+[debug] [2019-12-11T22:59:44.386Z] Platform:      darwin
+[debug] [2019-12-11T22:59:44.386Z] Node Version:  v10.16.3
+[debug] [2019-12-11T22:59:44.388Z] Time:          Wed Dec 11 2019 17:59:44 GMT-0500 (Eastern Standard Time)
+[debug] [2019-12-11T22:59:44.388Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T22:59:44.388Z] 
+[debug] [2019-12-11T22:59:44.401Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-11T22:59:44.402Z] > authorizing via signed-in user
 [info] i  emulators: Starting emulators: functions, firestore, database, hosting
 [warn] ⚠  Your requested "node" version "8" doesn't match your global version "10"
 [info] ✔  functions: Emulator started at http://localhost:5002
 [info] i  firestore: Serving ALL traffic (including WebChannel) on http://localhost:8080
 [warn] ⚠  firestore: Support for WebChannel on a separate port (8081) is DEPRECATED and will go away soon. Please use port above instead.
-[debug] [2019-12-11T18:41:55.924Z] Ignoring unsupported arg: projectId
-[debug] [2019-12-11T18:41:55.924Z] Ignoring unsupported arg: auto_download
-[debug] [2019-12-11T18:41:55.924Z] Starting emulator firestore with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/williamsrogers/.cache/firebase/emulators/cloud-firestore-emulator-v1.10.2.jar","--host","localhost","--port",8080,"--rules","/Users/williamsrogers/WebstormProjects/426Final/firestore.rules","--functions_emulator","localhost:5002","--webchannel_port",8081],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator"],"joinArgs":false}
+[debug] [2019-12-11T22:59:44.727Z] Ignoring unsupported arg: projectId
+[debug] [2019-12-11T22:59:44.727Z] Ignoring unsupported arg: auto_download
+[debug] [2019-12-11T22:59:44.727Z] Starting emulator firestore with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/williamsrogers/.cache/firebase/emulators/cloud-firestore-emulator-v1.10.2.jar","--host","localhost","--port",8080,"--rules","/Users/williamsrogers/WebstormProjects/426Final/firestore.rules","--functions_emulator","localhost:5002","--webchannel_port",8081],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator"],"joinArgs":false}
 [info] i  firestore: Emulator logging to firestore-debug.log
-[debug] [2019-12-11T18:42:01.896Z] API endpoint: http://
-[debug] [2019-12-11T18:42:01.897Z] localhost:8080
+[debug] [2019-12-11T22:59:50.812Z] API endpoint: http://
+[debug] [2019-12-11T22:59:50.813Z] localhost:8080
 If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
 
    export FIRESTORE_EMULATOR_HOST=localhost:8080
@@ -26,43 +26,3 @@ If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment
 Dev App Server is now running.
 
 
-[info] ✔  firestore: Emulator started at http://localhost:8080
-[info] i  firestore: For testing set FIRESTORE_EMULATOR_HOST=localhost:8080
-[debug] [2019-12-11T18:42:02.023Z] Ignoring unsupported arg: projectId
-[debug] [2019-12-11T18:42:02.023Z] Ignoring unsupported arg: auto_download
-[debug] [2019-12-11T18:42:02.023Z] Ignoring unsupported arg: rules
-[debug] [2019-12-11T18:42:02.023Z] Starting emulator database with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/williamsrogers/.cache/firebase/emulators/firebase-database-emulator-v4.2.0.jar","--host","localhost","--port",9000,"--functions_emulator_host","localhost","--functions_emulator_port",5002],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host"],"joinArgs":false}
-[info] i  database: Emulator logging to database-debug.log
-[debug] [2019-12-11T18:42:03.330Z] 13:42:03.328 [NamespaceSystem-akka.actor.default-dispatcher-2] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-
-[debug] [2019-12-11T18:42:03.470Z] 13:42:03.470 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
-
-[info] ✔  database: Emulator started at http://localhost:9000
-[info] i  database: For testing set FIREBASE_DATABASE_EMULATOR_HOST=localhost:9000
-[debug] [2019-12-11T18:42:03.562Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2019-12-11T18:42:03.563Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2019-12-11T18:42:03.694Z] <<< HTTP RESPONSE 200
-[debug] [2019-12-11T18:42:03.701Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a/webApps/-/config  
- 
-[debug] [2019-12-11T18:42:04.440Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] ✔  hosting: Local server: http://localhost:5003
-[info] ✔  hosting: Emulator started at http://localhost:5003
-[info] i  functions: Watching "/Users/williamsrogers/WebstormProjects/426Final/functions" for Cloud Functions...
-[debug] [2019-12-11T18:42:04.717Z] [worker-~diagnostic~-90bb5921-beaf-4046-aea3-4a2adf89e157]: Assigning socketPath: /var/folders/8d/p09yv_gx38b8d_qjf_zt1zs40000gn/T/fire_emu_15097.sock
-[debug] [2019-12-11T18:42:04.718Z] [worker-~diagnostic~-90bb5921-beaf-4046-aea3-4a2adf89e157]: BUSY
-[debug] [2019-12-11T18:42:04.991Z] [runtime-status] [15097] Functions runtime initialized. {"cwd":"/Users/williamsrogers/WebstormProjects/426Final/functions","node_version":"10.16.3"}
-[debug] [2019-12-11T18:42:04.993Z] [runtime-status] [15097] Disabled runtime features: undefined
-[debug] [2019-12-11T18:42:04.997Z] [runtime-status] [15097] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/williamsrogers/WebstormProjects/426Final/functions/node_modules/firebase-admin/lib/index.js"}
-[debug] [2019-12-11T18:42:04.999Z] [runtime-status] [15097] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/williamsrogers/WebstormProjects/426Final/functions/node_modules/firebase-functions/lib/index.js"}
-[debug] [2019-12-11T18:42:05.426Z] [runtime-status] [15097] Found google-gax at /Users/williamsrogers/WebstormProjects/426Final/functions/node_modules/google-gax/build/src/index.js
-[debug] [2019-12-11T18:42:05.426Z] [runtime-status] [15097] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
-[debug] [2019-12-11T18:42:05.492Z] [runtime-status] [15097] Checked functions.config() {"config":{}}
-[debug] [2019-12-11T18:42:05.493Z] [runtime-status] [15097] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/williamsrogers/WebstormProjects/426Final/functions/node_modules/firebase-functions/lib/index.js"}
-[debug] [2019-12-11T18:42:05.494Z] [runtime-status] [15097] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/williamsrogers/WebstormProjects/426Final/functions/node_modules/firebase-admin/lib/index.js"}
-[debug] [2019-12-11T18:42:05.494Z] [runtime-status] [15097] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/williamsrogers/WebstormProjects/426Final/functions/node_modules/firebase-functions/lib/index.js"}
-[debug] [2019-12-11T18:42:05.564Z] [runtime-status] [15097] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.8.0","resolution":"/Users/williamsrogers/WebstormProjects/426Final/functions/node_modules/firebase-admin/lib/index.js"}}
-[info] ✔  All emulators started, it is now safe to connect.
-[debug] [2019-12-11T18:42:05.587Z] [worker-~diagnostic~-90bb5921-beaf-4046-aea3-4a2adf89e157]: exited
-[debug] [2019-12-11T18:42:05.587Z] [worker-~diagnostic~-90bb5921-beaf-4046-aea3-4a2adf89e157]: FINISHED
