@@ -1,5 +1,20 @@
 body, html {
     height: 100%;
+    font-family: source-code-pro,monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+button {
+  font-family: source-code-pro,monospace;
+  font-weight: 700;
+  font-style: normal; 
+}
+
+.hero-homepage {
+  background-image: url("images/CompStone_Board.jpg"); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
 }
 
 /* The hero image */
@@ -35,10 +50,17 @@ body, html {
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
-    margin: 5px auto; /* 15% from the top and centered */
+    margin: 15% auto; /* 15% from the top and centered */
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    text-align: center; 
+    padding-top: 10px; 
   }
+
+#my-signin2 {
+  width: 25%; 
+  margin: auto; 
+}
   
   /* The Close Button */
   .close {

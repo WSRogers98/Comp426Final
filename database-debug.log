@@ -1,2 +1,5 @@
-18:54:58.088 [NamespaceSystem-akka.actor.default-dispatcher-3] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-18:54:58.377 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+21:48:56.497 [NamespaceSystem-akka.actor.default-dispatcher-3] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+21:48:56.733 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+21:53:36.935 [Thread-2] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+21:53:36.940 [NamespaceSystem-akka.actor.default-dispatcher-3] INFO akka.actor.CoordinatedShutdown - Starting coordinated shutdown from JVM shutdown hook
+21:53:36.946 [Thread-2] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

@@ -1,7 +1,7 @@
 import { cardGame } from "./engine/cardGame.js";
 import { cardData } from "./engine/Cards.js";
 // assigns the authorization app to an easily typed variable bc im lazy
-let auth = firebase.auth(); 
+let auth = firebase.auth();
 
 // handles login button press 
 function toggleSignIn() {
@@ -123,9 +123,18 @@ export function landingPage() {
     const $root = $('#root');
     //  $root.html('');
     let page = ``
-    page += `<button id="play" type="button">Play Game</button>`
-    page += `<button id="wiki" type="button">View Wiki</button>`
-
+page+=`
+<div class='hero'>
+    <div class='hero-content'>
+        <!--The regular content-->
+        <img src='' alt='logo'><br>
+        <button>How to Play</button>
+        <button id="play" type="button">Play Game</button>
+        <button>Card Wiki</button>
+        <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+    </div>
+</div>
+`
     $root.append(page);
 }
 
@@ -264,9 +273,39 @@ function win() {
     x += `<button type="button" id="landAgain">Back to Home Page</div>`;
     $root.append(x);
 }
+function loadModal(){
+    const $loginForm = $('#loginForm');
+    let form=``;
+    form+=`
+    <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
 
+    <!-- Modal Content -->
+    <form class="modal-content animate">
+        <div class="container">
+            <label for="email"><b>Email</b></label><br>
+            <input type="text" placeholder="Enter Email" name="email" id="email" required><br><br>
+
+            <label for="psw"><b>Password</b></label><br>
+            <input type="password" placeholder="Enter Password" name="psw" id="password" required><br><br>
+
+            <button type="submit" id="loginSubmit">Login</button>
+            <button type="submit" id="createAccount">Create Account</button><br><br>
+
+            <div id="my-signin2"></div><br>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw"><a href="forgotPassword.html">Forgot password?</a></span>
+        </div>
+    </form>
+    `
+    $loginForm.append(form);
+}
 $(function () {
+
     landingPage();
+    loadModal();
     $(document).on('click', '#play', function () {
 
         startgame();
