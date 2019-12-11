@@ -112,32 +112,36 @@ function handleResetEmail() {
     });
 }
 
-
-
-
-
-
-
+function loadGamePage() {
+    const $root = $('#gameRoot'); 
+    let page = ``; 
+    page += `
+        <div class="hero">
+            <div class="hero-content">
+                <button id="play" type="button">Play Game</button>
+            </div>
+        </div>
+    `;
+    $root.append(page); 
+}
 
 export function landingPage() {
     const $root = $('#root');
     //  $root.html('');
     let page = ``
-page+=`
-<div class='hero'>
-    <div class='hero-content'>
-        <!--The regular content-->
-        <img src='' alt='logo'><br>
-        <button>How to Play</button>
-        <button id="play" type="button">Play Game</button>
-        <button>Card Wiki</button>
-        <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+    page+=`
+    <div class='hero'>
+        <div class='hero-content'>
+            <!--The regular content-->
+            <img src='' alt='logo'><br>
+            <button>How to Play</button>
+            <button>Card Wiki</button>
+            <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+        </div>
     </div>
-</div>
-`
+    `
     $root.append(page);
 }
-
 
 //Start of game
 export function startgame() {
@@ -230,7 +234,6 @@ function update() {
 
 }
 
-
 function wikipage() {
     const $root = $('#root');
     let x = ``
@@ -273,6 +276,7 @@ function win() {
     x += `<button type="button" id="landAgain">Back to Home Page</div>`;
     $root.append(x);
 }
+
 function loadModal(){
     const $loginForm = $('#loginForm');
     let form=``;
@@ -302,10 +306,12 @@ function loadModal(){
     `
     $loginForm.append(form);
 }
+
 $(function () {
 
     landingPage();
     loadModal();
+    loadGamePage(); 
     $(document).on('click', '#play', function () {
 
         startgame();

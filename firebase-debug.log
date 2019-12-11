@@ -1,0 +1,37 @@
+[debug] [2019-12-11T03:19:30.462Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T03:19:30.464Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\13144\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-12-11T03:19:30.464Z] CLI Version:   7.9.0
+[debug] [2019-12-11T03:19:30.464Z] Platform:      win32
+[debug] [2019-12-11T03:19:30.464Z] Node Version:  v12.13.1
+[debug] [2019-12-11T03:19:30.465Z] Time:          Tue Dec 10 2019 22:19:30 GMT-0500 (Eastern Standard Time)
+[debug] [2019-12-11T03:19:30.465Z] ----------------------------------------------------------------------
+[debug] [2019-12-11T03:19:30.465Z] 
+[debug] [2019-12-11T03:19:30.471Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-11T03:19:30.471Z] > authorizing via signed-in user
+[debug] [2019-12-11T03:19:30.471Z] [iam] checking project final-f637a for permissions ["firebase.projects.get"]
+[debug] [2019-12-11T03:19:30.473Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/final-f637a:testIamPermissions  
+
+[debug] [2019-12-11T03:19:30.706Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-11T03:19:30.711Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a  
+ 
+[debug] [2019-12-11T03:19:30.871Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\13144\Documents\GitHub\Comp426Final'...
+[info] 
+[debug] [2019-12-11T03:19:30.887Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a/webApps/-/config  
+ 
+[debug] [2019-12-11T03:19:31.239Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+[warn] !  Your requested "node" version "8" doesn't match your global version "12"
+[info] +  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "C:\Users\13144\Documents\GitHub\Comp426Final\functions" for Cloud Functions...
+[debug] [2019-12-11T03:19:32.472Z] [worker-~diagnostic~-88ab1d9e-e50a-4f45-aa0d-527f4cab9f88]: Assigning socketPath: \\?\pipe\C:\Users\13144\Documents\GitHub\Comp426Final\functions\3840
+[debug] [2019-12-11T03:19:32.473Z] [worker-~diagnostic~-88ab1d9e-e50a-4f45-aa0d-527f4cab9f88]: BUSY
+[debug] [2019-12-11T03:19:32.775Z] [runtime-status] [3840] Functions runtime initialized. {"cwd":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions","node_version":"12.13.1"}
+[debug] [2019-12-11T03:19:32.775Z] [runtime-status] [3840] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2019-12-11T03:19:32.786Z] [runtime-status] [3840] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.8.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-12-11T03:19:32.797Z] [runtime-status] [3840] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-11T03:19:32.798Z] [runtime-status] [3840] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"C:\\Users\\13144\\Documents\\GitHub\\Comp426Final\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-11T03:19:33.211Z] [worker-~diagnostic~-88ab1d9e-e50a-4f45-aa0d-527f4cab9f88]: exited
+[debug] [2019-12-11T03:19:33.211Z] [worker-~diagnostic~-88ab1d9e-e50a-4f45-aa0d-527f4cab9f88]: FINISHED
