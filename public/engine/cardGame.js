@@ -45,6 +45,9 @@ export class cardGame {
             this.first = 'ai';
             this.playerturn = false;
         }
+        if(this.first==='ai'){
+            this.AI();
+        }
     }
     endTurn() {
         this.turn+=1;
@@ -188,6 +191,7 @@ and if decision tree conditions are met it will follow those conditions and rewe
         }
         // determine AI Moves
     if(this.aiStance==='setup'){
+
     for(let i=0; i<this.aihand.length;i++){
         if(this.aiPlayedCards===this.maxaiPlay ||this.aimanaUsed===this.maxManaUse){
             break;
@@ -197,6 +201,43 @@ and if decision tree conditions are met it will follow those conditions and rewe
             this.aimanaUsed+= this.aihand[i].cost;
             this.playCard(i, false);
         }
+    }
+    if(this.aiPlayedCards===0){
+        let healplayed=false;
+        let hurtplayed=false;
+        for(let i=0; i<this.aihand.length;i++){
+            if(this.aiPlayedCards===this.maxaiPlay ||this.aimanaUsed===this.maxManaUse){
+                break;
+            }
+            if(healplayed===false &&this.aihand[i].type ==='heal'){
+                healplayed=true;
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+            if(hurtplayed===false &&this.aihand[i].type ==='hurt'){
+                hurtplayed=true;
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+        }
+        for(let i=0; i<this.aihand.length;i++){
+            if(this.aiPlayedCards===this.maxaiPlay ||this.aimanaUsed===this.maxManaUse){
+                break;
+            }
+            if( (healplayed===true&&hurtplayed===false) &&this.aihand[i].type ==='heal'){
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+            if( (hurtplayed===true &&healplayed===false) &&this.aihand[i].type ==='hurt'){
+                this.aiPlayedCards++;
+                this.aimanaUsed+= this.aihand[i].cost;
+                this.playCard(i, false);
+            }
+        }
+        this.endTurn()
     }
     }else if(this.aiStance==='clearBoard'){
 

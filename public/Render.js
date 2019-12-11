@@ -128,6 +128,7 @@ export function landingPage() {
               <img src='' alt='logo'><br>
               <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
+              <button id="play" type="button">Temp Play</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
