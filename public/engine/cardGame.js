@@ -100,12 +100,28 @@ export class cardGame {
             console.log('ran1')
             this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
             this.playerboard.push(this.playerhand[cardIndex]);
-            this.playerhand.splice(cardIndex, 1)
+            this.playerhand.splice(cardIndex, 1);
+            if(this.playerboard[this.playerboard.length-1].type==='heal'){
+               // temp heal benefit
+                this.playerMana+=10;
+            }
+            if(this.playerboard[this.playerboard.length-1].type==='hurt'){
+                // temp hurt benefit
+                this.aiMana-=10;
+            }
             console.log('ran2')
         } else {
             this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
             this.aiboard.push(this.aihand[cardIndex]);
             this.aihand.splice(cardIndex, 1)
+            if(this.aiboard[this.aiboard.length-1].type==='heal'){
+                // temp heal benefit
+                this.aiMana+=10;
+            }
+            if(this.aiboard[this.aiboard.length-1].type==='hurt'){
+                // temp hurt benefit
+                this.playerMana-=10;
+            }
         }
 console.log(this.playerboard)
     }
