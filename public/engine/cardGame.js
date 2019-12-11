@@ -19,6 +19,13 @@ export class cardGame {
         this.playerMana = 0;
         this.aiwon = false;
         this.playerwon = false;
+
+        //stuff for the AI
+        this.aiStance=''
+        this.maxaiPlay=''
+        this.aiPlayedCards=''
+        this.maxManaUse=''
+        this.aimanaUsed=''
     }
     //call start method to start a new game
     start() {
@@ -134,5 +141,60 @@ console.log(this.playerboard)
                 this.destroyed(defenderIndex, false);
             }
         }
+    }
+    /*
+
+    THE AI GOES HERE!! WOOOOO!!!! YAY FOR TECHNOLOGY!!
+             this AI is about to be Smol Brain
+
+overarching plan: weight types of moves differently based of the stance that determines what the AI should do.
+this will allow the ai to make its own decisions and be as human like as possible
+^ the above statement assumes that no one will master the game and that a "meta" or dominant strategy will not form
+The ai stance will dictate the ai to be reactionary based off the player and less proactive
+points assigned to move * decimal value of weight= should the ai make the move
+if there is a tie, which is statistically improbable, the ai with randomly select one of the tied options
+if there is a move that can win the game it will always take the highest priority regardless of stance
+before the ai goes into priority mode, the amount of mana it is allowed to spend will be determined by its stance
+and if decision tree conditions are met it will follow those conditions and reweight priority after accordingly
+ */
+/*
+    variables to use:
+    this.aiStance=
+    this.maxaiPlay=
+    this.aiPlayedCards=
+    this.maxManaUse=
+    this.aimanaUsed=
+*/
+    AI(){
+        // determine AI Stance
+        if ( (this.first ==='ai' && this.turn===0) || (this.first==='ai'&&this.turn===1) ){
+            this.aiStance='setup'
+        }
+        else if(this.playerboard.length >3){
+            // AI tries to kill your monsters
+            this.aiStance= 'clearBoard';
+        }
+        else if(this.aiMana <=50 || this.aiboard.length <=0){
+            this.aiStance='defensive';
+        } else if(this.playerboard.length<=1 || this.playerMana<=50){
+        this.aiStance='aggressive';
+        }else{
+            this.aiStance='neutral';
+        }
+        // determine AI Moves
+    if(this.aiStance==='setup'){
+
+    }else if(this.aiStance==='clearBoard'){
+
+    }else if(this.aiStance==='defensive'){
+
+    }else if(this.aiStance==='aggressive'){
+
+    } else if(this.aiStance==='neutral'){
+
+    }else{
+
+    }
+
     }
 }
