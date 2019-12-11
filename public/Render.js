@@ -1,8 +1,10 @@
 import { cardGame } from "./engine/cardGame.js";
 import { cardData } from "./engine/Cards.js";
+
 // assigns the authorization app to an easily typed variable bc im lazy
 let auth = firebase.auth();
 let cardgame;
+
 //Is it ready to attack?
 let playeratt = [];
 playeratt[0] = false;
@@ -18,19 +20,22 @@ playerattacked[2] = false;
 playerattacked[3] = false;
 playerattacked[4] = false;
 
+
 // handles login button press
 function toggleSignIn() {
     // if user is logged in already, logs them out
     if (auth.currentUser) {
         auth.signOut();
     } else {
-        // gets email and password from submitted form
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('password').value;
-        auth.signInWithEmailAndPassword(email, password).catch(function (error) {
-            // handles sign in errors here
-            let errorCode = error.code;
-            let errorMessage = error.message;
+        // gets email and password from submitted form 
+        let email = document.getElementById('email').value; 
+        let password = document.getElementById('password').value; 
+        auth.signInWithEmailAndPassword(email, password).then(function() {
+            window.location.href="game.html"; 
+        }).catch(function(error) {
+            // handles sign in errors here 
+            let errorCode = error.code; 
+            let errorMessage = error.message; 
             if (errorCode === 'auth/wrong-password') {
                 alert('Wrong password.');
             } else {
@@ -43,13 +48,15 @@ function toggleSignIn() {
 
 // handles sign up button press
 function handleSignUp() {
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    // creates user with email and password gathered above
-    auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
-        // handles error here
-        let errorCode = error.code;
-        let errorMessage = error.message;
+    let email = document.getElementById('email').value; 
+    let password = document.getElementById('password').value; 
+    // creates user with email and password gathered above 
+    auth.createUserWithEmailAndPassword(email, password).then(function() {
+        window.location.href="game.html"; 
+    }).catch(function(error) {
+        // handles error here 
+        let errorCode = error.code; 
+        let errorMessage = error.message; 
         if (errorCode === 'auth/weak-password') {
             alert('The password is too weak.');
         } else {
@@ -58,62 +65,6 @@ function handleSignUp() {
         console.log(error);
     });
 }
-
-// handles logging in with google
-function toggleSignInWithGoogle() {
-    // if person isn't already logged in
-    if (!auth.currentUser) {
-        let provider = new firebase.auth.GoogleAuthProvider();
-        // signs user in
-        auth.signInWithPopup(provider).then(function (result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            let token = result.credential.accessToken;
-            let user = result.user;
-        }).catch(function (error) {
-            // handles errors
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            // The provider account's email address
-            let email = error.email;
-            // the pending google credential
-            let credential = error.credential;
-            if (errorCode === 'auth/account-exists-with-different-credential') {
-                alert('You have already signed up with a different auth provider for that email.');
-                // hande linking user accounts signed up with multiple auth providers here
-                // User's email already exists.
-                // Asks the user their password.
-                var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
-                auth.signInWithEmailAndPassword(email, password).then(function (user) {
-                    user.linkWithCredential(credential);
-                });
-            } else {
-                console.log(error);
-            }
-        });
-    } else {
-        auth.signOut();
-    }
-}
-
-// renders login with google button *******************************************************************************************
-function onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-}
-function onFailure(error) {
-    console.log(error);
-}
-function renderButton() {
-    gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-    });
-}
-// ******************************************************************************************************************************
 
 // Initiate Firebase Auth.
 function initFirebaseAuth() {
@@ -152,16 +103,15 @@ function loadGamePage() {
 
 export function landingPage() {
     const $root = $('#root');
-    //  $root.html('');
+    $root.html('');
     let page = ``
     page += `
       <div class='hero'>
           <div class='hero-content'>
               <!--The regular content-->
               <img src='' alt='logo'><br>
-              <button id="howTo">How to Play</button></a>
+              <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
-              <button id="play" type="button">Temp Play</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
@@ -304,6 +254,7 @@ function wikipage() {
             `<p id="type">Type: ${cardData[i].type}</p>` +
             `</div><br>`;
     }
+    x+=`<button id="wiki-back-to-home">Go Back</button>`
     $root.append(x);
 }
 
@@ -343,16 +294,16 @@ function loadModal() {
 
     <!-- Modal Content -->
     <form class="modal-content animate">
-        <div class="container">
+
+        <div class="container" id="loginFormContent">
             <label for="email"><b>Email</b></label><br>
             <input type="text" placeholder="Enter Email" name="email" id="email" required><br><br>
 
             <label for="psw"><b>Password</b></label><br>
             <input type="password" placeholder="Enter Password" name="psw" id="password" required><br><br>
 
-            <button type="submit" id="loginSubmit">Login</button>
-            <button type="submit" id="createAccount">Create Account</button><br><br>
-
+            <button type="button" id="loginSubmit">Login</button>
+            <button type="button" id="createAccount">Create Account</button><br><br>
             <div id="my-signin2"></div><br>
         </div>
 
@@ -360,8 +311,8 @@ function loadModal() {
             <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
             <span class="psw"><a href="forgotPassword.html">Forgot password?</a></span>
         </div>
-    </form>
-    `
+
+    </form>`;
     $loginForm.append(form);
 }
 
@@ -394,6 +345,7 @@ function howToPage() {
     <hr>
     <h4 class="head">End of Game</h4>
     <p>The game ends when one of the players goes down to 0 health.</p>
+    <br><button id="how-to-back-to-home">Go Back</button>
     `
     $root.append(text);
 }
@@ -415,10 +367,8 @@ $(function () {
 
     $(document).on('click', '#wiki', function () { wikipage(); })
     $(document).on('click', '#howTo', howToPage)
-
     $(document).on('click', '#loginSubmit', toggleSignIn);
     $(document).on('click', '#createAccount', handleSignUp);
-    $(document).on('click', '#my-signin2', toggleSignInWithGoogle);
     $(document).on('submit', '#resetPassword', handleResetEmail);
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
@@ -541,6 +491,13 @@ $(function () {
         update();
     });
 
+
+    })
+    $(document).on('click', '#aiboard-1', function () { cardAttack()})
+    $(document).on('click', '#aiboard-2', function () { cardAttack()})
+    $(document).on('click', '#aiboard-3', function () { cardAttack()})
+    $(document).on('click', '#aiboard-4', function () { cardAttack()})
+
     $(document).on('click', '#aiHealth', function () {
         for (let i = 0; i < 5; i++) {
             if (playerattacked[i] === false && playeratt[i] === true) {
@@ -552,11 +509,9 @@ $(function () {
         console.log(cardgame.aiMana)
     });
 
-
     $(document).on('click', '#playAgain', function () {
         startgame();
     })
-
     $(document).on('click', '#endTurn', function () {
         cardgame.endTurn();
         for (let i = 0; i < 5; i++) {
@@ -570,4 +525,10 @@ $(function () {
     $(document).on('click', '#landAgain', function () {
         landingPage();
     })
+    $(document).on('click', '#wiki-back-to-home', function() {
+        landingPage(); 
+    });
+    $(document).on('click', '#how-to-back-to-home', function() {
+        landingPage(); 
+    }); 
 })
