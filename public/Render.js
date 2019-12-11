@@ -41,8 +41,7 @@ function handleSignUp() {
             alert(errorMessage); 
         }
         console.log(error); 
-    })
-    toggleSignIn(); 
+    });
 }
 
 // handles logging in with google 
@@ -99,7 +98,18 @@ function toggleSignInWithGoogle() {
         'onfailure': onFailure
       });
     }
-  // ******************************************************************************************************************************8
+  // ******************************************************************************************************************************
+
+// Initiate Firebase Auth.
+function initFirebaseAuth() {
+  // Listen to auth state changes.
+  auth.onAuthStateChanged(firebase.auth().onAuthStateChanged(user => {
+    if(user) {
+      window.location = 'localhost:5000/game.html'; //After successful login, user will be redirected to game.html
+      // TODO STILL NEED TO GET THIS TO WORK 
+    }
+  }));
+}
 
 function handleResetEmail() {
     let emailAddress = document.getElementById('resetEmail').value;
@@ -112,32 +122,36 @@ function handleResetEmail() {
     });
 }
 
-
-
-
-
-
-
+function loadGamePage() {
+    const $root = $('#gameRoot'); 
+    let page = ``; 
+    page += `
+        <div class="hero">
+            <div class="hero-content">
+                <button id="play" type="button">Play Game</button>
+            </div>
+        </div>
+    `;
+    $root.append(page); 
+}
 
 export function landingPage() {
     const $root = $('#root');
     //  $root.html('');
     let page = ``
-page+=`
-<div class='hero'>
-    <div class='hero-content'>
-        <!--The regular content-->
-        <img src='' alt='logo'><br>
-        <button id="howTo">How to Play</button>
-        <button id="play" type="button">Play Game</button>
-        <button id="wiki">Card Wiki</button>
-        <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
-    </div>
-</div>
-`
+    page+=`
+      <div class='hero'>
+          <div class='hero-content'>
+              <!--The regular content-->
+              <img src='' alt='logo'><br>
+              <button>How to Play</button>
+              <button>Card Wiki</button>
+              <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+          </div>
+      </div>
+    `
     $root.append(page);
 }
-
 
 //Start of game
 export function startgame() {
@@ -227,7 +241,6 @@ function update() {
 
 }
 
-
 function wikipage() {
     const $root = $('#root');
     let x = ``
@@ -272,6 +285,7 @@ function win() {
     x += `<button type="button" id="landAgain">Back to Home Page</div>`;
     $root.append(x);
 }
+
 function loadModal(){
     const $loginForm = $('#loginForm');
     let form=``;
@@ -334,9 +348,13 @@ function howToPage(){
     `
     $root.append(text);
 }
+
 $(function () {
     landingPage();
     loadModal();
+    loadGamePage(); 
+    initFirebaseAuth(); 
+
     $(document).on('click', '#play', function () {
 
         startgame();
@@ -345,11 +363,11 @@ $(function () {
     $(document).on('click', '#wiki', function () {wikipage();})
     $(document).on('click', '#howTo', howToPage)
 
-  
     $(document).on('click', '#loginSubmit', toggleSignIn); 
     $(document).on('click', '#createAccount', handleSignUp);  
-    $(document).on('click', '#my-login2', toggleSignInWithGoogle); 
+    $(document).on('click', '#my-signin2', toggleSignInWithGoogle); 
     $(document).on('submit', '#resetPassword', handleResetEmail); 
+
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
     $(document).on('click', '#playerhand-0', function () { cardPlay(0, true); })
