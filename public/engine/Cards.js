@@ -371,7 +371,7 @@ export const cardData= [{
     },
     {
         id:44,
-        name:"Djisktras Algorithm",
+        name:"Dijkstras Algorithm",
         cardimg: "link here",
         visualeffect:"link here",
         attack:0,

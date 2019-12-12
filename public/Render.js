@@ -257,14 +257,32 @@ function update() {
     loadboard();
     //  $root.empty();
     // $root.append(wpicture);
+    for(let i = 0 ; i <cardgame.playerboard.length;i++){
+        if(cardgame.playerboard[i].id===0){
+            cardgame.playerMana+=2;
+        }
+        if(cardgame.playerboard[i].id===30){
+            cardgame.playerMana+=2;
+        }
+
+    }
+    for(let i = 0 ; i <cardgame.aiboard.length;i++){
+        if(cardgame.aiboard[i].id===0){
+            cardgame.aiMana+=2;
+        }
+        if(cardgame.aiboard[i].id===30){
+            cardgame.aiMana+=2;
+        }
+
+    }
     if (player34 === true) {
         if (cardgame.playerMana > 50) {
-            cardgame.playerMana === 50;
+            cardgame.playerMana = 50;
         }
     }
     if (cardgame.ai34 === true) {
         if (cardgame.aiMana > 50) {
-            cardgame.aiMana === 50;
+            cardgame.aiMana = 50;
         }
     }
     if (cardgame.playerMana > 0 && cardgame.aiMana>0) {
@@ -347,18 +365,20 @@ function cardAttack(x) {
 function lose() {
     const $root = $('#root');
     let x = ``;
-    x += `<div id="loseScreen"> You lose.  Take another year at UNC.<div>`;
-    x += `<button type="button" id="playAgain">Play Again</div>`;
-    x += `<button type="button" id="landAgain">Back to Home Page</div>`;
+    x += `<button type="button" id="playAgain">Play Again</button>`;
+    x += `<button type="button" id="landAgain">Back to Home Page</button><br>`;
+    x += `<div id="loseScreen"> You lose.  Take another year at UNC.</div>`;
+
     $root.append(x);
 }
 
 function win() {
     const $root = $('#root');
     let x = ``;
-    x += `<div id="loseScreen"> You GRADUATED!!!! CONGRATS!!!?<div>`;
-    x += `<button type="button" id="play">Play Again?</div>`;
-    x += `<button type="button" id="landAgain">Back to Home Page</div>`;
+    x += `<button type="button" id="playAgain">Play Again?</button>`;
+    x += `<button type="button" id="landAgain">Back to Home Page</button><br>`;
+    x += `<div id="winScreen"> You GRADUATED!!!! CONGRATS!!!?</div>`;
+
     $root.empty();
     $root.append(x);
 }
@@ -453,20 +473,120 @@ $(function () {
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
     $(document).on('click', '#playerhand-0', function () {
-        cardPlay(0, true); update();
-    })
+        if (cardgame.playerhand[0].id === 34) {
+            player34 = true;
+        }
+        if (cardgame.playerhand[0].id === 36) {
+            let j = 0;
+            for (let i = 0; i < cardgame.playerhand.length; i++) {
+                if (j === 2) {
+                    break;
+                }
+                if (cardgame.playerhand[i].id < 50) {
+                    cardgame.destroyed(i, true);
+                    j++
+                }
+
+            }
+        }
+
+        if (cardgame.playerhand[0].id != 49) {
+            cardPlay(0, true); update();
+        } else {
+            win();
+        }    })
     $(document).on('click', '#playerhand-1', function () {
-        cardPlay(1, true); update();
-    })
+        if (cardgame.playerhand[1].id === 34) {
+            player34 = true;
+        }
+        if (cardgame.playerhand[1].id === 36) {
+            let j = 0;
+            for (let i = 0; i < cardgame.playerhand.length; i++) {
+                if (j === 2) {
+                    break;
+                }
+                if (cardgame.playerhand[i].id < 50) {
+                    cardgame.destroyed(i, true);
+                    j++
+                }
+
+            }
+        }
+
+        if (cardgame.playerhand[0].id != 49) {
+            cardPlay(1, true); update();
+        } else {
+            win();
+        }    })
     $(document).on('click', '#playerhand-2', function () {
-        cardPlay(2, true); update();
-    })
+        if (cardgame.playerhand[2].id === 34) {
+            player34 = true;
+        }
+        if (cardgame.playerhand[2].id === 36) {
+            let j = 0;
+            for (let i = 0; i < cardgame.playerhand.length; i++) {
+                if (j === 2) {
+                    break;
+                }
+                if (cardgame.playerhand[i].id < 50) {
+                    cardgame.destroyed(i, true);
+                    j++
+                }
+
+            }
+        }
+
+        if (cardgame.playerhand[2].id != 49) {
+            cardPlay(2, true); update();
+        } else {
+            win();
+        }      })
     $(document).on('click', '#playerhand-3', function () {
-        cardPlay(3, true); update();
-    })
+        if (cardgame.playerhand[3].id === 34) {
+            player34 = true;
+        }
+        if (cardgame.playerhand[3].id === 36) {
+            let j = 0;
+            for (let i = 0; i < cardgame.playerhand.length; i++) {
+                if (j === 2) {
+                    break;
+                }
+                if (cardgame.playerhand[i].id < 50) {
+                    cardgame.destroyed(i, true);
+                    j++
+                }
+
+            }
+        }
+
+        if (cardgame.playerhand[3].id != 49) {
+            cardPlay(3, true); update();
+        } else {
+            win();
+        }      })
     $(document).on('click', '#playerhand-4', function () {
-        cardPlay(4, true); update();
-    })
+        if (cardgame.playerhand[4].id === 34) {
+            player34 = true;
+        }
+        if (cardgame.playerhand[4].id === 36) {
+            let j = 0;
+            for (let i = 0; i < cardgame.playerhand.length; i++) {
+                if (j === 2) {
+                    break;
+                }
+                if (cardgame.playerhand[i].id < 50) {
+                    cardgame.destroyed(i, true);
+                    j++
+                }
+
+            }
+        }
+
+        if (cardgame.playerhand[4].id != 49) {
+            cardPlay(4, true); update();
+        } else {
+            win();
+        }      })
 
     $(document).on('click', '#playerboard-0', function () {
 
@@ -594,6 +714,7 @@ $(function () {
 
     $(document).on('click', '#playAgain', function () {
         startgame();
+        update();
     })
     $(document).on('click', '#endTurn', function () {
         cardgame.endTurn();
