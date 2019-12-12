@@ -123,7 +123,6 @@ export function landingPage() {
       <div class='hero'>
           <div class='hero-content'>
               <!--The regular content-->
-              <img src='' alt='logo'><br>
               <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>

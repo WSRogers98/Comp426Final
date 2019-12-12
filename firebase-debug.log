@@ -1,0 +1,26 @@
+[debug] [2019-12-12T16:49:25.345Z] ----------------------------------------------------------------------
+[debug] [2019-12-12T16:49:25.351Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\13144\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2019-12-12T16:49:25.351Z] CLI Version:   7.9.0
+[debug] [2019-12-12T16:49:25.351Z] Platform:      win32
+[debug] [2019-12-12T16:49:25.351Z] Node Version:  v12.13.1
+[debug] [2019-12-12T16:49:25.371Z] Time:          Thu Dec 12 2019 11:49:25 GMT-0500 (Eastern Standard Time)
+[debug] [2019-12-12T16:49:25.372Z] ----------------------------------------------------------------------
+[debug] [2019-12-12T16:49:25.372Z] 
+[debug] [2019-12-12T16:49:25.447Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-12T16:49:25.448Z] > authorizing via signed-in user
+[debug] [2019-12-12T16:49:25.449Z] [iam] checking project final-f637a for permissions ["firebase.projects.get"]
+[debug] [2019-12-12T16:49:25.452Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-12-12T16:49:25.452Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-12-12T16:49:25.688Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-12T16:49:25.718Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/final-f637a:testIamPermissions  
+
+[debug] [2019-12-12T16:49:31.160Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-12T16:49:31.163Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a  
+ 
+[debug] [2019-12-12T16:49:31.357Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-12T16:49:31.363Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/final-f637a/webApps/-/config  
+ 
+[debug] [2019-12-12T16:49:34.038Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
