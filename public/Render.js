@@ -4,6 +4,7 @@ import { cardData } from "./engine/Cards.js";
 // assigns the authorization app to an easily typed variable bc im lazy
 let auth = firebase.auth();
 let cardgame;
+let db = firebase.firestore();
 
 //Is it ready to attack?
 let playeratt = [];
@@ -55,7 +56,7 @@ function loadGamePage() {
                 <button id="play" type="button">Play Game</button>
                 <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
-              <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+              <button id="signOut">Sign Out</button>
             </div>
         </div>
     `;
@@ -79,7 +80,13 @@ function handleSignUp() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     // creates user with email and password gathered above
-    auth.createUserWithEmailAndPassword(email, password).then(loadGamePage).catch(function(error) {
+    auth.createUserWithEmailAndPassword(email, password).then(function() {
+        loadGamePage();
+        db.collection("users").doc(email).set({
+            wins: 0,
+            losses: 0,
+        });
+    }).catch(function(error) {
         // handles error here
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -370,6 +377,15 @@ function lose() {
     x += `<div id="loseScreen"> You lose.  Take another year at UNC.</div>`;
 
     $root.append(x);
+
+    let email = auth.currentUser.email;
+    let wins = db.collection("users").doc(email).losses;
+    let losses = db.collection("users").doc(email).losses;
+    losses++;
+    db.collection("users").doc(email).set({
+        "wins": wins,
+        "losses": losses,
+    });
 }
 
 function win() {
@@ -381,6 +397,15 @@ function win() {
 
     $root.empty();
     $root.append(x);
+
+    let email = auth.currentUser.email;
+    let wins = db.collection("users").doc(email).wins;
+    let losses = db.collection("users").doc(email).losses;
+    wins++;
+    db.collection("users").doc(email).set({
+        "wins": wins,
+        "losses": losses,
+    });
 }
 
 function loadModal() {
@@ -447,6 +472,11 @@ function howToPage() {
     $root.append(text);
 }
 
+function handleSignOut() {
+    auth.signOut();
+    landingPage();
+}
+
 $(function () {
     landingPage();
     loadModal();
@@ -469,6 +499,7 @@ $(function () {
     $(document).on('click', '#google', handleSignInWithGoogle);
     $(document).on('click', '#googleLogo', handleSignInWithGoogle);
     $(document).on('click', '#googleText', handleSignInWithGoogle);
+    $(document).on('click', '#signOut', handleSignOut);
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
@@ -513,7 +544,7 @@ $(function () {
             }
         }
 
-        if (cardgame.playerhand[0].id != 49) {
+        if (cardgame.playerhand[1].id != 49) {
             cardPlay(1, true); update();
         } else {
             win();

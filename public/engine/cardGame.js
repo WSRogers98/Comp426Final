@@ -41,7 +41,7 @@ export class cardGame {
         this.playerMana = 100;
         this.aiMana = 100;
         let temp=(Math.round(Math.random()));
-        console.log('temp: '+temp);
+
         if(temp===0){
             this.first = 'player';
             this.playerturn = true;
@@ -49,7 +49,7 @@ export class cardGame {
             this.first = 'ai';
             this.playerturn = false;
         }
-        console.log('first: '+this.first);
+
         if(this.first==='ai'){
             this.AI();
         }
@@ -92,14 +92,14 @@ export class cardGame {
     }
     draw(player, arr) {
         if (player === true &&this.playerhand.length<=5) {
-            console.log('player drew card');
+
             arr.push(this.playerDeck[0]);
             //  deck.shift();
             this.playerDeck.shift();
 
         } else {
             if(this.aihand.length<=5) {
-                console.log('ai drew card');
+
                 arr.push(this.aiDeck[0]);
                 // deck.shift();
                 this.aiDeck.shift();
@@ -384,7 +384,7 @@ and if decision tree conditions are met it will follow those conditions and rewe
             this.maxaiPlay=1;
             this.maxManaUse=10;
         }
-        console.log('aistance: ' + this.aiStance);
+
         // determine AI Moves
     if(this.aiStance==='setup'){
 

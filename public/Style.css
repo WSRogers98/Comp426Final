@@ -28,6 +28,26 @@ button {
   font-size: 16px;
 }
 
+#winScreen {
+  margin-top: 30px;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 50px;
+  border: 3px black solid;
+  background: lightgreen;
+  text-align: center;
+}
+
+#loseScreen {
+  margin-top: 30px;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 50px;
+  border: 3px black solid;
+  background: pink;
+  text-align: center;
+}
+
 hr {
   border-top: 1px black solid;
 }
