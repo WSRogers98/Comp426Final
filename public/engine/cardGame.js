@@ -56,13 +56,13 @@ export class cardGame {
         this.turn+=1;
         if (this.playerturn === true) {
             this.playerturn = false
-            if(this.aihand.length<=5){
+            if(this.aihand.length<5){
                 this.draw(false,this.aihand)
             }
         } else {
             this.playerturn = true;
-            if(this.aihand.length<=5){
-                this.draw(false,this.aihand)
+            if(this.playerhand.length<5){
+                this.draw(false,this.playerhand)
             }
         }
 
@@ -90,11 +90,13 @@ export class cardGame {
     }
     draw(player, arr) {
         if (player === true) {
+            console.log('player drew card');
             arr.push(this.playerDeck[0]);
             //  deck.shift();
             this.playerDeck.shift();
 
         } else {
+            console.log('ai drew card');
             arr.push(this.aiDeck[0]);
             // deck.shift();
             this.aiDeck.shift();
