@@ -30,9 +30,7 @@ function toggleSignIn() {
         // gets email and password from submitted form 
         let email = document.getElementById('email').value; 
         let password = document.getElementById('password').value; 
-        auth.signInWithEmailAndPassword(email, password).then(function() {
-            window.location.href="game.html"; 
-        }).catch(function(error) {
+        auth.signInWithEmailAndPassword(email, password).then(loadGamePage()).catch(function(error) {
             // handles sign in errors here 
             let errorCode = error.code; 
             let errorMessage = error.message; 
@@ -46,14 +44,27 @@ function toggleSignIn() {
     }
 }
 
+function loadGamePage() {
+    const $root = $('#root');
+    $root.html('');
+    let page = ``;
+    page += `
+        <div class="hero">
+            <div class="hero-content">
+                <button id="play" type="button">Play Game</button>
+            </div>
+        </div>
+    `;
+    $root.append(page);
+    document.getElementById('loginForm').style.display='none'
+}
+
 // handles sign up button press
 function handleSignUp() {
     let email = document.getElementById('email').value; 
     let password = document.getElementById('password').value; 
     // creates user with email and password gathered above 
-    auth.createUserWithEmailAndPassword(email, password).then(function() {
-        window.location.href="game.html"; 
-    }).catch(function(error) {
+    auth.createUserWithEmailAndPassword(email, password).then(loadGamePage()).catch(function(error) {
         // handles error here 
         let errorCode = error.code; 
         let errorMessage = error.message; 
@@ -71,10 +82,15 @@ function initFirebaseAuth() {
     // Listen to auth state changes.
     auth.onAuthStateChanged(firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            window.location = 'localhost:5000/game.html'; //After successful login, user will be redirected to game.html
-            // TODO STILL NEED TO GET THIS TO WORK
+            loadGamePage(); 
         }
     }));
+}
+
+function loadGameIfSignedIn() {
+    if (user) {
+        loadGamePage(); 
+    }
 }
 
 function handleResetEmail() {
@@ -88,19 +104,6 @@ function handleResetEmail() {
     });
 }
 
-function loadGamePage() {
-    const $root = $('#gameRoot');
-    let page = ``;
-    page += `
-        <div class="hero">
-            <div class="hero-content">
-                <button id="play" type="button">Play Game</button>
-            </div>
-        </div>
-    `;
-    $root.append(page);
-}
-
 export function landingPage() {
     const $root = $('#root');
     $root.html('');
@@ -112,7 +115,6 @@ export function landingPage() {
               <img src='' alt='logo'><br>
               <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
-               <button id="play">play temp</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
           </div>
       </div>
@@ -289,6 +291,18 @@ function search() {
     document.getElementById("searchDiv").style.display = "block";
 }
 
+function search() {
+    let name = document.getElementById("search").value;
+    let x = "#";
+    for (let i = 0; i < 50; i++) {
+        if (name === cardData[i].name) {
+            x += cardData[i].id;
+        }
+    }
+    $("#searchLink").attr("href", x);
+    document.getElementById("searchDiv").style.display = "block";
+}
+
 function cardPlay(x, y) {
     cardgame.playCard(x, y);
 }
@@ -384,7 +398,6 @@ function howToPage() {
 $(function () {
     landingPage();
     loadModal();
-    loadGamePage();
     initFirebaseAuth();
 
     $(document).on('click', '#play', function () {
@@ -522,17 +535,12 @@ $(function () {
         update();
     });
 
-
-    });
-    //$(document).on('click', '#aiboard-1', function () { cardAttack()});
-    //$(document).on('click', '#aiboard-2', function () { cardAttack()});
-    //$(document).on('click', '#aiboard-3', function () { cardAttack()});
-    //$(document).on('click', '#aiboard-4', function () { cardAttack()});
-
+    // $(document).on('click', '#aiboard-1', function () { cardAttack()})
+    // $(document).on('click', '#aiboard-2', function () { cardAttack()})
+    // $(document).on('click', '#aiboard-3', function () { cardAttack()})
+    // $(document).on('click', '#aiboard-4', function () { cardAttack()})
 
     $(document).on('click', '#searchButton', function () { search() });
-
-
     $(document).on('click', '#aiHealth', function () {
         for (let i = 0; i < 5; i++) {
             if (playerattacked[i] === false && playeratt[i] === true) {
@@ -543,7 +551,6 @@ $(function () {
         update();
 
     });
-
 
     $(document).on('click', '#playAgain', function () {
         startgame();
@@ -567,4 +574,5 @@ $(function () {
     $(document).on('click', '#how-to-back-to-home', function() {
         landingPage(); 
     }); 
+});
 

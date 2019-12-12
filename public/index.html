@@ -15,7 +15,6 @@
         <script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script type="module" src="engine/Cards.js"></script>
         <script type="module" src="engine/cardGame.js"></script>
-        <script type="module" src="engine/AI.js"></script>
         <script type="module" src='Render.js'></script>
 
     </head>
@@ -32,7 +31,29 @@
         <script>
           function onSuccess(googleUser) {
             console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-            toggleSignInWithGoogle(); 
+            var provider = new firebase.auth.GoogleAuthProvider(); 
+            firebase.auth().signInWithPopup(provider).then(
+                function() {
+                    const $root = $('#root');
+                    $root.html('');
+                    let page = ``;
+                    page += `
+                        <div class="hero">
+                            <div class="hero-content">
+                                <button id="play" type="button">Play Game</button>
+                            </div>
+                        </div>
+                    `;
+                    $root.append(page);
+                    document.getElementById('loginForm').style.display='none';
+                }
+            ).catch(function(error) {
+                if (error.code === 'auth/account-exists-with-different-credential') {
+                    //handle that here 
+                } else {
+                    alert(error.message); 
+                }
+            }); 
           }
           function onFailure(error) {
             console.log(error);
