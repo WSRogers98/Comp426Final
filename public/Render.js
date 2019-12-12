@@ -143,9 +143,11 @@ export function startgame() {
     cardgame.start();
 
     const $root = $('#root');
+    let wpicture=``
     $root.html(' ');
-
-    let wpicture = `<div id="all">`
+    wpicture+=`<button id="how-to-back-to-home">Go Back</button>`
+    wpicture+=`<button id="play" type="button">New Game</button>`
+     wpicture += `<div id="all">`
     const loadboard = function () {
         wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
@@ -196,7 +198,10 @@ export function startgame() {
 function update() {
     const $root = $('#root');
     // startgame();
-    let wpicture = `<div id="all">`
+    let wpicture=``
+    wpicture+=`<button id="how-to-back-to-home">Go Back</button>`
+    wpicture+=`<button id="play" type="button">New Game</button>`
+     wpicture += `<div id="all">`
     const loadboard = function () {
         wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
