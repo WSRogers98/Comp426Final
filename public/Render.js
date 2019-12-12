@@ -150,9 +150,7 @@ export function startgame() {
         wpicture += `<div id="aiHand">`
         for (let i = 0; i < cardgame.aihand.length; i++) {
             // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
-            wpicture += `<div id="aihand-${i}>${cardgame.aihand[i].name}</div>`
-
-
+            wpicture += `<div id="aihand-${i}">${cardgame.aihand[i].name}</div>`
         }
         wpicture += `</div>`;
         wpicture += `<br>`;
@@ -200,7 +198,7 @@ function update() {
         wpicture += `<div id="aiHand">`
         for (let i = 0; i < cardgame.aihand.length; i++) {
             // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
-            wpicture += `<div id="aihand-${i}>${cardgame.aihand[i].name}</div>`
+            wpicture += `<div id="aihand-${i}">${cardgame.aihand[i].name}</div>`
 
 
         }
@@ -319,7 +317,7 @@ function loadModal() {
     <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
 
     <!-- Modal Content -->
-    <form class="modal-content animate">
+    <form class="modal-content animxsate">
 
         <div class="container" id="loginFormContent">
             <label for="email"><b>Email</b></label><br>
@@ -406,7 +404,7 @@ $(function () {
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
     $(document).on('click', '#playerhand-0', function () {
-        cardPlay(0, true); update(); win();
+        cardPlay(0, true); update();
     })
     $(document).on('click', '#playerhand-1', function () {
         cardPlay(1, true); update();
@@ -442,7 +440,7 @@ $(function () {
             }
             playeratt[1] = true;
         }
-    })
+    });
 
     $(document).on('click', '#playerboard-2', function () {
         console.log('is this shit clicking?2')
@@ -453,7 +451,7 @@ $(function () {
             }
             playeratt[2] = true;
         }
-    })
+    });
 
     $(document).on('click', '#playerboard-3', function () {
         console.log('is this shit clicking?3')
@@ -523,10 +521,14 @@ $(function () {
         update();
     });
 
+
     // $(document).on('click', '#aiboard-1', function () { cardAttack()})
     // $(document).on('click', '#aiboard-2', function () { cardAttack()})
     // $(document).on('click', '#aiboard-3', function () { cardAttack()})
     // $(document).on('click', '#aiboard-4', function () { cardAttack()})
+
+
+    
 
     $(document).on('click', '#searchButton', function () { search() });
 
