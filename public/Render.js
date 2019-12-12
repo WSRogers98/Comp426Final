@@ -218,7 +218,7 @@ function update() {
         wpicture += `<br>`;
         wpicture += `<div id="aiBoard">`
         for (let i = 0; i < cardgame.aiboard.length; i++) {
-            wpicture += `<div id="aiboard-${i}" class="aiCards">${cardgame.aiboard[i].name}</div>`;
+            wpicture += `<div id="aiboard-${i}" class="aiCards"><img src="/images/cards/${cardgame.aiboard[i].id}.png"></div>`;
         }
         wpicture += `</div>`
         wpicture += `<br>`;
@@ -226,7 +226,7 @@ function update() {
         for (let i = 0; i < cardgame.playerboard.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerboard-${i}" class="playerBoardCards"><p>${cardgame.playerboard[i].name}</p></div>`;
+            wpicture += `<div id="playerboard-${i}" class="playerBoardCards"><p><img src="/images/cards/${cardgame.playerboard[i].id}.png"></p></div>`;
             // }
         }
         wpicture += `</div>`;
@@ -240,7 +240,7 @@ function update() {
         for (let i = 0; i < cardgame.playerhand.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerhand-${i}" class="playerCards"><p>${cardgame.playerhand[i].name}</p></div>`
+            wpicture += `<div id="playerhand-${i}" class="playerCards"><p><img src="/images/cards/${cardgame.playerhand[i].id}.png"></p></div>`
 
             // }
         }
@@ -262,6 +262,9 @@ function wikipage() {
     <button id="howTo">How to Play</button>
     <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
     `
+    x += `<div><input type="text" id="search"/>`
+    x += `<button type="button" id="searchButton">Search</button></div>`;
+    x += `<div id="searchDiv" style="display:none"><a href="" id="searchLink">Go to Card</a></div>`
     //Need to work with how we access card database.
     for (let i = 0; i < 50; i++) {
         x += `<div id="card-${cardData[i].id}">` +
@@ -276,6 +279,22 @@ function wikipage() {
     }
     x+=`<button id="wiki-back-to-home">Go Back</button>`
     $root.append(x);
+    let results = ["Kris Jordan", "Departmental King, KMP", "The Eternal One: David Plaisted",
+        "COMP110 TA", "Office Hours", "Curve", "Stack Overflow", "Exam", "Snoeyink the Origami Lord",
+        "Anish, the Prankster", "Comp Sci Overcrowding!", "Sitterson Pizza Event", "Legendary TA Rosh",
+        "Robotics Lord Ron Alterovitz", "Legendary Professor Bishop: Destroyer of Worlds", "WeedOut Classes",
+        "BS to BA", "Caffeine Addiction", "Mips Rush", "Sitterson: Departmental Home", "Procrastinate",
+        "Coding Passion", "Djisktras Algorithm", "Legendary Professor: Montek", "Legendary Professor: McMillan the Villain",
+        "Echoes of the Past: Pozefsky", "Classmates in Genome 100", "Internship", "BA to BS", "Computer Science Friends",
+        "Computer Science Enemies", "Good Study Group", "Bad Study Group", "Code Leech", "Honour Court",
+        "Switch to Comp Minor", "Hackathon", "Tech Job Fair", "Fred Brooks", "Pearl Hacks",
+        "Obscure Youtube Coding Tutorial Channel", "Comp 426 Selfie", "Crying in the Sitterson Bathroom",
+        "Kurama", "Rate my Professor", "Skipping Class", "Bug", "The Meme Shit Post Groupme", "CPU Hat",
+        "Graduation"];
+    $("#search").autocomplete({
+        source: results
+    });
+
 }
 
 function search() {
@@ -541,7 +560,7 @@ $(function () {
     // $(document).on('click', '#aiboard-4', function () { cardAttack()})
 
 
-    
+
 
     $(document).on('click', '#searchButton', function () { search() });
 
