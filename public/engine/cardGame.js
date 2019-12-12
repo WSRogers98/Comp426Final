@@ -113,129 +113,155 @@ export class cardGame {
 
         //player play
         if (player === true) {
-            this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
-            this.playerboard.push(this.playerhand[cardIndex]);
-            this.playerhand.splice(cardIndex, 1);
-            if(this.playerboard[this.playerboard.length-1].id===6){
-                let uwu=(Math.round(Math.random()));
-                if(uwu===1){
-                    this.playerMana+=5;
-                    this.destroyed((this.playerboard.length - 1), true)
-                }else{
-                    this.playerMana-=5;
-                    this.destroyed((this.playerboard.length - 1), true)
-                }
-            }else if(this.playerboard[this.playerboard.length-1].id===10){
-                this.playerMana-=10;
-                this.aiMana -= 10;
-                this.destroyed((this.playerboard.length- 1), true)
-            }else if(this.playerboard[this.playerboard.length-1].id===14) {
-                for (let i = 0; i < this.playerboard.length; i++) {
-                    if (this.playerboard[i].id != 14) {
-                        this.destroyed(i, true);
+            if(this.playerboard.length<5) {
+                this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
+                this.playerboard.push(this.playerhand[cardIndex]);
+                this.playerhand.splice(cardIndex, 1);
+                if (this.playerboard[this.playerboard.length - 1].id === 6) {
+                    let uwu = (Math.round(Math.random()));
+                    if (uwu === 1) {
+                        this.playerMana += 5;
+                        this.destroyed((this.playerboard.length - 1), true)
+                    } else {
+                        this.playerMana -= 5;
+                        this.destroyed((this.playerboard.length - 1), true)
                     }
-                }
-                for (let i = 0; i < this.aiboard.length; i++) {
-                    if (this.aiboard[i].id != 14) {
-                        this.destroyed(i, true);
-                    }
-                }
-            }else if(this.playerboard[this.playerboard.length-1].id===22){
-                this.aiMana -= 5;
-            }else if(this.playerboard[this.playerboard.length-1].id===27) {
-                this.aiMana -= 5;
-                this.draw(true,this.playerhand);
-                this.draw(true,this.playerhand);
-                this.destroyed((this.playerboard.length - 1), true)
-            }else if(this.playerboard[this.playerboard.length-1].id===34) {
-                this.playerMana += 30;
-                this.destroyed((this.playerboard.length - 1), true)
-            }else if(this.playerboard[this.playerboard.length-1].id===35) {
-                this.playerMana -= 2;
-                this.draw(true,this.playerhand);
-                this.draw(true,this.playerhand);
-                this.destroyed((this.playerboard.length - 1), true)
-            } else if(this.playerboard[this.playerboard.length-1].id===38){
-            this.aiMana += 5;
-            this.playerMana += 5;
-        }
-            else {
-                if (this.playerboard[this.playerboard.length - 1].type === 'heal') {
-                    // temp heal benefit
-                    this.playerMana += 10;
-                    this.destroyed(this.playerboard.length - 1, true)
-                }
-                if (this.playerboard[this.playerboard.length - 1].type === 'hurt') {
-                    // temp hurt benefit
+                } else if (this.playerboard[this.playerboard.length - 1].id === 10) {
+                    this.playerMana -= 10;
                     this.aiMana -= 10;
                     this.destroyed((this.playerboard.length - 1), true)
+                } else if (this.playerboard[this.playerboard.length - 1].id === 14) {
+                    for (let i = 0; i < this.playerboard.length; i++) {
+                        if (this.playerboard[i].id != 14) {
+                            this.destroyed(i, true);
+                        }
+                    }
+                    for (let i = 0; i < this.aiboard.length; i++) {
+                        if (this.aiboard[i].id != 14) {
+                            this.destroyed(i, true);
+                        }
+                    }
+                } else if (this.playerboard[this.playerboard.length - 1].id === 22) {
+                    this.aiMana -= 5;
+                } else if (this.playerboard[this.playerboard.length - 1].id === 27) {
+                    this.aiMana -= 5;
+                    this.draw(true, this.playerhand);
+                    this.draw(true, this.playerhand);
+                    this.destroyed((this.playerboard.length - 1), true)
+                } else if (this.playerboard[this.playerboard.length - 1].id === 34) {
+                    this.playerMana += 30;
+                    this.destroyed((this.playerboard.length - 1), true)
+                } else if (this.playerboard[this.playerboard.length - 1].id === 35) {
+                    this.playerMana -= 2;
+                    this.draw(true, this.playerhand);
+                    this.draw(true, this.playerhand);
+                    this.destroyed((this.playerboard.length - 1), true)
+                } else if (this.playerboard[this.playerboard.length - 1].id === 38) {
+                    this.aiMana += 5;
+                    this.playerMana += 5;
+                } else if (this.playerboard[this.playerboard.length - 1].id === 43) {
+                    for (let i = 0; i < 5; i++) {
+                        this.draw(true, this.playerhand);
+                    }
+                } else if (this.playerboard[this.playerboard.length - 1].id === 11) {
+                    this.playerMana += 10;
+                    this.aiMana += 10;
+                    this.destroyed((this.playerboard.length - 1), true)
+                } else if (this.playerboard[this.playerboard.length - 1].id === 15) {
+                    this.playerMana -= 5;
+                    this.aiMana -= 5;
+                    this.destroyed((this.playerboard.length - 1), true)
+                } else {
+                    if (this.playerboard[this.playerboard.length - 1].type === 'heal') {
+                        // temp heal benefit
+                        this.playerMana += this.playerboard[this.playerboard.length - 1].defense;
+                        ;
+                        this.destroyed(this.playerboard.length - 1, true)
+                    }
+                    if (this.playerboard[this.playerboard.length - 1].type === 'hurt') {
+                        // temp hurt benefit
+                        this.aiMana -= this.playerboard[this.playerboard.length - 1].defense;
+                        this.destroyed((this.playerboard.length - 1), true)
+                    }
                 }
             }
             //ai play card
 
         } else {
-            this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
-            this.aiboard.push(this.aihand[cardIndex]);
-            this.aihand.splice(cardIndex, 1);
-            if(this.aiboard[this.aiboard.length-1].id===6) {
-                let uwu = (Math.round(Math.random()));
-                if (uwu === 1) {
-                    this.aiMana += 5;
+            if (this.aiboard.length < 5) {
+                this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
+                this.aiboard.push(this.aihand[cardIndex]);
+                this.aihand.splice(cardIndex, 1);
+                if (this.aiboard[this.aiboard.length - 1].id === 6) {
+                    let uwu = (Math.round(Math.random()));
+                    if (uwu === 1) {
+                        this.aiMana += 5;
+                        this.destroyed((this.aiboard.length - 1), false)
+                    } else {
+                        this.aiMana -= 5;
+                        this.destroyed((this.aiboard.length - 1), false)
+                    }
+                } else if (this.aiboard[this.aiboard.length - 1].id === 10) {
+                    this.playerMana -= 10;
+                    this.aiMana -= 10;
                     this.destroyed((this.aiboard.length - 1), false)
-                } else {
+                } else if (this.aiboard[this.aiboard.length - 1].id === 14) {
+                    for (let i = 0; i < this.playerboard.length; i++) {
+                        if (this.playerboard[i].id != 14) {
+                            this.destroyed(i, true);
+                        }
+                    }
+                    for (let i = 0; i < this.aiboard.length; i++) {
+                        if (this.aiboard[i].id != 14) {
+                            this.destroyed(i, true);
+                        }
+                    }
+                } else if (this.aiboard[this.aiboard.length - 1].id === 22) {
+                    this.playerMana -= 5;
+                } else if (this.aiboard[this.aiboard.length - 1].id === 27) {
+                    this.playerMana -= 5;
+                    this.draw(false, this.aihand);
+                    this.draw(false, this.aihand);
+                    this.destroyed((this.aiboard.length - 1), false)
+                } else if (this.aiboard[this.aiboard.length - 1].id === 34) {
+                    this.aiMana += 30;
+                    this.ai34 = true;
+                    this.destroyed((this.aiboard.length - 1), false)
+                } else if (this.aiboard[this.aiboard.length - 1].id === 35) {
+                    this.aiMana -= 2;
+                    this.draw(false, this.aihand);
+                    this.draw(false, this.aihand);
+                    this.destroyed((this.aiboard.length - 1), false)
+                } else if (this.aiboard[this.aiboard.length - 1].id === 38) {
+                    this.aiMana += 5;
+                    this.playerMana += 5;
+                } else if (this.aiboard[this.aiboard.length - 1].id === 43) {
+
+                    for (let i = 0; i < 5; i++) {
+                        this.draw(false, this.aihand);
+                    }
+                } else if (this.aiboard[this.aiboard.length - 1].id === 11) {
+                    this.playerMana += 10;
+                    this.aiMana += 10;
+                    this.destroyed((this.aiboard.length - 1), false)
+                } else if (this.aiboard[this.aiboard.length - 1].id === 15) {
+                    this.playerMana -= 5;
                     this.aiMana -= 5;
                     this.destroyed((this.aiboard.length - 1), false)
-                }
-            }else if(this.aiboard[this.aiboard.length-1].id===10){
-                this.playerMana-=10;
-                this.aiMana -= 10;
-                this.destroyed((this.aiboard.length - 1), false)
-            }else if(this.aiboard[this.aiboard.length-1].id===14) {
-                for (let i = 0; i < this.playerboard.length; i++) {
-                    if (this.playerboard[i].id != 14) {
-                        this.destroyed(i, true);
-                    }
-                }
-                for (let i = 0; i < this.aiboard.length; i++) {
-                    if (this.aiboard[i].id != 14) {
-                        this.destroyed(i, true);
-                    }
-                }
-            }else if(this.aiboard[this.aiboard.length-1].id===22){
-                this.playerMana -=5;
-            }else if(this.aiboard[this.aiboard.length-1].id===27) {
-                this.playerMana -= 5;
-                this.draw(false,this.aihand);
-                this.draw(false,this.aihand);
-                this.destroyed((this.aiboard.length - 1), false)
-            }else if(this.aiboard[this.playerboard.length-1].id===34) {
-                this.aiMana += 30;
-                this.ai34=true;
-                this.destroyed((this.aiboard.length - 1), false)
-            }else if(this.aiboard[this.aiboard.length-1].id===35) {
-                this.aiMana -= 2;
-                this.draw(false, this.aihand);
-                this.draw(false, this.aihand);
-                this.destroyed((this.aiboard.length - 1), false)
-            }else if(this.aiboard[this.aiboard.length-1].id===38){
-                this.aiMana += 5;
-                this.playerMana += 5;
-            }
-            else
-                {
+                } else {
                     if (this.aiboard[this.aiboard.length - 1].type === 'heal') {
                         // temp heal benefit
-                        this.aiMana += 10;
+                        this.aiMana += this.aiboard[this.aiboard.length - 1].defense;
                         this.destroyed(this.aiboard.length - 1, false)
                     }
                     if (this.aiboard[this.aiboard.length - 1].type === 'hurt') {
                         // temp hurt benefit
-                        this.playerMana -= 10;
+                        this.playerMana -= this.aiboard[this.aiboard.length - 1].defense;
                         this.destroyed(this.aiboard.length - 1, false)
                     }
                 }
             }
-
+        }
     }
     //playersCard: is the card being destroyed belonging to the player
     destroyed(cardIndex, playersCard) {

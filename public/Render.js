@@ -52,6 +52,9 @@ function loadGamePage() {
         <div class="hero">
             <div class="hero-content">
                 <button id="play" type="button">Play Game</button>
+                <button id="howTo">How to Play</button>
+              <button id="wiki">Card Wiki</button>
+              <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
             </div>
         </div>
     `;
@@ -144,44 +147,47 @@ export function startgame() {
 
     let wpicture = `<div id="all">`
     const loadboard = function () {
-        wpicture += `<div id="aiHealth">Enemy Health: ${cardgame.aiMana}</div>`;
+        wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
         //Cardbacks for the AI
-        wpicture += `<div id="aiHand">`
-        for (let i = 0; i < cardgame.aihand.length; i++) {
-            // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
-            wpicture += `<div id="aihand-${i}">${cardgame.aihand[i].name}</div>`
-        }
-        wpicture += `</div>`;
+        // wpicture += `<div id="aiHand">`
+        // for (let i = 0; i < cardgame.aihand.length; i++) {
+        //     // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+        //     wpicture += `<div id="aihand-${i}" class="aiCards">${cardgame.aihand[i].name}</div>`
+
+
+        // }
+        // wpicture += `</div>`;
         wpicture += `<br>`;
         //I may need to write a check, because if we're replacing the cards
         //Used with blank cards then we will need a for loop to fix shit up.
 
         //** fix fix fix fix fix  */
-        wpicture += `<div id="aiDeck"> Card Left in Enemy Deck: ${cardgame.aiDeck.length}</div>`;
+        wpicture += `<div id="aiDeck">Cards Left: ${cardgame.aiDeck.length}</div>`;
         wpicture += `<br>`;
+        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
+        wpicture += `<div id="aiBoard">`;
         for (let i = 0; i < cardgame.aiboard.length; i++) {
-            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
-        } wpicture += `<br>`;
-
+            wpicture += `<div id="aiboard-${i}" class="aiBoardCards">${cardgame.aiboard[i].name}</div>`;
+        }
+        wpicture += `</div>`
+        wpicture += `<br>`;
         wpicture += `<div id="playerBoard">${cardgame.playerboard}</div>`;
         wpicture += `<br>`;
+        wpicture += `<div id="playerData">You<br><div id="playerHealth">${cardgame.playerMana}</div></div>`;
         //Pulls in our hand and gives each card a id of
         //playerhand-0,playerhand-1, and so forth till 6 (7 total)
-        wpicture += `<div id="playerHand">`
+        wpicture += `<div id="playerHand">`;
         ////////////////////////////////////////BIG NEED TO FIX  Draw isn't working???
         for (let i = 0; i < cardgame.playerhand.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
+            wpicture += `<div id="playerhand-${i}" class="playerCards"><p>${cardgame.playerhand[i].name}</p></div>&nbsp&nbsp&nbsp&nbsp`
 
             // }
         }
-        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
+        wpicture += `<div id="playerDeck">Cards Left: ${cardgame.playerDeck.length}</div>`
         wpicture += `</div>`;
-        wpicture += `<div id="playerDeck">Cards Left in your deck: ${cardgame.playerDeck.length}</div>`
-        wpicture += `<br>`;
-        wpicture += `<div id="playerHealth">Your Health: ${cardgame.playerMana}</div>`;
     }
     loadboard();
     $root.append(wpicture);
@@ -192,57 +198,54 @@ function update() {
     // startgame();
     let wpicture = `<div id="all">`
     const loadboard = function () {
-        wpicture += `<div id="aiHealth">Enemy Health: ${cardgame.aiMana}</div>`;
+        wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
         //Cardbacks for the AI
-        wpicture += `<div id="aiHand">`
-        for (let i = 0; i < cardgame.aihand.length; i++) {
-            // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
-            wpicture += `<div id="aihand-${i}">${cardgame.aihand[i].name}</div>`
+        // wpicture += `<div id="aiHand">`
+        // for (let i = 0; i < cardgame.aihand.length; i++) {
+        //     // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+        //     wpicture += `<div id="aihand-${i}" class="aiCards">${cardgame.aihand[i].name}</div>`
 
 
-        }
-        wpicture += `</div>`;
+        // }
+        // wpicture += `</div>`;
         wpicture += `<br>`;
         //I may need to write a check, because if we're replacing the cards
         //Used with blank cards then we will need a for loop to fix shit up.
 
         //** fix fix fix fix fix  */
-        wpicture += `<div id="aiDeck"> Card Left in Enemy Deck: ${cardgame.aiDeck.length}</div>`;
+        wpicture += `<div id="aiDeck">Cards Left: ${cardgame.aiDeck.length}</div>`;
         wpicture += `<br>`;
-        wpicture += `<div id="aiboard">`
+        wpicture += `<div id="aiBoard">`
         for (let i = 0; i < cardgame.aiboard.length; i++) {
-            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
-
+            wpicture += `<div id="aiboard-${i}" class="aiCards">${cardgame.aiboard[i].name}</div>`;
         }
         wpicture += `</div>`
         wpicture += `<br>`;
-        wpicture += `<div id="playerboard">`;
+        wpicture += `<div id="playerBoard">`;
         for (let i = 0; i < cardgame.playerboard.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerboard-${i}"><p>${cardgame.playerboard[i].name}</p></div>`;
+            wpicture += `<div id="playerboard-${i}" class="playerBoardCards"><p>${cardgame.playerboard[i].name}</p></div>`;
             // }
         }
         wpicture += `</div>`;
         wpicture += `<br>`;
         //Pulls in our hand and gives each card a id of
         //playerhand-0,playerhand-1, and so forth till 6 (7 total)
-        wpicture += `<div id="playerHand">`
+        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
+        wpicture += `<div id="playerDeck">Cards Left: ${cardgame.playerDeck.length}</div>`;
+        wpicture += `<div id="playerHand">`;
         ////////////////////////////////////////BIG NEED TO FIX  Draw isn't working???
         for (let i = 0; i < cardgame.playerhand.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
+            wpicture += `<div id="playerhand-${i}" class="playerCards"><p>${cardgame.playerhand[i].name}</p></div>`
 
             // }
         }
-        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
-
+        wpicture += `<div id="playerData">You<br><div id="playerHealth">${cardgame.playerMana}</div>`;
         wpicture += `</div>`;
-        wpicture += `<div id="playerDeck">Cards Left in your deck: ${cardgame.playerDeck.length}</div>`
-        wpicture += `<br>`;
-        wpicture += `<div id="playerHealth">Your Health: ${cardgame.playerMana}</div>`;
     }
     loadboard();
     $root.empty();
@@ -254,6 +257,11 @@ function wikipage() {
     const $root = $('#root');
     let x = ``
     $root.html(' ');
+    x+=`
+    <button id="play" type="button">Play Game</button>
+    <button id="howTo">How to Play</button>
+    <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+    `
     //Need to work with how we access card database.
     for (let i = 0; i < 50; i++) {
         x += `<div id="card-${cardData[i].id}">` +
@@ -348,6 +356,11 @@ function howToPage() {
     const $root = $('#root');
     let text = ``
     $root.html(' ');
+    text+=`
+    <button id="play" type="button">Play Game</button>
+    <button id="wiki">Card Wiki</button>
+    <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+    `
     text += `
     <hr>
     <h4 class="head">Basics</h4>
