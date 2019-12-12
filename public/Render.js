@@ -39,7 +39,7 @@ function toggleSignIn() {
             } else {
                 alert(errorMessage);
             }
-            console.log(error);
+
         })
     }
 }
@@ -84,7 +84,7 @@ function handleSignUp() {
         } else {
             alert(errorMessage);
         }
-        console.log(error);
+
     });
 }
 
@@ -213,7 +213,7 @@ function update() {
         wpicture += `<div id="aiboard">`
         for (let i = 0; i < cardgame.aiboard.length; i++) {
             wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
-            console.log('Ai board at ' + i + ': ' + cardgame.aiboard[i].name);
+
         }
         wpicture += `</div>`
         wpicture += `<br>`;
@@ -420,19 +420,19 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-0', function () {
-        console.log('is this shit clicking?0')
+
         if (playerattacked[0] === false) {
             for (let i = 0; i < 5; i++) {
                 playeratt[i] = false;
             }
             playeratt[0] = true;
-            console.log('This is Playeratt[0] and playerattacked[0]: ' + playeratt[0] + ' ' + playerattacked[0])
+
         }
 
     })
 
     $(document).on('click', '#playerboard-1', function () {
-        console.log('is this shit clicking?1')
+
 
         if (playerattacked[1] === false) {
             for (let i = 0; i < 5; i++) {
@@ -443,7 +443,7 @@ $(function () {
     });
 
     $(document).on('click', '#playerboard-2', function () {
-        console.log('is this shit clicking?2')
+
 
         if (playerattacked[2] === false) {
             for (let i = 0; i < 5; i++) {
@@ -454,7 +454,7 @@ $(function () {
     });
 
     $(document).on('click', '#playerboard-3', function () {
-        console.log('is this shit clicking?3')
+
 
         if (playerattacked[3] === false) {
             for (let i = 0; i < 5; i++) {
@@ -465,7 +465,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-4', function () {
-        console.log('is this shit clicking?4')
+
 
         if (playerattacked[4] === false) {
             for (let i = 0; i < 5; i++) {
@@ -540,7 +540,7 @@ $(function () {
             }
         }
         update();
-        console.log(cardgame.aiMana)
+
     });
 
     $(document).on('click', '#playAgain', function () {
