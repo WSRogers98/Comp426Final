@@ -204,7 +204,7 @@ function update() {
         wpicture += `<div id="aiboard">`
         for (let i = 0; i < cardgame.aiboard.length; i++) {
             wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
-            console.log('Ai board at ' + i + ': ' + cardgame.aiboard[i].name);
+
         }
         wpicture += `</div>`
         wpicture += `<br>`;
@@ -246,10 +246,14 @@ function wikipage() {
     let x = ``
     $root.html(' ');
     //Need to work with how we access card database.
+    x += `<div><input type="text" id="search"/>`
+    x += `<button type="button" id="searchButton">Search</button></div>`;
+    x += `<div id="searchDiv" style="display:none"><a href="" id="searchLink">Go to Card</a></div>`
+    // does not autocomplete yet
     for (let i = 0; i < 50; i++) {
+        // <div id="card-${cardData[i].id}">` +
         x += `<div id="card-${cardData[i].id}">` +
-
-            `<h3 id="title">${cardData[i].name}</h3>` +
+            `<h3 id="${cardData[i].id}">${cardData[i].name}</h3>` +
             `<p id="img"><img src="/graphics/cards/${cardData[i].name}.img"></p>` +
             `<p id="ability">${cardData[i].abilityName}: ${cardData[i].abilityDescription}</p>` +
             `<p id="attdef">Attack: ${cardData[i].attack} Defense: ${cardData[i].defense}</p>` +
@@ -259,6 +263,32 @@ function wikipage() {
     }
     x+=`<button id="wiki-back-to-home">Go Back</button>`
     $root.append(x);
+    let results = ["Kris Jordan", "Departmental King, KMP", "The Eternal One: David Plaisted",
+        "COMP110 TA", "Office Hours", "Curve", "Stack Overflow", "Exam", "Snoeyink the Origami Lord",
+        "Anish, the Prankster", "Comp Sci Overcrowding!", "Sitterson Pizza Event", "Legendary TA Rosh",
+        "Robotics Lord Ron Alterovitz", "Legendary Professor Bishop: Destroyer of Worlds", "WeedOut Classes",
+        "BS to BA", "Caffeine Addiction", "Mips Rush", "Sitterson: Departmental Home", "Procrastinate",
+        "Coding Passion", "Djisktras Algorithm", "Legendary Professor: Montek", "Legendary Professor: McMillan the Villain",
+        "Echoes of the Past: Pozefsky", "Classmates in Genome 100", "Internship", "BA to BS", "Computer Science Friends",
+        "Computer Science Enemies", "Good Study Group", "Bad Study Group", "Code Leech", "Honour Court",
+        "Switch to Comp Minor", "Hackathon", "Tech Job Fair", "Fred Brooks", "Pearl Hacks",
+        "Obscure Youtube Coding Tutorial Channel", "Comp 426 Selfie", "Crying in the Sitterson Bathroom",
+        "Kurama", "Rate my Professor", "Skipping Class", "Bug", "The Meme Shit Post Groupme", "CPU Hat",
+        "Graduation"];
+    $("#search").autocomplete({
+        source: results
+    });
+}
+function search() {
+    let name = document.getElementById("search").value;
+    let x = "#";
+    for (let i = 0; i < 50; i++) {
+        if (name === cardData[i].name) {
+            x += cardData[i].id;
+        }
+    }
+    $("#searchLink").attr("href", x);
+    document.getElementById("searchDiv").style.display = "block";
 }
 
 function search() {
@@ -404,19 +434,19 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-0', function () {
-        console.log('is this shit clicking?0')
+
         if (playerattacked[0] === false) {
             for (let i = 0; i < 5; i++) {
                 playeratt[i] = false;
             }
             playeratt[0] = true;
-            console.log('This is Playeratt[0] and playerattacked[0]: ' + playeratt[0] + ' ' + playerattacked[0])
+
         }
 
     })
 
     $(document).on('click', '#playerboard-1', function () {
-        console.log('is this shit clicking?1')
+
 
         if (playerattacked[1] === false) {
             for (let i = 0; i < 5; i++) {
@@ -427,7 +457,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-2', function () {
-        console.log('is this shit clicking?2')
+
 
         if (playerattacked[2] === false) {
             for (let i = 0; i < 5; i++) {
@@ -438,7 +468,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-3', function () {
-        console.log('is this shit clicking?3')
+
 
         if (playerattacked[3] === false) {
             for (let i = 0; i < 5; i++) {
@@ -449,7 +479,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-4', function () {
-        console.log('is this shit clicking?4')
+
 
         if (playerattacked[4] === false) {
             for (let i = 0; i < 5; i++) {
@@ -511,7 +541,6 @@ $(function () {
     // $(document).on('click', '#aiboard-4', function () { cardAttack()})
 
     $(document).on('click', '#searchButton', function () { search() });
-
     $(document).on('click', '#aiHealth', function () {
         for (let i = 0; i < 5; i++) {
             if (playerattacked[i] === false && playeratt[i] === true) {
@@ -520,7 +549,7 @@ $(function () {
             }
         }
         update();
-        console.log(cardgame.aiMana)
+
     });
 
     $(document).on('click', '#playAgain', function () {
@@ -535,14 +564,15 @@ $(function () {
         cardgame.AI();
         update();
 
-    })
+    });
     $(document).on('click', '#landAgain', function () {
         landingPage();
-    })
+    });
     $(document).on('click', '#wiki-back-to-home', function() {
         landingPage(); 
     });
     $(document).on('click', '#how-to-back-to-home', function() {
         landingPage(); 
     }); 
-})
+});
+
