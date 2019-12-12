@@ -1,20 +1,216 @@
 body, html {
-    height: 100%;
-    font-family: source-code-pro,monospace;
-    font-weight: 400;
-    font-style: normal;
+  height: 100%;
+  font-family: source-code-pro,monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  background-image: url("images/CompStone_Board.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+input {
+  padding: 9px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+button {
+  background-color: lightblue;
+  border: 1px black solid;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
-button {
-  font-family: source-code-pro,monospace;
-  font-weight: 700;
-  font-style: normal; 
+hr {
+  border-top: 1px black solid;
+}
+
+.head {
+  border: 3px black solid;
+  padding: 3px;
+  margin: 3px;
+  display: inline-block;
+}
+
+.div {
+  border: 3px black solid;
+  padding: 3px;
+  margin: 3px;
+}
+
+#playerHand {
+  margin-left: 21px;
+}
+
+#aiBoard {
+  margin-left: 170px;
+}
+#playerBoard {
+  margin-left: 170px;
+}
+
+#aiDeck {
+  color: white;
+  margin-left: 15px;
+  margin-top: 70px;
+}
+#playerDeck {
+  color: white;
+  margin-left: 880px;
+  margin-top: 120px;
+}
+
+#aiData {
+  margin-top: 5px;
+  margin-left: 85px;
+  padding: 20px;
+}
+#playerData {
+  position: absolute;
+  margin-left: 900px;
+  margin-top: 210px;
+  float: left;
+}
+
+#endTurn {
+  position: absolute;
+  margin-left: 50px;
+  margin-top: 225px;
+}
+
+#all {
+  grid-template-columns: 50px 50px 50px 50px 50px 50px auto;
+  grid-template-rows: 50px 50px 50px 50px auto;
+  background-image: url("images/board.png");
+  background-repeat: no-repeat;
+  margin-bottom: 0;
+  height: 800px;
+}
+
+.aiCards {
+  font-size: x-small;
+  padding: 5px;
+  border: solid black 1px;
+  width: 100px;
+  height: 133px;
+  float: left;
+  background-color: white;
+  border-radius: 13px;
+}
+
+.playerBoardCards {
+  font-size: x-small;
+  padding: 5px;
+  border: solid black 1px;
+  width: 100px;
+  height: 133px;
+  float: left;
+  background-color: wheat;
+  margin-top: 97px;
+  border-radius: 13px;
+}
+
+.playerCards {
+  font-size: small;
+  padding: 5px;
+  border: solid black 1px;
+  width: 130px;
+  height: 170px;
+  float: left;
+  background-color: wheat;
+  margin-top: 97px;
+  margin-right: 17px;
+  border-radius: 7px;
+}
+#playerhand-0{
+  position:absolute;
+  left:30px;
+  top:483px;
+}
+#playerhand-1{
+  position:absolute;
+  left:190px;
+  top:483px;
+}
+#playerhand-2{
+  position:absolute;
+  left:349px;
+  top:483px;
+}
+#playerhand-3{
+  position:absolute;
+  left:508px;
+  top:483px;
+}
+#playerhand-4{
+  position:absolute;
+  left:666px;
+  top:483px;
+}
+
+#playerboard-0{
+  position:absolute;
+  left:204px;
+  top:304px;
+}
+#playerboard-1{
+  position:absolute;
+  left:330px;
+  top:304px;
+}
+#playerboard-2{
+  position:absolute;
+  left:456px;
+  top:304px;
+}
+#playerboard-3{
+  position:absolute;
+  left:583px;
+  top:304px;
+}
+#playerboard-4{
+  position:absolute;
+  left:709px;
+  top:304px;
+}
+
+#aiboard-0 {
+  position:absolute;
+  left:204px;
+  top:176px;
+}
+#aiboard-1 {
+  position:absolute;
+  left:330px;
+  top:176px;
+}
+#aiboard-2 {
+  position:absolute;
+  left:456px;
+  top:176px;
+}
+#aiboard-3 {
+  position:absolute;
+  left:583px;
+  top:176px;
+}
+#aiboard-4 {
+  position:absolute;
+  left:709px;
+  top:176px;
 }
 
 .hero-homepage {
-  background-image: url("images/CompStone_Board.jpg"); 
-  background-size: cover; 
-  background-repeat: no-repeat; 
+  background-image: url("images/CompStone_Board.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /* The hero image */
@@ -34,28 +230,28 @@ button {
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    text-align: center; 
-    padding-top: 10px; 
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  text-align: center;
+  padding-top: 10px;
+}
 
 /* google button  **************************************************************************************************/
 #google {
@@ -70,7 +266,7 @@ button {
 }
 
 #google:hover {
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 span.googleLogo img {
@@ -78,7 +274,7 @@ span.googleLogo img {
   vertical-align: middle;
   width: 25px;
   height: 25px;
-  padding-left: 5px; 
+  padding-left: 5px;
 }
 
 /* imports google logo font */
@@ -95,36 +291,36 @@ span.googleText {
 
 /* end google button ****************************************************************************************************/
 
-  /* The Close Button */
-  .close {
-    /* Position it in the top right corner outside of the modal */
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-  }
-  
-  /* Close button on hover */
-  .close:hover,
-  .close:focus {
-    color: red;
-    cursor: pointer;
-  }
-  
-  /* Add Zoom Animation */
-  .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-  }
-  
-  @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)}
-    to {-webkit-transform: scale(1)}
-  }
-  
-  @keyframes animatezoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
-  }
+/* The Close Button */
+.close {
+  /* Position it in the top right corner outside of the modal */
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}

@@ -126,7 +126,7 @@ export function landingPage() {
       <div class='hero'>
           <div class='hero-content'>
               <!--The regular content-->
-              <img src='' alt='logo'><br>
+
               <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
@@ -258,7 +258,7 @@ function wikipage() {
     let x = ``
     $root.html(' ');
     x+=`
-    <button id="play" type="button">Play Game</button>
+  <button id="how-to-back-to-home">Go Back</button>
     <button id="howTo">How to Play</button>
     <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
     `
@@ -357,7 +357,7 @@ function howToPage() {
     let text = ``
     $root.html(' ');
     text+=`
-    <button id="play" type="button">Play Game</button>
+<button id="how-to-back-to-home">Go Back</button>
     <button id="wiki">Card Wiki</button>
     <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
     `
