@@ -1,25 +1,3 @@
-[debug] [2019-12-12T01:11:18.430Z] ----------------------------------------------------------------------
-[debug] [2019-12-12T01:11:18.432Z] Command:       /usr/local/bin/node /Users/williamsrogers/WebstormProjects/426Final/node_modules/.bin/firebase emulators:start
-[debug] [2019-12-12T01:11:18.432Z] CLI Version:   7.9.0
-[debug] [2019-12-12T01:11:18.433Z] Platform:      darwin
-[debug] [2019-12-12T01:11:18.433Z] Node Version:  v10.16.3
-[debug] [2019-12-12T01:11:18.433Z] Time:          Wed Dec 11 2019 20:11:18 GMT-0500 (Eastern Standard Time)
-[debug] [2019-12-12T01:11:18.433Z] ----------------------------------------------------------------------
-[debug] [2019-12-12T01:11:18.434Z] 
-[debug] [2019-12-12T01:11:18.442Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2019-12-12T01:11:18.442Z] > authorizing via signed-in user
-[info] i  emulators: Starting emulators: functions, firestore, database, hosting
-[warn] ⚠  Your requested "node" version "8" doesn't match your global version "10"
-[info] ✔  functions: Emulator started at http://localhost:5002
-[info] i  firestore: Serving ALL traffic (including WebChannel) on http://localhost:8080
-[warn] ⚠  firestore: Support for WebChannel on a separate port (8081) is DEPRECATED and will go away soon. Please use port above instead.
-[debug] [2019-12-12T01:11:18.767Z] Ignoring unsupported arg: projectId
-[debug] [2019-12-12T01:11:18.767Z] Ignoring unsupported arg: auto_download
-[debug] [2019-12-12T01:11:18.767Z] Starting emulator firestore with command {"binary":"java","args":["-Duser.language=en","-jar","/Users/williamsrogers/.cache/firebase/emulators/cloud-firestore-emulator-v1.10.2.jar","--host","localhost","--port",8080,"--rules","/Users/williamsrogers/WebstormProjects/426Final/firestore.rules","--functions_emulator","localhost:5002","--webchannel_port",8081],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator"],"joinArgs":false}
-[info] i  firestore: Emulator logging to firestore-debug.log
-[debug] [2019-12-12T01:11:24.713Z] API endpoint: http://
-[debug] [2019-12-12T01:11:24.713Z] localhost:8080
-If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
 
    export FIRESTORE_EMULATOR_HOST=localhost:8080
 
@@ -66,3 +44,4 @@ Dev App Server is now running.
 [info] ✔  All emulators started, it is now safe to connect.
 [debug] [2019-12-12T01:11:28.313Z] [worker-~diagnostic~-bfbd551a-463c-413a-a892-92fbef0b6f57]: exited
 [debug] [2019-12-12T01:11:28.313Z] [worker-~diagnostic~-bfbd551a-463c-413a-a892-92fbef0b6f57]: FINISHED
+]
