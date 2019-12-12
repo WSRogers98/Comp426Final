@@ -19,6 +19,7 @@ playerattacked[1] = false;
 playerattacked[2] = false;
 playerattacked[3] = false;
 playerattacked[4] = false;
+let player34=false;
 
 
 // handles login button press
@@ -27,13 +28,13 @@ function toggleSignIn() {
     if (auth.currentUser) {
         auth.signOut();
     } else {
-        // gets email and password from submitted form 
-        let email = document.getElementById('email').value; 
-        let password = document.getElementById('password').value; 
+        // gets email and password from submitted form
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
         auth.signInWithEmailAndPassword(email, password).then(loadGamePage).catch(function(error) {
-            // handles sign in errors here 
-            let errorCode = error.code; 
-            let errorMessage = error.message; 
+            // handles sign in errors here
+            let errorCode = error.code;
+            let errorMessage = error.message;
             if (errorCode === 'auth/wrong-password') {
                 alert('Wrong password.');
             } else {
@@ -63,25 +64,25 @@ function loadGamePage() {
 }
 
 function handleSignInWithGoogle() {
-    var provider = new firebase.auth.GoogleAuthProvider(); 
+    var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(loadGamePage).catch(function(error) {
         if (error.code === 'auth/account-exists-with-different-credential') {
-            //handle that here 
+            //handle that here
         } else {
-            alert(error.message); 
+            alert(error.message);
         }
-    }); 
+    });
 }
 
 // handles sign up button press
 function handleSignUp() {
-    let email = document.getElementById('email').value; 
-    let password = document.getElementById('password').value; 
-    // creates user with email and password gathered above 
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    // creates user with email and password gathered above
     auth.createUserWithEmailAndPassword(email, password).then(loadGamePage).catch(function(error) {
-        // handles error here 
-        let errorCode = error.code; 
-        let errorMessage = error.message; 
+        // handles error here
+        let errorCode = error.code;
+        let errorMessage = error.message;
         if (errorCode === 'auth/weak-password') {
             alert('The password is too weak.');
         } else {
@@ -96,14 +97,14 @@ function initFirebaseAuth() {
     // Listen to auth state changes.
     auth.onAuthStateChanged(firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            loadGamePage(); 
+            loadGamePage();
         }
     }));
 }
 
 function loadGameIfSignedIn() {
     if (user) {
-        loadGamePage(); 
+        loadGamePage();
     }
 }
 
@@ -126,7 +127,6 @@ export function landingPage() {
       <div class='hero'>
           <div class='hero-content'>
               <!--The regular content-->
-
               <button id="howTo">How to Play</button>
               <button id="wiki">Card Wiki</button>
               <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
@@ -140,6 +140,7 @@ export function landingPage() {
 //Start of game
 export function startgame() {
     cardgame = new cardGame();
+    player34=false;
     cardgame.start();
 
     const $root = $('#root');
@@ -147,7 +148,7 @@ export function startgame() {
     $root.html(' ');
     wpicture+=`<button id="how-to-back-to-home">Go Back</button>`
     wpicture+=`<button id="play" type="button">New Game</button>`
-     wpicture += `<div id="all">`
+    wpicture += `<div id="all">`
     const loadboard = function () {
         wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
@@ -201,7 +202,7 @@ function update() {
     let wpicture=``
     wpicture+=`<button id="how-to-back-to-home">Go Back</button>`
     wpicture+=`<button id="play" type="button">New Game</button>`
-     wpicture += `<div id="all">`
+    wpicture += `<div id="all">`
     const loadboard = function () {
         wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
@@ -223,7 +224,7 @@ function update() {
         wpicture += `<br>`;
         wpicture += `<div id="aiBoard">`
         for (let i = 0; i < cardgame.aiboard.length; i++) {
-            wpicture += `<div id="aiboard-${i}" class="aiCards"><img src="/images/cards/${cardgame.aiboard[i].id}.png"></div>`;
+            wpicture += `<div id="aiboard-${i}"><img src="/images/cards/${cardgame.aiboard[i].id}.png" class="aiBoardCards"></div>`;
         }
         wpicture += `</div>`
         wpicture += `<br>`;
@@ -231,7 +232,7 @@ function update() {
         for (let i = 0; i < cardgame.playerboard.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerboard-${i}" class="playerBoardCards"><p><img src="/images/cards/${cardgame.playerboard[i].id}.png"></p></div>`;
+            wpicture += `<div id="playerboard-${i}"><img src="/images/cards/${cardgame.playerboard[i].id}.png" class="playerBoardCards"></div>`;
             // }
         }
         wpicture += `</div>`;
@@ -252,10 +253,29 @@ function update() {
         wpicture += `<div id="playerData">You<br><div id="playerHealth">${cardgame.playerMana}</div>`;
         wpicture += `</div>`;
     }
-    loadboard();
     $root.empty();
-    $root.append(wpicture);
-
+    loadboard();
+    //  $root.empty();
+    // $root.append(wpicture);
+    if (player34 === true) {
+        if (cardgame.playerMana > 50) {
+            cardgame.playerMana === 50;
+        }
+    }
+    if (cardgame.ai34 === true) {
+        if (cardgame.aiMana > 50) {
+            cardgame.aiMana === 50;
+        }
+    }
+    if (cardgame.playerMana > 0 && cardgame.aiMana>0) {
+        $root.empty();
+        $root.append(wpicture);
+    }
+    else if(cardgame.playerMana<=0) {
+        lose();
+    }else if (cardgame.aiMana<=0){
+        win();
+    }
 }
 
 function wikipage() {
@@ -272,7 +292,7 @@ function wikipage() {
     x += `<div id="searchDiv" style="display:none"><a href="" id="searchLink">Go to Card</a></div>`
     //Need to work with how we access card database.
     for (let i = 0; i < 50; i++) {
-        x += `<div id="card-${cardData[i].id}">` +
+        x += `<div id="${cardData[i].id}">` +
 
             `<h3 id="title">${cardData[i].name}</h3>` +
             `<p id="img"><img src="/images/cards/${cardData[i].id}.png"></p>` +
@@ -325,6 +345,7 @@ function cardAttack(x) {
 }
 
 function lose() {
+    const $root = $('#root');
     let x = ``;
     x += `<div id="loseScreen"> You lose.  Take another year at UNC.<div>`;
     x += `<button type="button" id="playAgain">Play Again</div>`;
@@ -347,17 +368,13 @@ function loadModal() {
     let form = ``;
     form += `
     <span onclick="document.getElementById('loginForm').style.display='none'" class="close" title="Close Modal">&times;</span>
-
     <!-- Modal Content -->
     <form class="modal-content animxsate">
-
         <div class="container" id="loginFormContent">
             <label for="email"><b>Email</b></label><br>
             <input type="text" placeholder="Enter Email" name="email" id="email" required><br><br>
-
             <label for="psw"><b>Password</b></label><br>
             <input type="password" placeholder="Enter Password" name="psw" id="password" required><br><br>
-
             <button type="button" id="loginSubmit">Login</button>
             <button type="button" id="createAccount">Create Account</button><br><br>
             <div id="google">
@@ -366,12 +383,10 @@ function loadModal() {
             </div>
             <br><br>
         </div>
-
         <div class="container" style="background-color:#f1f1f1">
             <button type="button" onclick="document.getElementById('loginForm').style.display='none'" class="cancelbtn">Cancel</button>
             <span class="psw"><a href="forgotPassword.html">Forgot password?</a></span>
         </div>
-
     </form>`;
     $loginForm.append(form);
 }
@@ -392,12 +407,10 @@ function howToPage() {
         The goal of the game is to play cards from your hand onto the board and then 
         use the cards on the board to damage the enemy's grade and eventually bring 
         them down to 0.</p>
-
     <hr>
     <h4 class="head">Start of the game</h4>
     <p>Each player starts with 7 cards in their hand and 0 on their board. The player 
         that goes first is decided randomly.</p>
-
     <hr>
     <h4 class="head">Turn progression</h4>
     <p>On a player's turn, they can play cards from their hand onto their board. 
@@ -406,7 +419,6 @@ function howToPage() {
         when a card is played it can't be used to attack until the 
         turn after it is played. Many cards have abilities that are activated upon 
         playing the card from the hand.</p>
-
     <hr>
     <h4 class="head">End of Game</h4>
     <p>The game ends when one of the players goes down to 0 health.</p>
@@ -434,9 +446,9 @@ $(function () {
     $(document).on('click', '#loginSubmit', toggleSignIn);
     $(document).on('click', '#createAccount', handleSignUp);
     $(document).on('submit', '#resetPassword', handleResetEmail);
-    $(document).on('click', '#google', handleSignInWithGoogle); 
-    $(document).on('click', '#googleLogo', handleSignInWithGoogle); 
-    $(document).on('click', '#googleText', handleSignInWithGoogle); 
+    $(document).on('click', '#google', handleSignInWithGoogle);
+    $(document).on('click', '#googleLogo', handleSignInWithGoogle);
+    $(document).on('click', '#googleText', handleSignInWithGoogle);
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
@@ -597,9 +609,9 @@ $(function () {
         landingPage();
     })
     $(document).on('click', '#wiki-back-to-home', function() {
-        landingPage(); 
+        landingPage();
     });
     $(document).on('click', '#how-to-back-to-home', function() {
-        landingPage(); 
-    }); 
+        landingPage();
+    });
 })

@@ -57,14 +57,14 @@ hr {
 }
 
 #aiDeck {
-
-  margin-left: 15px;
-  margin-top: 70px;
+  font-weight: bold;
+  margin-left: 18px;
+  margin-top: 50px;
 }
 #playerDeck {
-
-  margin-left: 880px;
-  margin-top: 120px;
+  font-weight: bold;
+  margin-left: 875px;
+  margin-top: 125px;
 }
 
 #aiData {
@@ -75,14 +75,14 @@ hr {
 #playerData {
   position: absolute;
   margin-left: 900px;
-  margin-top: 210px;
+  margin-top: 220px;
   float: left;
 }
 
 #endTurn {
   position: absolute;
   margin-left: 50px;
-  margin-top: 225px;
+  margin-top: 200px;
 }
 
 #all {
@@ -94,25 +94,19 @@ hr {
   height: 800px;
 }
 
-.aiCards {
-  font-size: x-small;
+.aiBoardCards {
   padding: 8px;
-
-  width: 100px;
-  height: 133px;
+  width: 110px;
+  height: 140px;
   float: left;
-
   border-radius: 15px;
 }
 
 .playerBoardCards {
-  font-size: x-small;
   padding: 8px;
-
-  width: 100px;
-  height: 133px;
+  width: 110px;
+  height: 140px;
   float: left;
-
   margin-top: 97px;
   border-radius: 15px;
 }
@@ -131,80 +125,80 @@ hr {
 }
 #playerhand-0{
   position:absolute;
-  left:30px;
-  top:483px;
+  left:21px;
+  top:495px;
 }
 #playerhand-1{
   position:absolute;
-  left:190px;
-  top:483px;
+  left:180px;
+  top:495px;
 }
 #playerhand-2{
   position:absolute;
-  left:349px;
-  top:483px;
+  left:339px;
+  top:495px;
 }
 #playerhand-3{
   position:absolute;
-  left:508px;
-  top:483px;
+  left:500px;
+  top:495px;
 }
 #playerhand-4{
   position:absolute;
-  left:666px;
-  top:483px;
+  left:657px;
+  top:495px;
 }
 
 #playerboard-0{
   position:absolute;
-  left:204px;
-  top:304px;
+  left:195px;
+  top:334px;
 }
 #playerboard-1{
   position:absolute;
-  left:330px;
-  top:304px;
+  left:320px;
+  top:334px;
 }
 #playerboard-2{
   position:absolute;
-  left:456px;
-  top:304px;
+  left:449px;
+  top:334px;
 }
 #playerboard-3{
   position:absolute;
-  left:583px;
-  top:304px;
+  left:577px;
+  top:334px;
 }
 #playerboard-4{
   position:absolute;
-  left:709px;
-  top:304px;
+  left:705px;
+  top:334px;
 }
 
 #aiboard-0 {
   position:absolute;
-  left:204px;
-  top:176px;
+  left:195px;
+  top:205px;
 }
 #aiboard-1 {
   position:absolute;
-  left:330px;
-  top:176px;
+  left:320px;
+  top:205px;
 }
 #aiboard-2 {
   position:absolute;
-  left:456px;
-  top:176px;
+  left:449px;
+  top:205px;
 }
 #aiboard-3 {
   position:absolute;
-  left:583px;
-  top:176px;
+  left:577px;
+  top:205px;
 }
 #aiboard-4 {
   position:absolute;
-  left:709px;
-  top:176px;
+  left:705px;
+  top:205px;
 }
 
 .hero-homepage {

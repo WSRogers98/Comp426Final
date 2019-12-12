@@ -117,6 +117,9 @@ export class cardGame {
                 this.playerMana = this.playerMana - this.playerhand[cardIndex].cost;
                 this.playerboard.push(this.playerhand[cardIndex]);
                 this.playerhand.splice(cardIndex, 1);
+                if (this.playerMana <= 0) {
+                    this.aiwon = true
+                }
                 if (this.playerboard[this.playerboard.length - 1].id === 6) {
                     let uwu = (Math.round(Math.random()));
                     if (uwu === 1) {
@@ -138,7 +141,7 @@ export class cardGame {
                     }
                     for (let i = 0; i < this.aiboard.length; i++) {
                         if (this.aiboard[i].id != 14) {
-                            this.destroyed(i, true);
+                            this.destroyed(i, false);
                         }
                     }
                 } else if (this.playerboard[this.playerboard.length - 1].id === 22) {
@@ -192,6 +195,9 @@ export class cardGame {
                 this.aiMana = this.aiMana - this.aihand[cardIndex].cost;
                 this.aiboard.push(this.aihand[cardIndex]);
                 this.aihand.splice(cardIndex, 1);
+                if (this.aiMana <= 0) {
+                    this.playerwon = true;
+                }
                 if (this.aiboard[this.aiboard.length - 1].id === 6) {
                     let uwu = (Math.round(Math.random()));
                     if (uwu === 1) {
@@ -213,7 +219,7 @@ export class cardGame {
                     }
                     for (let i = 0; i < this.aiboard.length; i++) {
                         if (this.aiboard[i].id != 14) {
-                            this.destroyed(i, true);
+                            this.destroyed(i, false);
                         }
                     }
                 } else if (this.aiboard[this.aiboard.length - 1].id === 22) {
