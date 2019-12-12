@@ -370,7 +370,7 @@ export const cardData= [{
         author:"Alan",
     },
     {
-        id:21,
+        id:44,
         name:"Djisktras Algorithm",
         cardimg: "link here",
         visualeffect:"link here",

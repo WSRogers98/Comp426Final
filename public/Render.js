@@ -267,7 +267,7 @@ function wikipage() {
         x += `<div id="card-${cardData[i].id}">` +
 
             `<h3 id="title">${cardData[i].name}</h3>` +
-            `<p id="img"><img src="/graphics/cards/${cardData[i].name}.img"></p>` +
+            `<p id="img"><img src="/images/cards/${cardData[i].id}.png"></p>` +
             `<p id="ability">${cardData[i].abilityName}: ${cardData[i].abilityDescription}</p>` +
             `<p id="attdef">Attack: ${cardData[i].attack} Defense: ${cardData[i].defense}</p>` +
             `<p id="cost">Cost: ${cardData[i].cost}</p>` +
