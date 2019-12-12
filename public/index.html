@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
     <head>
-      
         <meta charset="UTF-8" dir="ltr">
-
-        <!-- FOR LOGIN WITH GOOGLE -->
-        <meta name="google-signin-client_id" content="752092036191-ner285f0qft443503tn15u5lk3i579l8.apps.googleusercontent.com">
-        <!-- END LOGIN WITH GOOGLE -->
-
         <title>UNC Compstone</title>
         <link rel='stylesheet' href='style.css' type='text/css'>
         <link rel="stylesheet" href="https://use.typekit.net/qrc6jlv.css">
@@ -16,9 +9,7 @@
         <script type="module" src="engine/Cards.js"></script>
         <script type="module" src="engine/cardGame.js"></script>
         <script type="module" src='Render.js'></script>
-
     </head>
-
     <body class="hero-homepage">
 
         <audio autoplay loop>
@@ -26,89 +17,6 @@
         </audio>
         <div id="loginForm" class="modal"></div>
         <div id="root"></div>
-
-        <!-- FOR LOGIN WITH GOOGLE. DO NOT MOVE TO RENDER -->
-        <script>
-          function onSuccess(googleUser) {
-            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-            var provider = new firebase.auth.GoogleAuthProvider(); 
-            firebase.auth().signInWithPopup(provider).then(
-                function() {
-                    const $root = $('#root');
-                    $root.html('');
-                    let page = ``;
-                    page += `
-                        <div class="hero">
-                            <div class="hero-content">
-                                <button id="play" type="button">Play Game</button>
-                            </div>
-                        </div>
-                    `;
-                    $root.append(page);
-                    document.getElementById('loginForm').style.display='none';
-                }
-            ).catch(function(error) {
-                if (error.code === 'auth/account-exists-with-different-credential') {
-                    //handle that here 
-                } else {
-                    alert(error.message); 
-                }
-            }); 
-          }
-          function onFailure(error) {
-            console.log(error);
-            alert(error.message); 
-          }
-          function renderButton() {
-            gapi.signin2.render('my-signin2', {
-              'scope': 'profile email',
-              'width': 240,
-              'height': 50,
-              'longtitle': true,
-              'theme': 'dark',
-              'onsuccess': onSuccess,
-              'onfailure': onFailure
-            });
-          }
-          function toggleSignInWithGoogle() {
-              // if person isn't already logged in 
-              if (auth.currentUser) {
-                  let provider = new firebase.auth.GoogleAuthProvider(); 
-                  // signs user in 
-                  auth.signInWithPopup(provider).then(function(result) {
-                      // This gives you a Google Access Token. You can use it to access the Google API. 
-                      let token = result.credential.accessToken; 
-                      let user = result.user; 
-                      window.location.href="game.html"; 
-                  }).catch(function(error) {
-                      // handles errors 
-                      let errorCode = error.code; 
-                      let errorMessage = error.message; 
-                      // The provider account's email address 
-                      let email = error.email; 
-                      // the pending google credential 
-                      let credential = error.credential; 
-                      if (errorCode === 'auth/account-exists-with-different-credential') {
-                          alert('You have already signed up with a different auth provider for that email.'); 
-                          // hande linking user accounts signed up with multiple auth providers here 
-                          // User's email already exists.
-                          // Asks the user their password.
-                          var password = promptUserForPassword(); // TODO: implement promptUserForPassword.
-                          auth.signInWithEmailAndPassword(email, password).then(function(user) {
-                              user.linkWithCredential(credential);
-                          });
-                      } else {
-                          console.log(error); 
-                      }
-                  });
-              } else {
-                  auth.signOut(); 
-              }
-          }
-        </script>
-        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-        <!-- END LOGIN WITH GOOGLE -->
-
         <script src="/__/firebase/7.5.2/firebase-app.js"></script>
         <script src="/__/firebase/7.5.2/firebase-analytics.js"></script>
         <script src="/__/firebase/7.5.2/firebase-auth.js"></script>
@@ -116,5 +24,4 @@
         <script src="/__/firebase/init.js"></script>
 
     </body>
-
 </html>
