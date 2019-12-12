@@ -39,7 +39,7 @@ function toggleSignIn() {
             } else {
                 alert(errorMessage);
             }
-            console.log(error);
+
         })
     }
 }
@@ -52,6 +52,9 @@ function loadGamePage() {
         <div class="hero">
             <div class="hero-content">
                 <button id="play" type="button">Play Game</button>
+                <button id="howTo">How to Play</button>
+              <button id="wiki">Card Wiki</button>
+              <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
             </div>
         </div>
     `;
@@ -84,7 +87,7 @@ function handleSignUp() {
         } else {
             alert(errorMessage);
         }
-        console.log(error);
+
     });
 }
 
@@ -139,48 +142,53 @@ export function startgame() {
     cardgame.start();
 
     const $root = $('#root');
+    let wpicture=``
     $root.html(' ');
-
-    let wpicture = `<div id="all">`
+    wpicture+=`<button id="how-to-back-to-home">Go Back</button>`
+    wpicture+=`<button id="play" type="button">New Game</button>`
+     wpicture += `<div id="all">`
     const loadboard = function () {
-        wpicture += `<div id="aiHealth">Enemy Health: ${cardgame.aiMana}</div>`;
+        wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
         //Cardbacks for the AI
-        wpicture += `<div id="aiHand">`
-        for (let i = 0; i < cardgame.aihand.length; i++) {
-            // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
-            wpicture += `<div id="aihand-${i}">${cardgame.aihand[i].name}</div>`
-        }
-        wpicture += `</div>`;
+        // wpicture += `<div id="aiHand">`
+        // for (let i = 0; i < cardgame.aihand.length; i++) {
+        //     // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+        //     wpicture += `<div id="aihand-${i}" class="aiCards">${cardgame.aihand[i].name}</div>`
+
+
+        // }
+        // wpicture += `</div>`;
         wpicture += `<br>`;
         //I may need to write a check, because if we're replacing the cards
         //Used with blank cards then we will need a for loop to fix shit up.
 
         //** fix fix fix fix fix  */
-        wpicture += `<div id="aiDeck"> Card Left in Enemy Deck: ${cardgame.aiDeck.length}</div>`;
+        wpicture += `<div id="aiDeck">Cards Left: ${cardgame.aiDeck.length}</div>`;
         wpicture += `<br>`;
+        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
+        wpicture += `<div id="aiBoard">`;
         for (let i = 0; i < cardgame.aiboard.length; i++) {
-            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
-        } wpicture += `<br>`;
-
+            wpicture += `<div id="aiboard-${i}" class="aiBoardCards">${cardgame.aiboard[i].name}</div>`;
+        }
+        wpicture += `</div>`
+        wpicture += `<br>`;
         wpicture += `<div id="playerBoard">${cardgame.playerboard}</div>`;
         wpicture += `<br>`;
+        wpicture += `<div id="playerData">You<br><div id="playerHealth">${cardgame.playerMana}</div></div>`;
         //Pulls in our hand and gives each card a id of
         //playerhand-0,playerhand-1, and so forth till 6 (7 total)
-        wpicture += `<div id="playerHand">`
+        wpicture += `<div id="playerHand">`;
         ////////////////////////////////////////BIG NEED TO FIX  Draw isn't working???
         for (let i = 0; i < cardgame.playerhand.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
+            wpicture += `<div id="playerhand-${i}" class="playerCards"><p>${cardgame.playerhand[i].name}</p></div>&nbsp&nbsp&nbsp&nbsp`
 
             // }
         }
-        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
+        wpicture += `<div id="playerDeck">Cards Left: ${cardgame.playerDeck.length}</div>`
         wpicture += `</div>`;
-        wpicture += `<div id="playerDeck">Cards Left in your deck: ${cardgame.playerDeck.length}</div>`
-        wpicture += `<br>`;
-        wpicture += `<div id="playerHealth">Your Health: ${cardgame.playerMana}</div>`;
     }
     loadboard();
     $root.append(wpicture);
@@ -189,59 +197,59 @@ export function startgame() {
 function update() {
     const $root = $('#root');
     // startgame();
-    let wpicture = `<div id="all">`
+    let wpicture=``
+    wpicture+=`<button id="how-to-back-to-home">Go Back</button>`
+    wpicture+=`<button id="play" type="button">New Game</button>`
+     wpicture += `<div id="all">`
     const loadboard = function () {
-        wpicture += `<div id="aiHealth">Enemy Health: ${cardgame.aiMana}</div>`;
+        wpicture += `<div id="aiData">Smol Brain<br><div id="aiHealth">${cardgame.aiMana}</div></div>`;
         wpicture += `<br>`;
         //Cardbacks for the AI
-        wpicture += `<div id="aiHand">`
-        for (let i = 0; i < cardgame.aihand.length; i++) {
-            // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
-            wpicture += `<div id="aihand-${i}">${cardgame.aihand[i].name}</div>`
+        // wpicture += `<div id="aiHand">`
+        // for (let i = 0; i < cardgame.aihand.length; i++) {
+        //     // wpicture += `<div id="aihand-${i}>${cardgame.cardback}</div>`
+        //     wpicture += `<div id="aihand-${i}" class="aiCards">${cardgame.aihand[i].name}</div>`
 
 
-        }
-        wpicture += `</div>`;
+        // }
+        // wpicture += `</div>`;
         wpicture += `<br>`;
         //I may need to write a check, because if we're replacing the cards
         //Used with blank cards then we will need a for loop to fix shit up.
 
         //** fix fix fix fix fix  */
-        wpicture += `<div id="aiDeck"> Card Left in Enemy Deck: ${cardgame.aiDeck.length}</div>`;
+        wpicture += `<div id="aiDeck">Cards Left: ${cardgame.aiDeck.length}</div>`;
         wpicture += `<br>`;
-        wpicture += `<div id="aiboard">`
+        wpicture += `<div id="aiBoard">`
         for (let i = 0; i < cardgame.aiboard.length; i++) {
-            wpicture += `<div id="aiboard-${i}">${cardgame.aiboard[i].name}</div>`;
-            console.log('Ai board at ' + i + ': ' + cardgame.aiboard[i].name);
+            wpicture += `<div id="aiboard-${i}" class="aiCards"><img src="/images/cards/${cardgame.aiboard[i].id}.png"></div>`;
         }
         wpicture += `</div>`
         wpicture += `<br>`;
-        wpicture += `<div id="playerboard">`;
+        wpicture += `<div id="playerBoard">`;
         for (let i = 0; i < cardgame.playerboard.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerboard-${i}"><p>${cardgame.playerboard[i].name}</p></div>`;
+            wpicture += `<div id="playerboard-${i}" class="playerBoardCards"><p><img src="/images/cards/${cardgame.playerboard[i].id}.png"></p></div>`;
             // }
         }
         wpicture += `</div>`;
         wpicture += `<br>`;
         //Pulls in our hand and gives each card a id of
         //playerhand-0,playerhand-1, and so forth till 6 (7 total)
-        wpicture += `<div id="playerHand">`
+        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
+        wpicture += `<div id="playerDeck">Cards Left: ${cardgame.playerDeck.length}</div>`;
+        wpicture += `<div id="playerHand">`;
         ////////////////////////////////////////BIG NEED TO FIX  Draw isn't working???
         for (let i = 0; i < cardgame.playerhand.length; i++) {
             // if (cardgame.playerhand[i].id !== 50) {
             // wpicture += `<div id="playerhand-${i}>${cardgame.playerhand[i].cardimg}</div>`
-            wpicture += `<div id="playerhand-${i}"><p>${cardgame.playerhand[i].name}</p></div>`
+            wpicture += `<div id="playerhand-${i}" class="playerCards"><p><img src="/images/cards/${cardgame.playerhand[i].id}.png"></p></div>`
 
             // }
         }
-        wpicture += `<button id="endTurn" type="button">End Turn</button>`;
-
+        wpicture += `<div id="playerData">You<br><div id="playerHealth">${cardgame.playerMana}</div>`;
         wpicture += `</div>`;
-        wpicture += `<div id="playerDeck">Cards Left in your deck: ${cardgame.playerDeck.length}</div>`
-        wpicture += `<br>`;
-        wpicture += `<div id="playerHealth">Your Health: ${cardgame.playerMana}</div>`;
     }
     loadboard();
     $root.empty();
@@ -253,12 +261,20 @@ function wikipage() {
     const $root = $('#root');
     let x = ``
     $root.html(' ');
+    x+=`
+  <button id="how-to-back-to-home">Go Back</button>
+    <button id="howTo">How to Play</button>
+    <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+    `
+    x += `<div><input type="text" id="search"/>`
+    x += `<button type="button" id="searchButton">Search</button></div>`;
+    x += `<div id="searchDiv" style="display:none"><a href="" id="searchLink">Go to Card</a></div>`
     //Need to work with how we access card database.
     for (let i = 0; i < 50; i++) {
         x += `<div id="card-${cardData[i].id}">` +
 
             `<h3 id="title">${cardData[i].name}</h3>` +
-            `<p id="img"><img src="/graphics/cards/${cardData[i].name}.img"></p>` +
+            `<p id="img"><img src="/images/cards/${cardData[i].id}.png"></p>` +
             `<p id="ability">${cardData[i].abilityName}: ${cardData[i].abilityDescription}</p>` +
             `<p id="attdef">Attack: ${cardData[i].attack} Defense: ${cardData[i].defense}</p>` +
             `<p id="cost">Cost: ${cardData[i].cost}</p>` +
@@ -267,6 +283,22 @@ function wikipage() {
     }
     x+=`<button id="wiki-back-to-home">Go Back</button>`
     $root.append(x);
+    let results = ["Kris Jordan", "Departmental King, KMP", "The Eternal One: David Plaisted",
+        "COMP110 TA", "Office Hours", "Curve", "Stack Overflow", "Exam", "Snoeyink the Origami Lord",
+        "Anish, the Prankster", "Comp Sci Overcrowding!", "Sitterson Pizza Event", "Legendary TA Rosh",
+        "Robotics Lord Ron Alterovitz", "Legendary Professor Bishop: Destroyer of Worlds", "WeedOut Classes",
+        "BS to BA", "Caffeine Addiction", "Mips Rush", "Sitterson: Departmental Home", "Procrastinate",
+        "Coding Passion", "Djisktras Algorithm", "Legendary Professor: Montek", "Legendary Professor: McMillan the Villain",
+        "Echoes of the Past: Pozefsky", "Classmates in Genome 100", "Internship", "BA to BS", "Computer Science Friends",
+        "Computer Science Enemies", "Good Study Group", "Bad Study Group", "Code Leech", "Honour Court",
+        "Switch to Comp Minor", "Hackathon", "Tech Job Fair", "Fred Brooks", "Pearl Hacks",
+        "Obscure Youtube Coding Tutorial Channel", "Comp 426 Selfie", "Crying in the Sitterson Bathroom",
+        "Kurama", "Rate my Professor", "Skipping Class", "Bug", "The Meme Shit Post Groupme", "CPU Hat",
+        "Graduation"];
+    $("#search").autocomplete({
+        source: results
+    });
+
 }
 
 function search() {
@@ -347,6 +379,11 @@ function howToPage() {
     const $root = $('#root');
     let text = ``
     $root.html(' ');
+    text+=`
+<button id="how-to-back-to-home">Go Back</button>
+    <button id="wiki">Card Wiki</button>
+    <button id="initialLoginButton" onclick="document.getElementById('loginForm').style.display='block'">Login</button>
+    `
     text += `
     <hr>
     <h4 class="head">Basics</h4>
@@ -419,19 +456,19 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-0', function () {
-        console.log('is this shit clicking?0')
+
         if (playerattacked[0] === false) {
             for (let i = 0; i < 5; i++) {
                 playeratt[i] = false;
             }
             playeratt[0] = true;
-            console.log('This is Playeratt[0] and playerattacked[0]: ' + playeratt[0] + ' ' + playerattacked[0])
+
         }
 
     })
 
     $(document).on('click', '#playerboard-1', function () {
-        console.log('is this shit clicking?1')
+
 
         if (playerattacked[1] === false) {
             for (let i = 0; i < 5; i++) {
@@ -442,7 +479,7 @@ $(function () {
     });
 
     $(document).on('click', '#playerboard-2', function () {
-        console.log('is this shit clicking?2')
+
 
         if (playerattacked[2] === false) {
             for (let i = 0; i < 5; i++) {
@@ -453,7 +490,7 @@ $(function () {
     });
 
     $(document).on('click', '#playerboard-3', function () {
-        console.log('is this shit clicking?3')
+
 
         if (playerattacked[3] === false) {
             for (let i = 0; i < 5; i++) {
@@ -464,7 +501,7 @@ $(function () {
     })
 
     $(document).on('click', '#playerboard-4', function () {
-        console.log('is this shit clicking?4')
+
 
         if (playerattacked[4] === false) {
             for (let i = 0; i < 5; i++) {
@@ -527,7 +564,7 @@ $(function () {
     // $(document).on('click', '#aiboard-4', function () { cardAttack()})
 
 
-    
+
 
     $(document).on('click', '#searchButton', function () { search() });
 
@@ -539,7 +576,7 @@ $(function () {
             }
         }
         update();
-        console.log(cardgame.aiMana)
+
     });
 
     $(document).on('click', '#playAgain', function () {
