@@ -30,9 +30,7 @@ function toggleSignIn() {
         // gets email and password from submitted form 
         let email = document.getElementById('email').value; 
         let password = document.getElementById('password').value; 
-        auth.signInWithEmailAndPassword(email, password).then(function() {
-            window.location.href="game.html"; 
-        }).catch(function(error) {
+        auth.signInWithEmailAndPassword(email, password).then(loadGamePage()).catch(function(error) {
             // handles sign in errors here 
             let errorCode = error.code; 
             let errorMessage = error.message; 
@@ -46,14 +44,27 @@ function toggleSignIn() {
     }
 }
 
+function loadGamePage() {
+    const $root = $('#root');
+    $root.html('');
+    let page = ``;
+    page += `
+        <div class="hero">
+            <div class="hero-content">
+                <button id="play" type="button">Play Game</button>
+            </div>
+        </div>
+    `;
+    $root.append(page);
+    document.getElementById('loginForm').style.display='none'
+}
+
 // handles sign up button press
 function handleSignUp() {
     let email = document.getElementById('email').value; 
     let password = document.getElementById('password').value; 
     // creates user with email and password gathered above 
-    auth.createUserWithEmailAndPassword(email, password).then(function() {
-        window.location.href="game.html"; 
-    }).catch(function(error) {
+    auth.createUserWithEmailAndPassword(email, password).then(loadGamePage()).catch(function(error) {
         // handles error here 
         let errorCode = error.code; 
         let errorMessage = error.message; 
@@ -71,10 +82,15 @@ function initFirebaseAuth() {
     // Listen to auth state changes.
     auth.onAuthStateChanged(firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            window.location = 'localhost:5000/game.html'; //After successful login, user will be redirected to game.html
-            // TODO STILL NEED TO GET THIS TO WORK
+            loadGamePage(); 
         }
     }));
+}
+
+function loadGameIfSignedIn() {
+    if (user) {
+        loadGamePage(); 
+    }
 }
 
 function handleResetEmail() {
@@ -86,19 +102,6 @@ function handleResetEmail() {
         // handle errors here
         alert(error.message);
     });
-}
-
-function loadGamePage() {
-    const $root = $('#gameRoot');
-    let page = ``;
-    page += `
-        <div class="hero">
-            <div class="hero-content">
-                <button id="play" type="button">Play Game</button>
-            </div>
-        </div>
-    `;
-    $root.append(page);
 }
 
 export function landingPage() {
@@ -365,7 +368,6 @@ function howToPage() {
 $(function () {
     landingPage();
     loadModal();
-    loadGamePage();
     initFirebaseAuth();
 
     $(document).on('click', '#play', function () {
