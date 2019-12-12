@@ -30,7 +30,7 @@ function toggleSignIn() {
         // gets email and password from submitted form 
         let email = document.getElementById('email').value; 
         let password = document.getElementById('password').value; 
-        auth.signInWithEmailAndPassword(email, password).then(loadGamePage()).catch(function(error) {
+        auth.signInWithEmailAndPassword(email, password).then(loadGamePage).catch(function(error) {
             // handles sign in errors here 
             let errorCode = error.code; 
             let errorMessage = error.message; 
@@ -60,9 +60,8 @@ function loadGamePage() {
 }
 
 function handleSignInWithGoogle() {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     var provider = new firebase.auth.GoogleAuthProvider(); 
-    firebase.auth().signInWithPopup(provider).then(loadGamePage()).catch(function(error) {
+    firebase.auth().signInWithPopup(provider).then(loadGamePage).catch(function(error) {
         if (error.code === 'auth/account-exists-with-different-credential') {
             //handle that here 
         } else {
@@ -76,7 +75,7 @@ function handleSignUp() {
     let email = document.getElementById('email').value; 
     let password = document.getElementById('password').value; 
     // creates user with email and password gathered above 
-    auth.createUserWithEmailAndPassword(email, password).then(loadGamePage()).catch(function(error) {
+    auth.createUserWithEmailAndPassword(email, password).then(loadGamePage).catch(function(error) {
         // handles error here 
         let errorCode = error.code; 
         let errorMessage = error.message; 
@@ -400,6 +399,9 @@ $(function () {
     $(document).on('click', '#loginSubmit', toggleSignIn);
     $(document).on('click', '#createAccount', handleSignUp);
     $(document).on('submit', '#resetPassword', handleResetEmail);
+    $(document).on('click', '#google', handleSignInWithGoogle); 
+    $(document).on('click', '#googleLogo', handleSignInWithGoogle); 
+    $(document).on('click', '#googleText', handleSignInWithGoogle); 
 
     //Templates for xon clicks of cards and various items, need changes later ~~~~~Don't change the one above
     // whatever was above this appears to be gone lol
