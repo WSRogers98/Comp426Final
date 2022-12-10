@@ -21,7 +21,7 @@
     "dotenv": "^8.1.0",
     "escape-string-regexp": "^2.0.0",
     "esm": "^3.2.25",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "express-bearer-token": "^2.4.0",
     "firebase": "^7.5.2",
     "firebase-tools": "^7.9.0",
